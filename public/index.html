@@ -107,7 +107,7 @@
   }
   .hero-img {
     position: absolute; inset: 0;
-    background: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80') center/cover;
+    background: url('images/hero-clint-wagyu.jpg') center top/cover;
     opacity: .28;
   }
   .hero-grad {
@@ -835,17 +835,17 @@
         <!-- card 1 -->
         <article class="recipe-card reveal">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80" alt="Crispy Carnitas Tacos" loading="lazy"/>
-            <div class="card-cat"><span class="badge badge-stone">Mains</span></div>
+            <img src="images/recipe-salmon-polenta.jpg" alt="Pan-Seared Salmon over Creamy Polenta" loading="lazy"/>
+            <div class="card-cat"><span class="badge badge-stone">Seafood</span></div>
           </div>
           <div class="card-body">
             <div class="card-meta">
               <span class="badge badge-brand">Medium</span>
-              <span>🕐 4h 20m</span>
-              <span>👥 6</span>
+              <span>🕐 35m</span>
+              <span>👥 2</span>
             </div>
-            <h3 class="card-h3">Crispy Carnitas Tacos</h3>
-            <p class="card-desc">Slow-braised pork shoulder crisped in its own fat, served on warm corn tortillas with pickled onions and salsa verde.</p>
+            <h3 class="card-h3">Salmon over Creamy Polenta</h3>
+            <p class="card-desc">Pan-seared salmon fillet on silky polenta with lemon herb oil and a parmesan cream sauce.</p>
             <div class="card-footer">
               <div class="card-stars">
                 <div class="stars" style="font-size:.72rem">★★★★★</div>
@@ -858,18 +858,18 @@
         <!-- card 2 -->
         <article class="recipe-card reveal">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600&q=80" alt="Saffron Risotto" loading="lazy"/>
+            <img src="images/recipe-fried-chicken-mac.jpg" alt="Fried Chicken & Baked Mac" loading="lazy"/>
             <div class="card-cat"><span class="badge badge-stone">Mains</span></div>
             <div class="card-lock"><span class="badge badge-dark">🔒 Members only</span></div>
           </div>
           <div class="card-body">
             <div class="card-meta">
               <span class="badge badge-terra">Hard</span>
-              <span>🕐 40m</span>
+              <span>🕐 1h 30m</span>
               <span>👥 4</span>
             </div>
-            <h3 class="card-h3">Saffron Risotto alla Milanese</h3>
-            <p class="card-desc">Silky, golden risotto made with Carnaroli rice, real saffron, dry white wine, and a cloud of Parmigiano Reggiano.</p>
+            <h3 class="card-h3">Fried Chicken & Baked Mac</h3>
+            <p class="card-desc">Southern-style buttermilk fried chicken with three-cheese baked mac — the ultimate comfort plate.</p>
             <div class="card-footer">
               <div class="card-stars">
                 <div class="stars" style="font-size:.72rem">★★★★★</div>
@@ -882,17 +882,17 @@
         <!-- card 3 -->
         <article class="recipe-card reveal">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80" alt="Miso Salmon" loading="lazy"/>
-            <div class="card-cat"><span class="badge badge-stone">Seafood</span></div>
+            <img src="images/recipe-gnocchi-pesto.jpg" alt="Gnocchi with Chimichurri" loading="lazy"/>
+            <div class="card-cat"><span class="badge badge-stone">Pasta</span></div>
           </div>
           <div class="card-body">
             <div class="card-meta">
               <span class="badge badge-stone" style="background:var(--stone-100)">Easy</span>
-              <span>🕐 27m</span>
+              <span>🕐 30m</span>
               <span>👥 2</span>
             </div>
-            <h3 class="card-h3">Miso-Glazed Salmon</h3>
-            <p class="card-desc">Broiled salmon with a caramelized white miso glaze, sesame green beans, and steamed jasmine rice.</p>
+            <h3 class="card-h3">Pan-Fried Gnocchi & Chimichurri</h3>
+            <p class="card-desc">Crispy pan-fried gnocchi tossed in bright chimichurri with toasted breadcrumbs and pecorino.</p>
             <div class="card-footer">
               <div class="card-stars">
                 <div class="stars" style="font-size:.72rem">★★★★★</div>
@@ -1087,6 +1087,18 @@
           <li><span class="dp-icon">💌</span> Responds within 24 hours with a detailed quote</li>
           <li><span class="dp-icon">🎉</span> Perfect for birthdays, corporate dinners, date nights & more</li>
         </ul>
+        <!-- Private dinner photo gallery -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.625rem;margin-top:2rem;border-radius:var(--radius-lg);overflow:hidden">
+          <div style="grid-row:span 2;position:relative;aspect-ratio:.75;overflow:hidden;border-radius:var(--radius)">
+            <img src="images/private-dinner-plating.jpg" alt="Clint plating at private dinner" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+          </div>
+          <div style="position:relative;aspect-ratio:1.2;overflow:hidden;border-radius:var(--radius)">
+            <img src="images/private-dinner-canapes.jpg" alt="Wagyu canapés" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+          </div>
+          <div style="position:relative;aspect-ratio:1.2;overflow:hidden;border-radius:var(--radius)">
+            <img src="images/private-dinner-burrata.jpg" alt="Burrata courses" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+          </div>
+        </div>
       </div>
       <div class="dining-right">
         <div class="dining-form">
@@ -1244,12 +1256,12 @@
       </div>
       <!-- grid -->
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem">
-        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Mains</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-brand">Medium</span><span>🕐 4h 20m</span><span>👥 6</span></div><h3 class="card-h3">Crispy Carnitas Tacos</h3><p class="card-desc">Slow-braised pork shoulder crisped in its own fat, served on warm corn tortillas.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.9</span></div><div class="card-likes">♥ 312</div></div></div></article>
-        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Mains</span></div><div class="card-lock"><span class="badge badge-dark">🔒 Members</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-terra">Hard</span><span>🕐 40m</span><span>👥 4</span></div><h3 class="card-h3">Saffron Risotto alla Milanese</h3><p class="card-desc">Silky golden risotto with real saffron and Parmigiano Reggiano.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.8</span></div><div class="card-likes">♥ 198</div></div></div></article>
-        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Mains</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-stone">Easy</span><span>🕐 25m</span><span>👥 4</span></div><h3 class="card-h3">Perfect Smash Burgers</h3><p class="card-desc">Double smash patties, American cheese, caramelized onions, secret sauce.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 5.0</span></div><div class="card-likes">♥ 547</div></div></div></article>
-        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Seafood</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-stone">Easy</span><span>🕐 27m</span><span>👥 2</span></div><h3 class="card-h3">Miso-Glazed Salmon</h3><p class="card-desc">Broiled salmon with a caramelized white miso glaze.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.7</span></div><div class="card-likes">♥ 284</div></div></div></article>
-        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Baking</span></div><div class="card-lock"><span class="badge badge-dark">🔒 Members</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-terra">Hard</span><span>🕐 1h 45m</span><span>👥 1</span></div><h3 class="card-h3">Open-Crumb Sourdough</h3><p class="card-desc">Bakery-quality sourdough at home — scoring, steam, and that perfect ear.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.9</span></div><div class="card-likes">♥ 891</div></div></div></article>
-        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1567171466295-4afa63d45416?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Desserts</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-stone">Easy</span><span>🕐 1h 10m</span><span>👥 8</span></div><h3 class="card-h3">Burnt Basque Cheesecake</h3><p class="card-desc">Intentionally torched, crustless cheesecake with a molten center. 5 ingredients.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.8</span></div><div class="card-likes">♥ 372</div></div></div></article>
+        <article class="recipe-card"><div class="card-img"><img src="images/recipe-salmon-polenta.jpg" alt="Salmon over Creamy Polenta" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Seafood</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-brand">Medium</span><span>🕐 35m</span><span>👥 2</span></div><h3 class="card-h3">Salmon over Creamy Polenta</h3><p class="card-desc">Pan-seared salmon on silky polenta with lemon herb oil and parmesan cream.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.9</span></div><div class="card-likes">♥ 312</div></div></div></article>
+        <article class="recipe-card"><div class="card-img"><img src="images/recipe-fried-chicken-mac.jpg" alt="Fried Chicken & Baked Mac" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Mains</span></div><div class="card-lock"><span class="badge badge-dark">🔒 Members</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-terra">Hard</span><span>🕐 1h 30m</span><span>👥 4</span></div><h3 class="card-h3">Fried Chicken & Baked Mac</h3><p class="card-desc">Buttermilk fried chicken with three-cheese baked mac — the ultimate comfort plate.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.8</span></div><div class="card-likes">♥ 198</div></div></div></article>
+        <article class="recipe-card"><div class="card-img"><img src="images/recipe-smash-burger.jpg" alt="Perfect Smash Burger" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Mains</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-stone">Easy</span><span>🕐 20m</span><span>👥 2</span></div><h3 class="card-h3">Perfect Smash Burger</h3><p class="card-desc">Double smash patties, American cheese, caramelized onions, secret sauce on a brioche bun.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 5.0</span></div><div class="card-likes">♥ 547</div></div></div></article>
+        <article class="recipe-card"><div class="card-img"><img src="images/recipe-steak-sandwich.jpg" alt="Wagyu Steak Sandwich" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Mains</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-stone">Easy</span><span>🕐 25m</span><span>👥 2</span></div><h3 class="card-h3">Wagyu Steak Sandwich</h3><p class="card-desc">Thinly sliced wagyu on toasted bread with arugula, mustard aioli, and pickled peppers.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.7</span></div><div class="card-likes">♥ 284</div></div></div></article>
+        <article class="recipe-card"><div class="card-img"><img src="images/recipe-basque-cheesecake.jpg" alt="Burnt Basque Cheesecake" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Desserts</span></div><div class="card-lock"><span class="badge badge-dark">🔒 Members</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-terra">Medium</span><span>🕐 1h 10m</span><span>👥 8</span></div><h3 class="card-h3">Burnt Basque Cheesecake</h3><p class="card-desc">Intentionally torched, crustless cheesecake with a chocolate swirl and molten center. 5 ingredients.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.9</span></div><div class="card-likes">♥ 891</div></div></div></article>
+        <article class="recipe-card"><div class="card-img"><img src="images/recipe-gnocchi-pesto.jpg" alt="Pan-Fried Gnocchi & Chimichurri" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Pasta</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-stone">Easy</span><span>🕐 30m</span><span>👥 2</span></div><h3 class="card-h3">Pan-Fried Gnocchi & Chimichurri</h3><p class="card-desc">Crispy pan-fried gnocchi tossed in bright chimichurri with toasted breadcrumbs and pecorino.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.8</span></div><div class="card-likes">♥ 372</div></div></div></article>
       </div>
     </div>
   </div>
@@ -1259,7 +1271,7 @@
 <div id="page-recipe-detail" class="page">
   <div style="padding-top:64px">
     <div class="recipe-hero">
-      <img class="recipe-hero-img" src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1200&q=80" alt="Crispy Carnitas Tacos"/>
+      <img class="recipe-hero-img" src="images/wagyu-plated.jpg" alt="A5 Wagyu — Clint's Signature"/>
       <div class="recipe-hero-overlay"></div>
       <div class="recipe-hero-content">
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem">
