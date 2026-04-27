@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClintYur — Chef, Recipes & Cookware</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --brand:     #f59e0b;
+    --brand-d:   #d97706;
+    --brand-l:   #fef3c7;
+    --terra:     #e05a31;
+    --terra-l:   #fbe6dc;
+    --stone-50:  #fafaf9;
+    --stone-100: #f5f5f4;
+    --stone-200: #e7e5e4;
+    --stone-300: #d6d3d1;
+    --stone-400: #a8a29e;
+    --stone-500: #78716c;
+    --stone-600: #57534e;
+    --stone-700: #44403c;
+    --stone-800: #292524;
+    --stone-900: #1c1917;
+    --stone-950: #0c0a09;
+    --radius:    12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --shadow:    0 4px 24px rgba(0,0,0,.08);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,.13);
+  }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--stone-50);
+    color: var(--stone-900);
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* ── CURSOR ─────────────────────────────────────── */
+  #cursor {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    width: 44px; height: 44px;
+    pointer-events: none;
+    will-change: transform;
+    transform: translate(-100px,-100px);
+  }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; inset-inline: 0; z-index: 100;
+    transition: background .3s, box-shadow .3s, backdrop-filter .3s;
+  }
+  nav.scrolled {
+    background: rgba(255,255,255,.96);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 var(--stone-200), 0 2px 16px rgba(0,0,0,.06);
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  nav.scrolled .logo { color: var(--stone-900); }
+  .nav-links { display: flex; align-items: center; gap: .25rem; list-style: none; }
+  .nav-links a {
+    display: block; padding: .5rem .875rem;
+    border-radius: 8px;
+    font-size: .875rem; font-weight: 500;
+    color: rgba(255,255,255,.82);
+    text-decoration: none;
+    transition: color .2s, background .2s;
+  }
+  .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); }
+  nav.scrolled .nav-links a { color: var(--stone-600); }
+  nav.scrolled .nav-links a:hover { color: var(--stone-900); background: var(--stone-100); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--brand), var(--terra));
+    color: #fff !important;
+    padding: .5rem 1.25rem !important;
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 16px rgba(245,158,11,.3);
+    transition: transform .2s, box-shadow .2s !important;
+  }
+  .nav-cta:hover { transform: translateY(-2px) !important; box-shadow: 0 8px 24px rgba(245,158,11,.35) !important; background: linear-gradient(135deg, var(--brand), var(--terra)) !important; }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center;
+    background: linear-gradient(135deg, #1c1917 0%, #292524 50%, #3d1c0a 100%);
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80') center/cover;
+    opacity: .28;
+  }
+  .hero-grad {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(28,25,23,.55) 0%, rgba(28,25,23,.35) 50%, rgba(28,25,23,.85) 100%);
+  }
+  .hero-blob1 {
+    position: absolute; top: 20%; right: 8%;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: rgba(245,158,11,.12); filter: blur(80px);
+    animation: float 7s ease-in-out infinite;
+  }
+  .hero-blob2 {
+    position: absolute; bottom: 20%; left: 5%;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: rgba(224,90,49,.1); filter: blur(60px);
+    animation: float 9s ease-in-out infinite reverse;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1280px; margin: 0 auto; padding: 0 2rem;
+    padding-top: 5rem;
+  }
+  .hero-pill {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+    backdrop-filter: blur(8px);
+    border-radius: 999px; padding: .4rem 1rem;
+    margin-bottom: 1.5rem;
+    animation: slideUp .6s ease-out both;
+  }
+  .stars { display: flex; gap: 2px; }
+  .star { color: #fbbf24; font-size: .75rem; }
+  .hero-pill span { color: #fff; font-size: .75rem; font-weight: 500; }
+  .hero-h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -.02em;
+    color: #fff;
+    margin-bottom: .5rem;
+    animation: slideUp .7s .1s ease-out both;
+  }
+  .hero-h1 .accent {
+    background: linear-gradient(135deg, var(--brand), var(--terra));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    font-style: italic;
+  }
+  .hero-sub {
+    margin-top: 1.25rem;
+    font-size: 1.125rem; line-height: 1.7;
+    color: rgba(214,211,209,.9); max-width: 38rem;
+    animation: slideUp .6s .25s ease-out both;
+  }
+  .hero-btns {
+    display: flex; flex-wrap: wrap; gap: .75rem;
+    margin-top: 2rem;
+    animation: slideUp .6s .4s ease-out both;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: linear-gradient(135deg, var(--brand), var(--terra));
+    color: #fff;
+    padding: .875rem 2rem;
+    border-radius: 999px;
+    font-size: 1rem; font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(245,158,11,.28);
+    transition: transform .2s, box-shadow .2s;
+    border: none; cursor: none;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,158,11,.35); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.28);
+    color: #fff;
+    padding: .875rem 2rem;
+    border-radius: 999px;
+    font-size: 1rem; font-weight: 600;
+    text-decoration: none;
+    transition: background .2s;
+    cursor: none;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,.18); }
+  .hero-stats {
+    display: flex; gap: 2.5rem;
+    margin-top: 3rem; padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,.12);
+    animation: fadeIn .8s .6s ease-out both;
+  }
+  .stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem; font-weight: 700; color: #fff;
+  }
+  .stat-label { font-size: .8rem; color: rgba(168,162,158,.9); margin-top: .1rem; }
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: .4rem;
+    animation: bounce 2s infinite;
+    z-index: 2;
+  }
+  .scroll-ring {
+    width: 20px; height: 32px;
+    border: 2px solid rgba(255,255,255,.3);
+    border-radius: 10px;
+    display: flex; justify-content: center; padding-top: .3rem;
+  }
+  .scroll-dot { width: 3px; height: 8px; background: rgba(255,255,255,.5); border-radius: 2px; }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-6px)} }
+
+  /* ── SECTIONS ─────────────────────────────────────── */
+  section { padding: 6rem 0; }
+  .section-inner { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+  .section-eyebrow {
+    font-size: .7rem; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--brand-d);
+    margin-bottom: .5rem;
+  }
+  .section-h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700; letter-spacing: -.01em;
+    color: var(--stone-900);
+  }
+  .section-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; }
+  .view-all {
+    font-size: .875rem; font-weight: 500; color: var(--stone-500);
+    text-decoration: none;
+    display: flex; align-items: center; gap: .35rem;
+    transition: color .2s, gap .2s;
+    cursor: none;
+  }
+  .view-all:hover { color: var(--stone-800); gap: .6rem; }
+
+  /* ── RECIPE CARDS ────────────────────────────────── */
+  .card-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  @media(max-width:900px){ .card-grid{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:600px){ .card-grid{grid-template-columns:1fr} }
+
+  .recipe-card {
+    background: #fff;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform .3s, box-shadow .3s;
+    cursor: none;
+  }
+  .recipe-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+  .card-img {
+    position: relative;
+    aspect-ratio: 3/2;
+    overflow: hidden;
+    background: var(--stone-200);
+  }
+  .card-img img { width:100%; height:100%; object-fit:cover; transition: transform .5s; display:block; }
+  .recipe-card:hover .card-img img { transform: scale(1.06); }
+  .badge {
+    display: inline-flex; align-items: center; gap: .25rem;
+    padding: .2rem .6rem;
+    border-radius: 999px;
+    font-size: .7rem; font-weight: 600;
+  }
+  .badge-brand { background: var(--brand-l); color: #92400e; }
+  .badge-stone { background: var(--stone-100); color: var(--stone-600); }
+  .badge-terra { background: var(--terra-l); color: #9a3412; }
+  .badge-dark  { background: rgba(28,25,23,.75); color: #fff; backdrop-filter:blur(4px); font-size:.65rem; }
+  .card-cat { position: absolute; top: .75rem; left: .75rem; }
+  .card-lock { position: absolute; top: .75rem; right: .75rem; }
+  .card-body { padding: 1.25rem; }
+  .card-meta { display: flex; align-items: center; gap: .75rem; margin-bottom: .6rem; }
+  .card-meta span { font-size: .72rem; color: var(--stone-500); display:flex; align-items:center; gap:.2rem; }
+  .card-h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--stone-900); margin-bottom: .4rem;
+    transition: color .2s; line-height: 1.25;
+  }
+  .recipe-card:hover .card-h3 { color: var(--brand-d); }
+  .card-desc { font-size: .83rem; color: var(--stone-500); line-height: 1.65; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .card-footer { display:flex; align-items:center; justify-content:space-between; margin-top:.9rem; padding-top:.9rem; border-top:1px solid var(--stone-100); }
+  .card-stars { display:flex; align-items:center; gap:.3rem; }
+  .card-stars .stars { gap:1px; }
+  .card-stars span { font-size:.75rem; font-weight:600; color:var(--stone-600); }
+  .card-likes { font-size:.72rem; color:var(--stone-400); display:flex;align-items:center;gap:.25rem; }
+
+  /* ── MEMBERSHIP BANNER ─────────────────────────── */
+  .membership {
+    background: linear-gradient(135deg, #1c1917, #292524, #3d1c0a);
+    position: relative; overflow: hidden;
+  }
+  .mem-blob1 {
+    position: absolute; top: -6rem; right: -6rem;
+    width: 24rem; height: 24rem; border-radius: 50%;
+    background: rgba(245,158,11,.08); filter: blur(60px);
+  }
+  .mem-blob2 {
+    position: absolute; bottom: -4rem; left: -4rem;
+    width: 16rem; height: 16rem; border-radius: 50%;
+    background: rgba(224,90,49,.08); filter: blur(40px);
+  }
+  .mem-head { text-align:center; max-width:40rem; margin:0 auto 3rem; }
+  .mem-head .section-eyebrow { color: var(--brand); }
+  .mem-h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem,3.5vw,2.5rem); font-weight:700;
+    color: #fff; margin-bottom:1rem; letter-spacing:-.01em;
+  }
+  .mem-sub { color: rgba(214,211,209,.85); font-size:1.1rem; line-height:1.7; }
+  .mem-sub strong { color: var(--brand); }
+  .perks-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:3rem; }
+  @media(max-width:900px){ .perks-grid{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:500px){ .perks-grid{grid-template-columns:1fr} }
+  .perk-card {
+    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
+    border-radius: var(--radius-xl); padding: 1.5rem;
+    text-align: center; transition: background .2s;
+  }
+  .perk-card:hover { background: rgba(255,255,255,.11); }
+  .perk-icon {
+    width: 3rem; height: 3rem; border-radius: .875rem;
+    background: rgba(245,158,11,.18);
+    display: inline-flex; align-items:center; justify-content:center;
+    font-size: 1.25rem; margin-bottom: 1rem;
+  }
+  .perk-title { font-weight:600; color:#fff; font-size:.875rem; margin-bottom:.25rem; }
+  .perk-sub { font-size:.75rem; color:rgba(168,162,158,.85); }
+  .mem-btns { display:flex; justify-content:center; gap:.75rem; flex-wrap:wrap; }
+  .btn-white-ghost {
+    display:inline-flex; align-items:center; gap:.5rem;
+    color: rgba(255,255,255,.65); font-size:1rem; font-weight:600;
+    text-decoration:none; padding:.875rem 2rem;
+    transition: color .2s; cursor:none;
+  }
+  .btn-white-ghost:hover { color:#fff; }
+  .mem-fine { text-align:center; color:rgba(168,162,158,.7); font-size:.75rem; margin-top:1rem; }
+
+  /* ── PRODUCT CARDS ──────────────────────────────── */
+  .product-card {
+    background: #fff; border-radius: var(--radius-xl);
+    overflow: hidden; box-shadow: var(--shadow);
+    transition: transform .3s, box-shadow .3s; cursor:none;
+  }
+  .product-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-lg); }
+  .product-card .card-img { aspect-ratio: 1; }
+  .product-card:hover .card-img img { transform:scale(1.06); }
+  .quick-add {
+    position:absolute; inset:0;
+    background:rgba(0,0,0,.32);
+    opacity:0; transition:opacity .3s;
+    display:flex; align-items:flex-end; justify-content:center;
+    padding-bottom: 1.5rem;
+  }
+  .product-card:hover .quick-add { opacity:1; }
+  .quick-add-btn {
+    background: linear-gradient(135deg,var(--brand),var(--terra));
+    color:#fff; border:none; padding:.5rem 1.25rem;
+    border-radius:999px; font-size:.8rem; font-weight:600;
+    transform:translateY(8px); transition:transform .3s;
+    cursor:none;
+  }
+  .product-card:hover .quick-add-btn { transform:translateY(0); }
+  .product-price { font-size:1.1rem; font-weight:700; color:var(--stone-900); }
+  .product-from { font-size:.7rem; color:var(--stone-400); font-weight:400; }
+  .product-low { font-size:.72rem; font-weight:600; color:#c2410c; }
+
+  /* ── TESTIMONIALS ─────────────────────────────── */
+  .testimonials { background:#fff; }
+  .testi-card {
+    background:var(--stone-50); border:1px solid var(--stone-100);
+    border-radius:var(--radius-xl); padding:2rem;
+  }
+  .testi-stars { display:flex; gap:2px; margin-bottom:1.25rem; }
+  .testi-body { font-size:.9rem; color:var(--stone-700); line-height:1.75; margin-bottom:1.5rem; }
+  .testi-author { display:flex; align-items:center; gap:.75rem; }
+  .testi-avatar {
+    width:2.25rem; height:2.25rem; border-radius:50%;
+    background:linear-gradient(135deg,var(--brand),var(--terra));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff; font-weight:700; font-size:.875rem; flex-shrink:0;
+  }
+  .testi-name { font-size:.875rem; font-weight:600; color:var(--stone-800); }
+  .testi-loc { font-size:.72rem; color:var(--stone-400); }
+
+  /* ── YOUTUBE SECTION ─────────────────────────── */
+  .yt-section { background:var(--stone-950); padding:5rem 0; }
+  .yt-inner { max-width:1280px; margin:0 auto; padding:0 2rem; }
+  .yt-head { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:2rem; flex-wrap:wrap; gap:1rem; }
+  .yt-head-text .section-eyebrow { color:var(--brand); }
+  .yt-head-h2 { font-family:'Playfair Display',serif; font-size:clamp(1.75rem,3vw,2.5rem); font-weight:700; color:#fff; margin-top:.25rem; }
+  .yt-sub-link {
+    display:inline-flex; align-items:center; gap:.5rem;
+    background:#dc2626; color:#fff; text-decoration:none;
+    padding:.65rem 1.25rem; border-radius:999px;
+    font-size:.85rem; font-weight:600; transition:background .2s, transform .2s; cursor:none;
+  }
+  .yt-sub-link:hover { background:#b91c1c; transform:translateY(-1px); }
+  .yt-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  @media(max-width:700px){ .yt-grid{grid-template-columns:1fr} }
+  .yt-featured { grid-row:span 2; }
+  .yt-card {
+    display:block; position:relative; border-radius:var(--radius-lg); overflow:hidden;
+    background:var(--stone-800); text-decoration:none; cursor:none;
+    transition:transform .3s, box-shadow .3s;
+  }
+  .yt-card:hover { transform:translateY(-3px); box-shadow:0 16px 48px rgba(0,0,0,.5); }
+  .yt-thumb { position:relative; overflow:hidden; }
+  .yt-featured .yt-thumb { aspect-ratio:16/9; }
+  .yt-small .yt-thumb { aspect-ratio:16/9; }
+  .yt-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s; }
+  .yt-card:hover .yt-thumb img { transform:scale(1.04); }
+  .yt-play {
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(0,0,0,.2); transition:background .3s;
+  }
+  .yt-card:hover .yt-play { background:rgba(0,0,0,.35); }
+  .yt-play-btn {
+    width:3.5rem; height:3.5rem; border-radius:50%;
+    background:rgba(220,38,38,.92);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem; color:#fff; transition:transform .25s;
+    box-shadow:0 4px 20px rgba(0,0,0,.4);
+  }
+  .yt-featured .yt-play-btn { width:4.5rem; height:4.5rem; font-size:1.4rem; }
+  .yt-card:hover .yt-play-btn { transform:scale(1.12); }
+  .yt-meta { padding:.875rem 1rem; }
+  .yt-featured .yt-meta { padding:1.1rem 1.25rem; }
+  .yt-title {
+    font-size:.85rem; font-weight:600; color:#fff; line-height:1.4;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .yt-featured .yt-title { font-size:1.05rem; }
+  .yt-channel { font-size:.72rem; color:rgba(168,162,158,.6); margin-top:.3rem; }
+
+  /* ── INSTAGRAM STRIP ─────────────────────────── */
+  .ig-strip { background:var(--stone-900); border-top:1px solid rgba(255,255,255,.07); }
+  .ig-strip-inner {
+    max-width:1280px; margin:0 auto; padding:3rem 2rem;
+    display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;
+  }
+  .ig-strip-text .section-eyebrow { color:var(--brand); margin-bottom:.4rem; }
+  .ig-strip-h { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:#fff; }
+  .ig-strip-sub { font-size:.85rem; color:rgba(168,162,158,.75); margin-top:.35rem; }
+  .ig-cta {
+    display:inline-flex; align-items:center; gap:.6rem;
+    background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+    color:#fff; text-decoration:none; padding:.75rem 1.5rem;
+    border-radius:999px; font-size:.9rem; font-weight:600;
+    transition:opacity .2s, transform .2s; cursor:none; white-space:nowrap;
+  }
+  .ig-cta:hover { opacity:.9; transform:translateY(-1px); }
+
+  /* ── PRIVATE DINING ─────────────────────────── */
+  .dining-section { background:#fff; padding:6rem 0; }
+  .dining-inner { max-width:1100px; margin:0 auto; padding:0 2rem; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+  @media(max-width:800px){ .dining-inner{grid-template-columns:1fr;gap:3rem} }
+  .dining-left .section-eyebrow { margin-bottom:.75rem; }
+  .dining-h { font-family:'Playfair Display',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:700; color:var(--stone-900); line-height:1.15; margin-bottom:1.25rem; }
+  .dining-desc { font-size:1rem; color:var(--stone-500); line-height:1.8; margin-bottom:2rem; }
+  .dining-perks { list-style:none; display:flex; flex-direction:column; gap:.75rem; }
+  .dining-perks li { display:flex; align-items:flex-start; gap:.75rem; font-size:.9rem; color:var(--stone-600); }
+  .dining-perks li span.dp-icon { font-size:1rem; flex-shrink:0; margin-top:.1rem; }
+  .dining-form { background:var(--stone-50); border:1px solid var(--stone-100); border-radius:var(--radius-xl); padding:2.25rem; }
+  .dining-form-title { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; color:var(--stone-900); margin-bottom:1.5rem; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:.875rem; margin-bottom:.875rem; }
+  @media(max-width:500px){ .form-row{grid-template-columns:1fr} }
+  .form-group { display:flex; flex-direction:column; gap:.35rem; margin-bottom:.875rem; }
+  .form-label { font-size:.72rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--stone-500); }
+  .form-input, .form-select, .form-textarea {
+    border:1.5px solid var(--stone-200); border-radius:.75rem;
+    padding:.7rem .95rem; font-size:.875rem; font-family:'Inter',sans-serif;
+    color:var(--stone-900); background:#fff; outline:none;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color:var(--brand); box-shadow:0 0 0 3px rgba(245,158,11,.12);
+  }
+  .form-textarea { resize:vertical; min-height:90px; }
+  .form-submit {
+    width:100%; background:linear-gradient(135deg,var(--stone-900),var(--stone-700));
+    color:#fff; border:none; padding:.9rem; border-radius:.875rem;
+    font-size:.9rem; font-weight:600; cursor:none;
+    transition:transform .2s, box-shadow .2s; margin-top:.25rem;
+  }
+  .form-submit:hover { transform:translateY(-1px); box-shadow:0 6px 24px rgba(0,0,0,.18); }
+  .form-note { font-size:.72rem; color:var(--stone-400); text-align:center; margin-top:.75rem; }
+
+  /* ── SOCIAL FEED (legacy styles kept for compat) ─ */
+  .social { background:var(--stone-50); }
+  .social-head { text-align:center; max-width:32rem; margin:0 auto 2.5rem; }
+  .social-sub { color:var(--stone-500); font-size:.9rem; margin-top:.5rem; line-height:1.6; }
+  .social-links { display:flex; justify-content:center; gap:.75rem; margin-top:2rem; }
+  .social-btn {
+    display:inline-flex; align-items:center; gap:.5rem;
+    background:#fff; border:1px solid var(--stone-200);
+    padding:.65rem 1.25rem; border-radius:999px;
+    font-size:.875rem; font-weight:500; color:var(--stone-700);
+    text-decoration:none; transition:border-color .2s, box-shadow .2s;
+    box-shadow:var(--shadow); cursor:none;
+  }
+  .social-btn:hover { border-color:var(--stone-300); box-shadow:var(--shadow-lg); }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer { background:var(--stone-950); color:var(--stone-400); }
+  .footer-newsletter { border-bottom:1px solid rgba(255,255,255,.07); }
+  .footer-nl-inner {
+    max-width:1280px; margin:0 auto; padding:3rem 2rem;
+    display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;
+  }
+  .nl-label { font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--brand); margin-bottom:.25rem; }
+  .nl-h { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:#fff; }
+  .nl-form { display:flex; gap:.5rem; flex:1; max-width:26rem; }
+  .nl-input {
+    flex:1; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+    border-radius:999px; padding:.75rem 1.25rem; color:#fff; font-size:.875rem;
+    outline:none; transition:border-color .2s;
+  }
+  .nl-input::placeholder { color:rgba(168,162,158,.6); }
+  .nl-input:focus { border-color:var(--brand); }
+  .nl-btn {
+    background:linear-gradient(135deg,var(--brand),var(--terra));
+    color:#fff; border:none; padding:.75rem 1.5rem;
+    border-radius:999px; font-size:.875rem; font-weight:600;
+    cursor:none; transition:transform .2s;
+  }
+  .nl-btn:hover { transform:translateY(-1px); }
+  .footer-main { max-width:1280px; margin:0 auto; padding:4rem 2rem; }
+  .footer-cols { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr 1fr; gap:2rem; }
+  @media(max-width:800px){ .footer-cols{grid-template-columns:1fr 1fr} }
+  .footer-brand { grid-column: span 1; }
+  .footer-logo { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:#fff; text-decoration:none; }
+  .footer-tagline { font-size:.8rem; line-height:1.7; color:rgba(168,162,158,.75); margin-top:.75rem; }
+  .footer-socials { display:flex; gap:1rem; margin-top:1.25rem; }
+  .footer-social { color:rgba(168,162,158,.7); font-size:.85rem; text-decoration:none; transition:color .2s; cursor:none; }
+  .footer-social:hover { color:var(--brand); }
+  .footer-col h4 { font-size:.8rem; font-weight:600; color:#fff; margin-bottom:1rem; }
+  .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:.6rem; }
+  .footer-col a { font-size:.8rem; color:rgba(168,162,158,.75); text-decoration:none; transition:color .2s; cursor:none; }
+  .footer-col a:hover { color:#fff; }
+  .footer-bar { border-top:1px solid rgba(255,255,255,.06); }
+  .footer-bar-inner { max-width:1280px; margin:0 auto; padding:1.5rem 2rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem; font-size:.72rem; color:rgba(168,162,158,.5); }
+
+  /* ── ANIMATIONS ────────────────────────────────── */
+  @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity:1; transform:none; }
+  .reveal:nth-child(2){ transition-delay:.08s }
+  .reveal:nth-child(3){ transition-delay:.16s }
+
+  /* ── TAB DEMO ──────────────────────────────────── */
+  .page-tabs { display:flex; gap:.25rem; }
+  .page-tab {
+    padding:.5rem 1rem; border-radius:.5rem;
+    font-size:.8rem; font-weight:500;
+    background:none; border:none;
+    color:var(--stone-500); cursor:none;
+    transition:background .15s, color .15s;
+  }
+  .page-tab.active, .page-tab:hover { background:var(--stone-100); color:var(--stone-800); }
+  .page-tab.active { font-weight:600; }
+
+  /* ── RECIPE PAGE DEMO ─────────────────────────── */
+  .recipe-page { display:none; }
+  .recipe-page.active { display:block; }
+  .recipe-hero-img {
+    width:100%; height:420px; object-fit:cover; display:block;
+    border-radius:0;
+  }
+  .recipe-hero-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.7) 0%, rgba(0,0,0,.2) 50%, transparent 100%);
+  }
+  .recipe-hero { position:relative; }
+  .recipe-hero-content {
+    position:absolute; bottom:0; inset-inline:0;
+    padding:2rem; max-width:1280px; margin:0 auto;
+  }
+  .recipe-meta-bar {
+    background:#fff; border-bottom:1px solid var(--stone-100);
+    position:sticky; top:64px; z-index:40;
+    box-shadow:0 2px 16px rgba(0,0,0,.06);
+  }
+  .recipe-meta-inner {
+    max-width:1280px; margin:0 auto; padding:.75rem 2rem;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .recipe-meta-stats { display:flex; align-items:center; gap:1.5rem; }
+  .meta-stat { display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--stone-600); }
+  .meta-stat strong { color:var(--stone-800); }
+  .recipe-body { max-width:1280px; margin:0 auto; padding:3rem 2rem; }
+  .recipe-cols { display:grid; grid-template-columns:1fr 2fr; gap:3rem; }
+  @media(max-width:768px){ .recipe-cols{grid-template-columns:1fr} }
+  .ingredients-card {
+    background:var(--stone-50); border-radius:var(--radius-xl);
+    padding:1.5rem; position:sticky; top:8rem;
+  }
+  .ing-list { list-style:none; display:flex;flex-direction:column;gap:.75rem; margin-top:1rem; }
+  .ing-item { display:flex;gap:.5rem;font-size:.85rem; }
+  .ing-amount { font-weight:600;color:var(--stone-900);min-width:3.5rem; }
+  .ing-name { color:var(--stone-700); }
+  .ing-note { color:var(--stone-400); }
+  .method-h2 { font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--stone-900);margin-bottom:2rem; }
+  .steps { display:flex;flex-direction:column;gap:2rem;list-style:none; }
+  .step { display:flex;gap:1.25rem; }
+  .step-num {
+    flex-shrink:0;width:2rem;height:2rem;border-radius:50%;
+    background:var(--brand-l);color:#92400e;
+    font-weight:700;font-size:.875rem;
+    display:flex;align-items:center;justify-content:center;
+    margin-top:.2rem;
+  }
+  .step-text { font-size:.9rem;color:var(--stone-700);line-height:1.75; }
+
+  /* ── SUBSCRIBE PAGE ──────────────────────────── */
+  .subscribe-page { display:none; }
+  .subscribe-page.active { display:block; }
+  .subscribe-hero {
+    background:linear-gradient(135deg,#1c1917,#292524,#3d1c0a);
+    text-align:center; padding:6rem 2rem 5rem;
+  }
+  .plan-cards { display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;max-width:40rem;margin:0 auto 2rem; }
+  .plan-card {
+    background:#fff;border-radius:var(--radius-xl);border:2px solid var(--stone-200);
+    padding:1.5rem;text-align:left;cursor:none;transition:border-color .2s,box-shadow .2s;
+    position:relative;
+  }
+  .plan-card.selected { border-color:var(--brand);box-shadow:0 4px 24px rgba(245,158,11,.2); }
+  .plan-pill {
+    position:absolute;top:-.75rem;left:1.25rem;
+    background:var(--terra);color:#fff;font-size:.65rem;font-weight:700;
+    padding:.2rem .75rem;border-radius:999px;
+    display:flex;align-items:center;gap:.25rem;
+  }
+  .plan-label { font-size:.75rem;font-weight:600;color:var(--stone-500);margin-bottom:.25rem; }
+  .plan-price { font-family:'Playfair Display',serif;font-size:2.25rem;font-weight:700;color:var(--stone-900);line-height:1; }
+  .plan-period { font-size:.875rem;color:var(--stone-400);font-family:'Inter',sans-serif;font-weight:400; }
+  .plan-note { font-size:.75rem;color:var(--stone-400);margin-top:.25rem; }
+  .features-box { background:#fff;border-radius:var(--radius-xl);border:1px solid var(--stone-100);box-shadow:var(--shadow);padding:2rem;max-width:40rem;margin:0 auto 1.5rem; }
+  .features-title { font-weight:600;color:var(--stone-800);margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem; }
+  .feature-list { list-style:none;display:flex;flex-direction:column;gap:.75rem; }
+  .feature-item { display:flex;align-items:flex-start;gap:.75rem;font-size:.875rem;color:var(--stone-700); }
+  .check-icon { color:var(--brand);flex-shrink:0;margin-top:.1rem; }
+  .subscribe-cta { max-width:40rem;margin:0 auto;text-align:center; }
+  .big-cta {
+    display:block;width:100%;
+    background:linear-gradient(135deg,var(--brand),var(--terra));
+    color:#fff;border:none;padding:1.1rem 2rem;
+    border-radius:999px;font-size:1rem;font-weight:600;
+    box-shadow:0 4px 20px rgba(245,158,11,.28);
+    cursor:none;transition:transform .2s,box-shadow .2s;
+    text-align:center;margin-bottom:.75rem;
+  }
+  .big-cta:hover { transform:translateY(-2px);box-shadow:0 8px 32px rgba(245,158,11,.35); }
+  .secure-note { font-size:.72rem;color:var(--stone-400); }
+
+  /* ── SHOP PAGE ───────────────────────────────── */
+  .shop-page { display:none; }
+  .shop-page.active { display:block; }
+  .shop-tabs {
+    background:#fff;border-bottom:1px solid var(--stone-100);
+    position:sticky;top:64px;z-index:40;
+  }
+  .shop-tabs-inner { max-width:1280px;margin:0 auto;padding:.5rem 2rem;display:flex;gap:.25rem; }
+  .shop-tab {
+    padding:.5rem 1rem;border-radius:.625rem;
+    font-size:.8rem;font-weight:500;
+    background:none;border:none;cursor:none;
+    color:var(--stone-500);transition:background .15s,color .15s;
+  }
+  .shop-tab.active { background:var(--stone-100);color:var(--stone-900);font-weight:600; }
+  .shop-tab:hover:not(.active) { color:var(--stone-700); }
+
+  /* ── PAGE SWITCHER ───────────────────────────── */
+  .demo-bar {
+    background:#fff;border-bottom:2px solid var(--stone-200);
+    position:sticky;top:0;z-index:200;
+  }
+  .demo-inner { max-width:1280px;margin:0 auto;padding:.5rem 2rem;display:flex;align-items:center;gap:1rem; }
+  .demo-label { font-size:.7rem;font-weight:700;color:var(--stone-400);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap; }
+  .demo-tabs { display:flex;gap:.25rem; }
+  .demo-tab {
+    padding:.35rem .875rem;border-radius:.5rem;
+    font-size:.75rem;font-weight:500;
+    background:none;border:none;cursor:none;
+    color:var(--stone-500);transition:background .15s,color .15s;
+  }
+  .demo-tab.active { background:var(--brand-l);color:#92400e;font-weight:600; }
+  .demo-tab:hover:not(.active) { background:var(--stone-100);color:var(--stone-700); }
+
+  /* pages */
+  .page { display:none; }
+  .page.active { display:block; }
+
+  /* product detail */
+  .pdp { max-width:1280px;margin:0 auto;padding:3rem 2rem; }
+  .pdp-cols { display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start; }
+  @media(max-width:768px){ .pdp-cols{grid-template-columns:1fr} }
+  .pdp-main-img { border-radius:var(--radius-xl);overflow:hidden;aspect-ratio:1;background:var(--stone-100); }
+  .pdp-main-img img { width:100%;height:100%;object-fit:cover;display:block; }
+  .pdp-thumbs { display:flex;gap:.5rem;margin-top:.75rem; }
+  .pdp-thumb { width:5rem;height:5rem;border-radius:.75rem;overflow:hidden;border:2px solid transparent;cursor:none; }
+  .pdp-thumb.active { border-color:var(--brand); }
+  .pdp-thumb img { width:100%;height:100%;object-fit:cover;display:block; }
+  .pdp-price { font-size:2rem;font-weight:700;color:var(--stone-900);margin-bottom:.5rem; }
+  .pdp-desc { font-size:.9rem;color:var(--stone-500);line-height:1.75;margin-bottom:1.5rem; }
+  .pdp-opt-label { font-size:.8rem;font-weight:600;color:var(--stone-700);margin-bottom:.5rem; }
+  .color-opts,.size-opts { display:flex;gap:.5rem;margin-bottom:1.25rem;flex-wrap:wrap; }
+  .color-opt,.size-opt {
+    padding:.4rem .9rem;border:1.5px solid var(--stone-200);border-radius:.625rem;
+    font-size:.8rem;font-weight:500;color:var(--stone-700);cursor:none;
+    transition:border-color .15s;
+  }
+  .color-opt.active,.size-opt.active { border-color:var(--stone-800);background:var(--stone-900);color:#fff; }
+  .add-btn {
+    width:100%;background:linear-gradient(135deg,var(--brand),var(--terra));
+    color:#fff;border:none;padding:1rem;border-radius:999px;
+    font-size:1rem;font-weight:600;cursor:none;
+    box-shadow:0 4px 20px rgba(245,158,11,.28);
+    transition:transform .2s,box-shadow .2s;
+    display:flex;align-items:center;justify-content:center;gap:.5rem;
+    margin-bottom:.75rem;
+  }
+  .add-btn:hover { transform:translateY(-2px); }
+  .member-note { text-align:center;font-size:.8rem;color:var(--stone-400);margin-bottom:1.5rem; }
+  .member-note a { color:var(--brand-d);text-decoration:none; }
+  .guarantees { display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;border-top:1px solid var(--stone-100);padding-top:1.25rem; }
+  .guarantee { text-align:center;font-size:.72rem;color:var(--stone-500); }
+  .guarantee .g-icon { font-size:1rem;display:block;margin-bottom:.25rem; }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cursor" aria-hidden="true">
+  <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="26" y="19" width="16" height="5" rx="2.5" fill="#374151" stroke="#1f2937" stroke-width=".5"/>
+    <ellipse cx="18" cy="22" rx="16" ry="15" fill="#4b5563" stroke="#1f2937" stroke-width=".5"/>
+    <ellipse cx="18" cy="22" rx="14" ry="13" fill="#374151"/>
+    <ellipse cx="18" cy="22" rx="12" ry="11" fill="#1c1917"/>
+    <ellipse cx="17" cy="22" rx="6.5" ry="5.5" fill="#fffbeb"/>
+    <g id="egg-yolk">
+      <circle cx="17" cy="22" r="3.5" fill="#fbbf24"/>
+      <circle cx="15.5" cy="20.5" r="1.2" fill="#fef3c7" opacity="0.7"/>
+    </g>
+  </svg>
+</div>
+
+<!-- DEMO NAV BAR -->
+<div class="demo-bar">
+  <div class="demo-inner">
+    <span class="demo-label">Preview</span>
+    <div class="demo-tabs">
+      <button class="demo-tab active" onclick="showPage('home')">Home</button>
+      <button class="demo-tab" onclick="showPage('recipes')">Recipes</button>
+      <button class="demo-tab" onclick="showPage('recipe-detail')">Recipe Detail</button>
+      <button class="demo-tab" onclick="showPage('shop')">Shop</button>
+      <button class="demo-tab" onclick="showPage('product-detail')">Product</button>
+      <button class="demo-tab" onclick="showPage('subscribe')">Membership</button>
+      <button class="demo-tab" onclick="showPage('home');setTimeout(()=>document.getElementById('private-dining').scrollIntoView({behavior:'smooth'}),200)">Private Dining</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">ClintYur</a>
+    <ul class="nav-links">
+      <li><a href="#">Recipes</a></li>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#">Membership</a></li>
+      <li><a href="#" class="nav-cta">Join — $3.99/mo</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════ HOME PAGE ═══════ -->
+<div id="page-home" class="page active">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-img"></div>
+    <div class="hero-grad"></div>
+    <div class="hero-blob1"></div>
+    <div class="hero-blob2"></div>
+    <div class="hero-content">
+      <div class="hero-pill">
+        <div class="stars">★★★★★</div>
+        <span>Join 50,000+ home cooks who cook better</span>
+      </div>
+      <h1 class="hero-h1">
+        Cook like you<br>
+        <span class="accent">actually mean it.</span>
+      </h1>
+      <p class="hero-sub">Restaurant-quality recipes that work in a home kitchen — plus the cookware and aprons to make every cook feel intentional.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">Explore Recipes →</a>
+        <a href="#" class="btn-secondary">Join — $3.99/mo</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-val">200+</div><div class="stat-label">Recipes</div></div>
+        <div><div class="stat-val">50K</div><div class="stat-label">Cooks</div></div>
+        <div><div class="stat-val">4.9★</div><div class="stat-label">Avg rating</div></div>
+      </div>
+    </div>
+    <div class="scroll-hint"><div class="scroll-ring"><div class="scroll-dot"></div></div></div>
+  </section>
+
+  <!-- FEATURED RECIPES -->
+  <section style="background:var(--stone-50)">
+    <div class="section-inner">
+      <div class="section-head">
+        <div><div class="section-eyebrow">What's cooking</div><h2 class="section-h2">Featured recipes</h2></div>
+        <a href="#" class="view-all">View all →</a>
+      </div>
+      <div class="card-grid">
+        <!-- card 1 -->
+        <article class="recipe-card reveal">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80" alt="Crispy Carnitas Tacos" loading="lazy"/>
+            <div class="card-cat"><span class="badge badge-stone">Mains</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="badge badge-brand">Medium</span>
+              <span>🕐 4h 20m</span>
+              <span>👥 6</span>
+            </div>
+            <h3 class="card-h3">Crispy Carnitas Tacos</h3>
+            <p class="card-desc">Slow-braised pork shoulder crisped in its own fat, served on warm corn tortillas with pickled onions and salsa verde.</p>
+            <div class="card-footer">
+              <div class="card-stars">
+                <div class="stars" style="font-size:.72rem">★★★★★</div>
+                <span>4.9</span>&nbsp;<span style="color:var(--stone-400)">(47)</span>
+              </div>
+              <div class="card-likes">♥ 312</div>
+            </div>
+          </div>
+        </article>
+        <!-- card 2 -->
+        <article class="recipe-card reveal">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600&q=80" alt="Saffron Risotto" loading="lazy"/>
+            <div class="card-cat"><span class="badge badge-stone">Mains</span></div>
+            <div class="card-lock"><span class="badge badge-dark">🔒 Members only</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="badge badge-terra">Hard</span>
+              <span>🕐 40m</span>
+              <span>👥 4</span>
+            </div>
+            <h3 class="card-h3">Saffron Risotto alla Milanese</h3>
+            <p class="card-desc">Silky, golden risotto made with Carnaroli rice, real saffron, dry white wine, and a cloud of Parmigiano Reggiano.</p>
+            <div class="card-footer">
+              <div class="card-stars">
+                <div class="stars" style="font-size:.72rem">★★★★★</div>
+                <span>4.8</span>&nbsp;<span style="color:var(--stone-400)">(29)</span>
+              </div>
+              <div class="card-likes">♥ 198</div>
+            </div>
+          </div>
+        </article>
+        <!-- card 3 -->
+        <article class="recipe-card reveal">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80" alt="Miso Salmon" loading="lazy"/>
+            <div class="card-cat"><span class="badge badge-stone">Seafood</span></div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="badge badge-stone" style="background:var(--stone-100)">Easy</span>
+              <span>🕐 27m</span>
+              <span>👥 2</span>
+            </div>
+            <h3 class="card-h3">Miso-Glazed Salmon</h3>
+            <p class="card-desc">Broiled salmon with a caramelized white miso glaze, sesame green beans, and steamed jasmine rice.</p>
+            <div class="card-footer">
+              <div class="card-stars">
+                <div class="stars" style="font-size:.72rem">★★★★★</div>
+                <span>4.7</span>&nbsp;<span style="color:var(--stone-400)">(61)</span>
+              </div>
+              <div class="card-likes">♥ 284</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP BANNER -->
+  <section class="membership">
+    <div class="mem-blob1"></div><div class="mem-blob2"></div>
+    <div class="section-inner" style="position:relative;z-index:2">
+      <div class="mem-head">
+        <div class="section-eyebrow">Membership</div>
+        <h2 class="mem-h2">Unlock the full kitchen</h2>
+        <p class="mem-sub">$3.99/month. Cancel anytime. Start with a <strong>99¢ first month</strong> if you want to try before you commit.</p>
+      </div>
+      <div class="perks-grid">
+        <div class="perk-card"><div class="perk-icon">🔒</div><div class="perk-title">Subscriber-only recipes</div><div class="perk-sub">50+ exclusive dishes</div></div>
+        <div class="perk-card"><div class="perk-icon">⚡</div><div class="perk-title">Early access</div><div class="perk-sub">New content first</div></div>
+        <div class="perk-card"><div class="perk-icon">🏷️</div><div class="perk-title">10% off the shop</div><div class="perk-sub">Every order, forever</div></div>
+        <div class="perk-card"><div class="perk-icon">⭐</div><div class="perk-title">Priority community</div><div class="perk-sub">Your comments rise first</div></div>
+      </div>
+      <div class="mem-btns">
+        <a href="#" class="btn-primary">Try for 99¢ — first month</a>
+        <a href="#" class="btn-white-ghost">See all plan details →</a>
+      </div>
+      <p class="mem-fine">No commitment. Cancels anytime. 30-day money-back guarantee.</p>
+    </div>
+  </section>
+
+  <!-- SHOP PREVIEW -->
+  <section>
+    <div class="section-inner">
+      <div class="section-head">
+        <div><div class="section-eyebrow">The Shop</div><h2 class="section-h2">Made to last</h2></div>
+        <a href="#" class="view-all">Shop all →</a>
+      </div>
+      <div class="card-grid">
+        <article class="product-card reveal">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=600&q=80" alt="Canvas Apron" loading="lazy"/>
+            <div class="card-cat"><span class="badge badge-stone">Apparel</span></div>
+            <div class="quick-add"><button class="quick-add-btn">+ Add to bag</button></div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-h3">Canvas Apron</h3>
+            <p class="card-desc">Heavy-duty waxed canvas with genuine leather straps and a bottle opener loop.</p>
+            <div style="margin-top:.75rem;display:flex;align-items:center;justify-content:space-between">
+              <span class="product-price">$89.00</span>
+            </div>
+          </div>
+        </article>
+        <article class="product-card reveal">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" alt="Chef Tee" loading="lazy"/>
+            <div class="card-cat"><span class="badge badge-stone">Apparel</span></div>
+            <div class="quick-add"><button class="quick-add-btn">Choose options</button></div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-h3">Chef Tee — Heavy Cotton</h3>
+            <p class="card-desc">7 oz ring-spun cotton, relaxed fit. Chef logo embroidered on chest.</p>
+            <div style="margin-top:.75rem;display:flex;align-items:center;justify-content:space-between">
+              <span class="product-price">$42.00 <span class="product-from">from</span></span>
+            </div>
+          </div>
+        </article>
+        <article class="product-card reveal">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=600&q=80" alt='Carbon Steel Skillet' loading="lazy"/>
+            <div class="card-cat"><span class="badge badge-stone">Cookware</span></div>
+            <div class="quick-add"><button class="quick-add-btn">+ Add to bag</button></div>
+          </div>
+          <div class="card-body">
+            <h3 class="card-h3">Carbon Steel Skillet 10"</h3>
+            <p class="card-desc">Pre-seasoned, oven-safe to 700°F, and lighter than cast iron.</p>
+            <div style="margin-top:.75rem;display:flex;align-items:center;justify-content:space-between">
+              <span class="product-price">$135.00</span>
+              <span class="product-low">Only 16 left</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="section-inner">
+      <div class="section-head" style="margin-bottom:2.5rem">
+        <div><div class="section-eyebrow">Community love</div><h2 class="section-h2">What cooks are saying</h2></div>
+      </div>
+      <div class="card-grid">
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-body">"I've made the carnitas tacos three weekends in a row. My partner thinks I went to culinary school."</p>
+          <div class="testi-author"><div class="testi-avatar">S</div><div><div class="testi-name">Sarah M.</div><div class="testi-loc">Portland, OR</div></div></div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-body">"The carbon steel skillet is the best thing I've bought for my kitchen in five years. Season it once and it's perfect forever."</p>
+          <div class="testi-author"><div class="testi-avatar">M</div><div><div class="testi-name">Marcus T.</div><div class="testi-loc">Chicago, IL</div></div></div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-body">"The membership is absurdly good value. The sourdough masterclass alone was worth triple the price."</p>
+          <div class="testi-author"><div class="testi-avatar">P</div><div><div class="testi-name">Priya K.</div><div class="testi-loc">Austin, TX</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOUTUBE SECTION -->
+  <section class="yt-section">
+    <div class="yt-inner">
+      <div class="yt-head">
+        <div class="yt-head-text">
+          <div class="section-eyebrow">Watch on YouTube</div>
+          <div class="yt-head-h2">Latest from ClintYur</div>
+        </div>
+        <a href="https://www.youtube.com/@ClintYur" target="_blank" class="yt-sub-link">
+          ▶ Subscribe — 5.9K+
+        </a>
+      </div>
+      <div class="yt-grid">
+        <!-- Featured video -->
+        <a href="https://www.youtube.com/watch?v=bib1TcWQjnk" target="_blank" class="yt-card yt-featured">
+          <div class="yt-thumb">
+            <img src="https://i3.ytimg.com/vi/bib1TcWQjnk/hqdefault.jpg" alt="Private Chef Cooks A5 Wagyu in Austin, Texas!" loading="lazy"/>
+            <div class="yt-play"><div class="yt-play-btn">▶</div></div>
+          </div>
+          <div class="yt-meta">
+            <div class="yt-title">Private Chef Cooks A5 Wagyu in Austin, Texas! (Good Food, Big Dabs, PuffCo, Running, and More)</div>
+            <div class="yt-channel">@ClintYur</div>
+          </div>
+        </a>
+        <!-- Small videos -->
+        <a href="https://www.youtube.com/watch?v=YSDHH6lcKCE" target="_blank" class="yt-card yt-small">
+          <div class="yt-thumb">
+            <img src="https://i2.ytimg.com/vi/YSDHH6lcKCE/hqdefault.jpg" alt="Private Chef Cooks For The Goyim in Austin, Texas!" loading="lazy"/>
+            <div class="yt-play"><div class="yt-play-btn">▶</div></div>
+          </div>
+          <div class="yt-meta">
+            <div class="yt-title">Private Chef Cooks For The Goyim in Austin, Texas!</div>
+            <div class="yt-channel">@ClintYur</div>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=GP2zbv3Eumk" target="_blank" class="yt-card yt-small">
+          <div class="yt-thumb">
+            <img src="https://i4.ytimg.com/vi/GP2zbv3Eumk/hqdefault.jpg" alt="NYC Private Chef Cooks a Meal For Under $20" loading="lazy"/>
+            <div class="yt-play"><div class="yt-play-btn">▶</div></div>
+          </div>
+          <div class="yt-meta">
+            <div class="yt-title">NYC Private Chef Cooks a Meal For Under $20 (Shopping, Chinatown, Good Eats, Good Vibes)</div>
+            <div class="yt-channel">@ClintYur</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM STRIP -->
+  <div class="ig-strip">
+    <div class="ig-strip-inner">
+      <div class="ig-strip-text">
+        <div class="section-eyebrow">Instagram</div>
+        <div class="ig-strip-h">@clintyurr</div>
+        <div class="ig-strip-sub">Behind the scenes, private dinners, and daily eats. 20K+ followers.</div>
+      </div>
+      <a href="https://www.instagram.com/clintyurr/" target="_blank" class="ig-cta">
+        📷 Follow on Instagram
+      </a>
+    </div>
+  </div>
+
+  <!-- PRIVATE DINING -->
+  <section class="dining-section" id="private-dining">
+    <div class="dining-inner">
+      <div class="dining-left">
+        <div class="section-eyebrow">Private Dining</div>
+        <h2 class="dining-h">Book Clint for Your Next Dinner</h2>
+        <p class="dining-desc">Whether it's an intimate dinner for 4 or a curated experience for 20, Clint brings restaurant-quality cooking directly to your table. NYC and Austin-based, with travel available.</p>
+        <ul class="dining-perks">
+          <li><span class="dp-icon">🍽️</span> Custom menus tailored to your guests and occasion</li>
+          <li><span class="dp-icon">🥩</span> Premium sourcing — A5 Wagyu, fresh seafood, local produce</li>
+          <li><span class="dp-icon">🏙️</span> Available in NYC, Austin, and select travel dates</li>
+          <li><span class="dp-icon">💌</span> Responds within 24 hours with a detailed quote</li>
+          <li><span class="dp-icon">🎉</span> Perfect for birthdays, corporate dinners, date nights & more</li>
+        </ul>
+      </div>
+      <div class="dining-right">
+        <div class="dining-form">
+          <div class="dining-form-title">Request a Quote</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input class="form-input" type="text" placeholder="Jane"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input class="form-input" type="text" placeholder="Smith"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" placeholder="jane@example.com"/>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Event Type</label>
+              <select class="form-select">
+                <option>Dinner Party</option>
+                <option>Date Night</option>
+                <option>Corporate Event</option>
+                <option>Birthday / Celebration</option>
+                <option>Holiday Gathering</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Number of Guests</label>
+              <select class="form-select">
+                <option>2–4 guests</option>
+                <option>5–8 guests</option>
+                <option>9–15 guests</option>
+                <option>16–25 guests</option>
+                <option>25+ guests</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Event Date</label>
+              <input class="form-input" type="date"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">City</label>
+              <select class="form-select">
+                <option>New York City</option>
+                <option>Austin, TX</option>
+                <option>Other / Travel</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tell me about your event</label>
+            <textarea class="form-textarea" placeholder="Any dietary restrictions, vibe, dream dishes, or questions..."></textarea>
+          </div>
+          <button class="form-submit" onclick="this.textContent='Request Sent ✓';this.style.background='#16a34a'">Send Request</button>
+          <p class="form-note">No commitment — I'll follow up with a custom quote within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-newsletter">
+      <div class="footer-nl-inner">
+        <div><div class="nl-label">Free recipes, weekly</div><div class="nl-h">Get the newsletter</div></div>
+        <div class="nl-form">
+          <input class="nl-input" type="email" placeholder="your@email.com"/>
+          <button class="nl-btn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="footer-cols">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">ClintYur</a>
+          <p class="footer-tagline">Chef. Creator. NYC → ATX. Private dinners, recipes, and cookware built for people who actually cook.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/clintyurr/" target="_blank" class="footer-social">Instagram</a>
+            <a href="https://www.youtube.com/@ClintYur" target="_blank" class="footer-social">YouTube</a>
+            <a href="mailto:chefclintt@gmail.com" class="footer-social">Email</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Recipes</h4>
+          <ul><li><a href="#">Mains</a></li><li><a href="#">Desserts</a></li><li><a href="#">Baking</a></li><li><a href="#">Quick &amp; Easy</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul><li><a href="#">Cookware</a></li><li><a href="#">Apparel</a></li><li><a href="#">Accessories</a></li><li><a href="#">Gift Cards</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul><li><a href="#">About</a></li><li><a href="#">Journal</a></li><li><a href="#">Membership</a></li><li><a href="#">Contact</a></li></ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul><li><a href="#">FAQ</a></li><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="footer-bar-inner">
+        <span>© 2025 ClintYur. All rights reserved.</span>
+        <span>Crafted with love in California 🍳</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════ RECIPES PAGE ═══════ -->
+<div id="page-recipes" class="page">
+  <div style="background:var(--stone-50);border-bottom:1px solid var(--stone-100);padding-top:64px">
+    <div class="section-inner" style="padding:3rem 2rem">
+      <div class="section-eyebrow">The kitchen</div>
+      <h1 class="section-h2" style="font-size:2.75rem;margin-bottom:.75rem">All Recipes</h1>
+      <p style="color:var(--stone-500);font-size:1.05rem">6 recipes — from quick weeknight dinners to ambitious weekend projects.</p>
+    </div>
+  </div>
+  <div class="section-inner" style="padding:2.5rem 2rem">
+    <div style="display:grid;grid-template-columns:200px 1fr;gap:2rem;align-items:start">
+      <!-- sidebar -->
+      <div>
+        <div style="margin-bottom:1.5rem">
+          <div class="pdp-opt-label" style="margin-bottom:.5rem">Search</div>
+          <div style="position:relative">
+            <span style="position:absolute;left:.75rem;top:50%;transform:translateY(-50%);color:var(--stone-400);font-size:.8rem">🔍</span>
+            <input style="width:100%;border:1.5px solid var(--stone-200);border-radius:.75rem;padding:.6rem .75rem .6rem 2rem;font-size:.8rem;outline:none;background:#fff" placeholder="Search recipes…"/>
+          </div>
+        </div>
+        <div style="margin-bottom:1.5rem">
+          <div class="pdp-opt-label" style="margin-bottom:.5rem">Category</div>
+          <div style="display:flex;flex-direction:column;gap:.25rem">
+            <button style="text-align:left;padding:.5rem .75rem;border-radius:.5rem;font-size:.8rem;background:var(--brand-l);color:#92400e;font-weight:600;border:none;cursor:none">All categories</button>
+            <button style="text-align:left;padding:.5rem .75rem;border-radius:.5rem;font-size:.8rem;color:var(--stone-600);background:none;border:none;cursor:none;transition:background .15s">Mains</button>
+            <button style="text-align:left;padding:.5rem .75rem;border-radius:.5rem;font-size:.8rem;color:var(--stone-600);background:none;border:none;cursor:none">Seafood</button>
+            <button style="text-align:left;padding:.5rem .75rem;border-radius:.5rem;font-size:.8rem;color:var(--stone-600);background:none;border:none;cursor:none">Desserts</button>
+            <button style="text-align:left;padding:.5rem .75rem;border-radius:.5rem;font-size:.8rem;color:var(--stone-600);background:none;border:none;cursor:none">Baking</button>
+          </div>
+        </div>
+        <div>
+          <div class="pdp-opt-label" style="margin-bottom:.5rem">Difficulty</div>
+          <div style="display:flex;flex-direction:column;gap:.25rem">
+            <button style="text-align:left;padding:.5rem .75rem;border-radius:.5rem;font-size:.8rem;background:var(--brand-l);color:#92400e;font-weight:600;border:none;cursor:none">Any difficulty</button>
+            <button style="text-align:left;padding:.5rem .75rem;border-radius:.5rem;font-size:.8rem;color:var(--stone-600);background:none;border:none;cursor:none">Easy</button>
+            <button style="text-align:left;padding:.5rem .75rem;border-radius:.5rem;font-size:.8rem;color:var(--stone-600);background:none;border:none;cursor:none">Intermediate</button>
+            <button style="text-align:left;padding:.5rem .75rem;border-radius:.5rem;font-size:.8rem;color:var(--stone-600);background:none;border:none;cursor:none">Advanced</button>
+          </div>
+        </div>
+      </div>
+      <!-- grid -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem">
+        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Mains</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-brand">Medium</span><span>🕐 4h 20m</span><span>👥 6</span></div><h3 class="card-h3">Crispy Carnitas Tacos</h3><p class="card-desc">Slow-braised pork shoulder crisped in its own fat, served on warm corn tortillas.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.9</span></div><div class="card-likes">♥ 312</div></div></div></article>
+        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Mains</span></div><div class="card-lock"><span class="badge badge-dark">🔒 Members</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-terra">Hard</span><span>🕐 40m</span><span>👥 4</span></div><h3 class="card-h3">Saffron Risotto alla Milanese</h3><p class="card-desc">Silky golden risotto with real saffron and Parmigiano Reggiano.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.8</span></div><div class="card-likes">♥ 198</div></div></div></article>
+        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Mains</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-stone">Easy</span><span>🕐 25m</span><span>👥 4</span></div><h3 class="card-h3">Perfect Smash Burgers</h3><p class="card-desc">Double smash patties, American cheese, caramelized onions, secret sauce.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 5.0</span></div><div class="card-likes">♥ 547</div></div></div></article>
+        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Seafood</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-stone">Easy</span><span>🕐 27m</span><span>👥 2</span></div><h3 class="card-h3">Miso-Glazed Salmon</h3><p class="card-desc">Broiled salmon with a caramelized white miso glaze.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.7</span></div><div class="card-likes">♥ 284</div></div></div></article>
+        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Baking</span></div><div class="card-lock"><span class="badge badge-dark">🔒 Members</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-terra">Hard</span><span>🕐 1h 45m</span><span>👥 1</span></div><h3 class="card-h3">Open-Crumb Sourdough</h3><p class="card-desc">Bakery-quality sourdough at home — scoring, steam, and that perfect ear.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.9</span></div><div class="card-likes">♥ 891</div></div></div></article>
+        <article class="recipe-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1567171466295-4afa63d45416?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Desserts</span></div></div><div class="card-body"><div class="card-meta"><span class="badge badge-stone">Easy</span><span>🕐 1h 10m</span><span>👥 8</span></div><h3 class="card-h3">Burnt Basque Cheesecake</h3><p class="card-desc">Intentionally torched, crustless cheesecake with a molten center. 5 ingredients.</p><div class="card-footer"><div class="card-stars"><span>★★★★★ 4.8</span></div><div class="card-likes">♥ 372</div></div></div></article>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ RECIPE DETAIL ═══════ -->
+<div id="page-recipe-detail" class="page">
+  <div style="padding-top:64px">
+    <div class="recipe-hero">
+      <img class="recipe-hero-img" src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1200&q=80" alt="Crispy Carnitas Tacos"/>
+      <div class="recipe-hero-overlay"></div>
+      <div class="recipe-hero-content">
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem">
+          <span class="badge badge-brand">Mains</span>
+          <span class="badge badge-stone" style="background:rgba(255,255,255,.15);color:#fff">Intermediate</span>
+        </div>
+        <h1 style="font-family:'Playfair Display',serif;font-size:2.75rem;font-weight:700;color:#fff;line-height:1.1;margin-bottom:.75rem">Crispy Carnitas Tacos</h1>
+        <p style="color:rgba(214,211,209,.9);font-size:1rem;max-width:36rem;line-height:1.65">Slow-braised pork shoulder crisped in its own fat, served on warm corn tortillas with pickled onions and salsa verde.</p>
+      </div>
+    </div>
+    <!-- meta bar -->
+    <div class="recipe-meta-bar">
+      <div class="recipe-meta-inner">
+        <div class="recipe-meta-stats">
+          <div class="meta-stat">🕐 <span>Prep:</span> <strong>20m</strong></div>
+          <div class="meta-stat">🕐 <span>Cook:</span> <strong>4h</strong></div>
+          <div class="meta-stat">👥 <span>Serves:</span> <strong>6</strong></div>
+          <div class="meta-stat">👨‍🍳 <span>Skill:</span> <strong>Intermediate</strong></div>
+        </div>
+        <div style="display:flex;gap:.5rem;align-items:center">
+          <button style="display:flex;align-items:center;gap:.35rem;padding:.4rem .875rem;border-radius:999px;border:1.5px solid var(--stone-200);background:var(--stone-50);font-size:.8rem;color:var(--stone-500);cursor:none">♥ 312</button>
+          <button style="padding:.4rem .75rem;border-radius:.5rem;border:none;background:var(--stone-50);color:var(--stone-500);cursor:none;font-size:.8rem">🖨</button>
+          <button style="padding:.4rem .75rem;border-radius:.5rem;border:none;background:var(--stone-50);color:var(--stone-500);cursor:none;font-size:.8rem">↗</button>
+        </div>
+      </div>
+    </div>
+    <!-- body -->
+    <div class="recipe-body">
+      <div class="recipe-cols">
+        <!-- ingredients -->
+        <div>
+          <div class="ingredients-card">
+            <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--stone-900)">Ingredients</h2>
+            <ul class="ing-list">
+              <li class="ing-item"><span class="ing-amount">3 lb</span><span class="ing-name">pork shoulder <span class="ing-note">, cut in 3" chunks</span></span></li>
+              <li class="ing-item"><span class="ing-amount">1 tbsp</span><span class="ing-name">kosher salt</span></li>
+              <li class="ing-item"><span class="ing-amount">1 tsp</span><span class="ing-name">black pepper</span></li>
+              <li class="ing-item"><span class="ing-amount">1 tsp</span><span class="ing-name">cumin</span></li>
+              <li class="ing-item"><span class="ing-amount">1 tsp</span><span class="ing-name">dried oregano</span></li>
+              <li class="ing-item"><span class="ing-amount">4 cloves</span><span class="ing-name">garlic <span class="ing-note">, smashed</span></span></li>
+              <li class="ing-item"><span class="ing-amount">1</span><span class="ing-name">orange <span class="ing-note">, halved</span></span></li>
+              <li class="ing-item"><span class="ing-amount">1 cup</span><span class="ing-name">lard or neutral oil</span></li>
+              <li class="ing-item"><span class="ing-amount">16</span><span class="ing-name">corn tortillas <span class="ing-note">, warmed</span></span></li>
+            </ul>
+            <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--stone-200)">
+              <div style="font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--stone-400);margin-bottom:.75rem">Per serving</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
+                <div style="background:#fff;border-radius:.875rem;padding:.6rem;text-align:center"><div style="font-size:1.1rem;font-weight:700;color:var(--stone-900)">520</div><div style="font-size:.6rem;color:var(--stone-400);text-transform:uppercase;letter-spacing:.06em">kcal</div></div>
+                <div style="background:#fff;border-radius:.875rem;padding:.6rem;text-align:center"><div style="font-size:1.1rem;font-weight:700;color:var(--stone-900)">38g</div><div style="font-size:.6rem;color:var(--stone-400);text-transform:uppercase;letter-spacing:.06em">protein</div></div>
+                <div style="background:#fff;border-radius:.875rem;padding:.6rem;text-align:center"><div style="font-size:1.1rem;font-weight:700;color:var(--stone-900)">28g</div><div style="font-size:.6rem;color:var(--stone-400);text-transform:uppercase;letter-spacing:.06em">fat</div></div>
+                <div style="background:#fff;border-radius:.875rem;padding:.6rem;text-align:center"><div style="font-size:1.1rem;font-weight:700;color:var(--stone-900)">32g</div><div style="font-size:.6rem;color:var(--stone-400);text-transform:uppercase;letter-spacing:.06em">carbs</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- method -->
+        <div>
+          <h2 class="method-h2">Method</h2>
+          <ol class="steps">
+            <li class="step"><div class="step-num">1</div><p class="step-text">Season pork chunks all over with salt, pepper, cumin, and oregano. Let sit at room temperature for 30 minutes, or refrigerate uncovered overnight for best results.</p></li>
+            <li class="step"><div class="step-num">2</div><p class="step-text">In a Dutch oven or heavy pot, combine pork, garlic, and lard over medium heat. Squeeze orange over pork, then drop in the spent halves.</p></li>
+            <li class="step"><div class="step-num">3</div><p class="step-text">Braise uncovered on medium-low for 2–2.5 hours, turning occasionally, until pork is very tender and fat has rendered out.</p></li>
+            <li class="step"><div class="step-num">4</div><p class="step-text">Increase heat to medium-high. Fry pork in its own fat, stirring occasionally, until golden and crispy on the outside — about 15–20 minutes.</p></li>
+            <li class="step"><div class="step-num">5</div><p class="step-text">Transfer crispy pork to a cutting board. Shred roughly with two forks. Taste and adjust seasoning.</p></li>
+            <li class="step"><div class="step-num">6</div><p class="step-text">Serve on warm corn tortillas with pickled red onions, salsa verde, fresh cilantro, and lime wedges.</p></li>
+          </ol>
+          <!-- comments preview -->
+          <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--stone-100)">
+            <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--stone-900);margin-bottom:.5rem">Comments & Ratings</h2>
+            <p style="color:var(--stone-500);font-size:.8rem;margin-bottom:1.5rem">3 comments — have you made this recipe? Share your experience.</p>
+            <div style="background:var(--stone-50);border-radius:var(--radius-xl);padding:1.5rem;border:1px solid var(--stone-100);margin-bottom:1.5rem">
+              <div style="font-weight:600;color:var(--stone-800);margin-bottom:1rem;font-size:.875rem">Leave a review</div>
+              <div style="display:flex;gap:2px;margin-bottom:.75rem;font-size:1.1rem;color:#d6d3d1">★★★★★</div>
+              <textarea rows="3" placeholder="Did you make changes? How did it go?" style="width:100%;border:1.5px solid var(--stone-200);border-radius:.875rem;padding:.75rem;font-size:.85rem;font-family:inherit;resize:none;outline:none;margin-bottom:.75rem"></textarea>
+              <button class="btn-primary" style="font-size:.875rem;padding:.65rem 1.5rem">Post review →</button>
+            </div>
+            <div style="display:flex;gap:.75rem;margin-bottom:1.25rem">
+              <div style="width:2.25rem;height:2.25rem;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--terra));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.875rem;flex-shrink:0">S</div>
+              <div>
+                <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.2rem"><span style="font-size:.85rem;font-weight:600;color:var(--stone-800)">Sarah M.</span><span style="font-size:.7rem;color:var(--stone-400)">December 10, 2024</span></div>
+                <div style="font-size:.7rem;color:#fbbf24;margin-bottom:.3rem">★★★★★</div>
+                <p style="font-size:.85rem;color:var(--stone-700);line-height:1.65">Made this last Sunday — absolutely incredible. The key is really letting those final 20 minutes go until the pork is properly crispy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SHOP PAGE ═══════ -->
+<div id="page-shop" class="page">
+  <div style="background:var(--stone-50);border-bottom:1px solid var(--stone-100);padding-top:64px">
+    <div class="section-inner" style="padding:3rem 2rem">
+      <div class="section-eyebrow">The shop</div>
+      <h1 class="section-h2" style="font-size:2.75rem;margin-bottom:.75rem">Built to last</h1>
+      <p style="color:var(--stone-500);font-size:1.05rem">Cookware you pass down. Aprons that tell a story. T-shirts soft enough to cook in on a Sunday.</p>
+    </div>
+  </div>
+  <div class="shop-tabs">
+    <div class="shop-tabs-inner">
+      <button class="shop-tab active">All products</button>
+      <button class="shop-tab">Cookware</button>
+      <button class="shop-tab">Apparel</button>
+      <button class="shop-tab">Accessories</button>
+    </div>
+  </div>
+  <div class="section-inner" style="padding:2.5rem 2rem">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem">
+      <article class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Apparel</span></div><div class="quick-add"><button class="quick-add-btn">+ Add to bag</button></div></div><div class="card-body"><h3 class="card-h3" style="font-size:1rem">Canvas Apron</h3><p class="card-desc">Heavy-duty waxed canvas with genuine leather straps.</p><div style="margin-top:.5rem"><span class="product-price" style="font-size:.95rem">$89.00</span></div></div></article>
+      <article class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Apparel</span></div><div class="quick-add"><button class="quick-add-btn">Choose options</button></div></div><div class="card-body"><h3 class="card-h3" style="font-size:1rem">Chef Tee — Heavy Cotton</h3><p class="card-desc">7 oz ring-spun cotton, embroidered logo.</p><div style="margin-top:.5rem"><span class="product-price" style="font-size:.95rem">$42.00 <span class="product-from">from</span></span></div></div></article>
+      <article class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Cookware</span></div><div class="quick-add"><button class="quick-add-btn">+ Add to bag</button></div></div><div class="card-body"><h3 class="card-h3" style="font-size:1rem">Carbon Steel Skillet 10"</h3><p class="card-desc">Pre-seasoned, oven-safe to 700°F.</p><div style="margin-top:.5rem;display:flex;align-items:center;justify-content:space-between"><span class="product-price" style="font-size:.95rem">$135.00</span><span class="product-low">16 left</span></div></div></article>
+      <article class="product-card"><div class="card-img"><img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=400&q=75" alt="" loading="lazy"/><div class="card-cat"><span class="badge badge-stone">Accessories</span></div><div class="quick-add"><button class="quick-add-btn">+ Add to bag</button></div></div><div class="card-body"><h3 class="card-h3" style="font-size:1rem">Spice Collection</h3><p class="card-desc">6-jar curated spice set, custom-ground weekly.</p><div style="margin-top:.5rem"><span class="product-price" style="font-size:.95rem">$54.00</span></div></div></article>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PRODUCT DETAIL ═══════ -->
+<div id="page-product-detail" class="page">
+  <div style="padding-top:80px">
+    <div class="pdp">
+      <div class="pdp-cols">
+        <div>
+          <div class="pdp-main-img"><img src="https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=800&q=80" alt="Canvas Apron"/></div>
+          <div class="pdp-thumbs">
+            <div class="pdp-thumb active"><img src="https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=200&q=75" alt=""/></div>
+            <div class="pdp-thumb"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=200&q=75" alt=""/></div>
+          </div>
+        </div>
+        <div>
+          <span class="badge badge-stone" style="margin-bottom:1rem;display:inline-flex">Apparel</span>
+          <h1 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--stone-900);line-height:1.2;margin-bottom:.5rem">Canvas Apron</h1>
+          <div class="pdp-price">$89.00</div>
+          <p class="pdp-desc">Heavy-duty waxed canvas apron with genuine leather straps, a front pocket, and a bottle opener loop. Built to outlast your cooking obsession.</p>
+          <div class="pdp-opt-label">Color: <span style="font-weight:400;color:var(--stone-500)">Natural</span></div>
+          <div class="color-opts">
+            <div class="color-opt active">Natural</div>
+            <div class="color-opt">Black</div>
+          </div>
+          <button class="add-btn">🛍 Add to bag — $89.00</button>
+          <p class="member-note">Members save 10% on every order. <a href="#">Join today →</a></p>
+          <div class="guarantees">
+            <div class="guarantee"><span class="g-icon">🚚</span>Free shipping over $75</div>
+            <div class="guarantee"><span class="g-icon">↩️</span>30-day returns</div>
+            <div class="guarantee"><span class="g-icon">🛡</span>1-year warranty</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ SUBSCRIBE PAGE ═══════ -->
+<div id="page-subscribe" class="page">
+  <div class="subscribe-hero">
+    <div class="section-eyebrow" style="color:var(--brand)">Membership</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;margin:.75rem auto 1rem;max-width:32rem">Cook better. Every week.</h1>
+    <p style="color:rgba(214,211,209,.85);font-size:1.05rem;max-width:30rem;margin:0 auto;line-height:1.7">Unlock the full recipe library, shop discounts, and early access for less than a cup of coffee per month.</p>
+  </div>
+  <div class="section-inner" style="padding:3rem 2rem">
+    <div class="plan-cards">
+      <div class="plan-card selected" style="padding-top:2rem">
+        <div class="plan-pill">⚡ Most popular</div>
+        <div class="plan-label">Start with a trial</div>
+        <div class="plan-price">$0.99 <span class="plan-period">/ first month</span></div>
+        <div class="plan-note">Then $3.99/mo — cancel anytime</div>
+        <div style="margin-top:1rem;font-size:.8rem;color:var(--brand-d);font-weight:600">✓ Full access for 30 days</div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-label">Monthly membership</div>
+        <div class="plan-price">$3.99 <span class="plan-period">/ month</span></div>
+        <div class="plan-note">Cancel anytime</div>
+        <div style="margin-top:1rem;font-size:.8rem;color:var(--stone-500)">Everything, no strings</div>
+      </div>
+    </div>
+    <div class="features-box">
+      <div class="features-title">⭐ What's included</div>
+      <ul class="feature-list">
+        <li class="feature-item"><span class="check-icon">✓</span> All subscriber-only recipes (50+ and growing)</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Early access to new recipes before they go public</li>
+        <li class="feature-item"><span class="check-icon">✓</span> 10% discount on every shop order, forever</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Priority comment visibility on all recipes</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Monthly ingredient spotlight &amp; sourcing guide</li>
+        <li class="feature-item"><span class="check-icon">✓</span> Ad-free, distraction-free recipe browsing</li>
+      </ul>
+    </div>
+    <div class="subscribe-cta">
+      <button class="big-cta">Start 99¢ trial — billed monthly after</button>
+      <p class="secure-note">🔒 Secured by Stripe. No commitment. 30-day money-back guarantee.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CURSOR PHYSICS ───────────────────────────────────
+const cursor  = document.getElementById('cursor')
+const yolk    = document.getElementById('egg-yolk')
+let px = -100, py = -100
+let vx = 0, vy = 0
+let ox = 0, oy = 0  // yolk offset
+let ovx = 0, ovy = 0
+let lx = 0, ly = 0
+
+function tick() {
+  const k = 0.18, d = 0.72
+  ovx += vx * 0.18;  ovy += vy * 0.18
+  ovx -= ox * k;     ovy -= oy * k
+  ovx *= d;          ovy *= d
+  ox += ovx;         oy += ovy
+  const max = 5
+  ox = Math.max(-max, Math.min(max, ox))
+  oy = Math.max(-max, Math.min(max, oy))
+  vx *= 0.6; vy *= 0.6
+  cursor.style.transform = `translate3d(${px-22}px,${py-22}px,0)`
+  yolk.setAttribute('transform', `translate(${ox} ${oy})`)
+  requestAnimationFrame(tick)
+}
+
+if (window.matchMedia('(pointer:fine)').matches) {
+  window.addEventListener('mousemove', e => {
+    vx = e.clientX - lx; vy = e.clientY - ly
+    lx = e.clientX; ly = e.clientY
+    px = e.clientX; py = e.clientY
+  }, {passive:true})
+  requestAnimationFrame(tick)
+}
+
+// ── NAV SCROLL ───────────────────────────────────────
+const nav = document.getElementById('main-nav')
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20)
+}, {passive:true})
+
+// ── PAGE SWITCHING ────────────────────────────────────
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'))
+  document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'))
+  document.getElementById('page-' + name).classList.add('active')
+  event.target.classList.add('active')
+  window.scrollTo(0,0)
+  // nav transparent on home, opaque elsewhere
+  if (name === 'home') {
+    nav.classList.remove('scrolled')
+  } else {
+    nav.classList.add('scrolled')
+  }
+}
+
+// ── SCROLL REVEAL ─────────────────────────────────────
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') })
+}, {threshold:.12, rootMargin:'0px 0px -40px 0px'})
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
+</script>
+</body>
+</html>

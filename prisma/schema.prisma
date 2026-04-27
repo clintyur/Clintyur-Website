@@ -1,0 +1,311 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Auth ─────────────────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  role          UserRole  @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Auth
+  accounts Account[]
+  sessions Session[]
+
+  // Subscription
+  stripeCustomerId     String?   @unique
+  stripeSubscriptionId String?   @unique
+  stripePriceId        String?
+  subscriptionStatus   SubStatus @default(NONE)
+  trialUsed            Boolean   @default(false)
+  subscriptionEndsAt   DateTime?
+
+  // Content
+  comments     Comment[]
+  likes        Like[]
+  orders       Order[]
+  profile      UserProfile?
+
+  @@map("users")
+}
+
+model UserProfile {
+  id       String  @id @default(cuid())
+  userId   String  @unique
+  bio      String?
+  location String?
+  website  String?
+  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_profiles")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ─── Recipes ──────────────────────────────────────────────────────────────────
+
+model Recipe {
+  id           String       @id @default(cuid())
+  slug         String       @unique
+  title        String
+  description  String       @db.Text
+  heroImage    String
+  images       String[]
+  prepTime     Int          // minutes
+  cookTime     Int          // minutes
+  servings     Int
+  difficulty   Difficulty   @default(MEDIUM)
+  cuisine      String?
+  category     String
+  tags         String[]
+  isSubscriber Boolean      @default(false)
+  isFeatured   Boolean      @default(false)
+  publishedAt  DateTime?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  ingredients  Ingredient[]
+  steps        RecipeStep[]
+  comments     Comment[]
+  likes        Like[]
+  nutrition    Nutrition?
+
+  @@map("recipes")
+}
+
+model Ingredient {
+  id       String  @id @default(cuid())
+  recipeId String
+  amount   String
+  unit     String?
+  name     String
+  note     String?
+  order    Int     @default(0)
+  recipe   Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@map("ingredients")
+}
+
+model RecipeStep {
+  id          String  @id @default(cuid())
+  recipeId    String
+  stepNumber  Int
+  instruction String  @db.Text
+  image       String?
+  tip         String?
+  recipe      Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@map("recipe_steps")
+}
+
+model Nutrition {
+  id       String @id @default(cuid())
+  recipeId String @unique
+  calories Int?
+  protein  Int?   // grams
+  fat      Int?   // grams
+  carbs    Int?   // grams
+  fiber    Int?   // grams
+  sugar    Int?   // grams
+  sodium   Int?   // mg
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@map("nutrition")
+}
+
+// ─── Comments & Likes ─────────────────────────────────────────────────────────
+
+model Comment {
+  id        String    @id @default(cuid())
+  body      String    @db.Text
+  rating    Int?      // 1-5 stars
+  userId    String
+  recipeId  String
+  parentId  String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe   Recipe    @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  parent   Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies  Comment[] @relation("CommentReplies")
+
+  @@map("comments")
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  userId    String
+  recipeId  String
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, recipeId])
+  @@map("likes")
+}
+
+// ─── Shop ─────────────────────────────────────────────────────────────────────
+
+model Product {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  name        String
+  description String        @db.Text
+  heroImage   String
+  images      String[]
+  category    ProductCat
+  isFeatured  Boolean       @default(false)
+  isActive    Boolean       @default(true)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  variants    ProductVariant[]
+  orderItems  OrderItem[]
+
+  @@map("products")
+}
+
+model ProductVariant {
+  id         String  @id @default(cuid())
+  productId  String
+  name       String  // e.g. "Black / S", "Copper / One Size"
+  sku        String  @unique
+  price      Int     // cents
+  compareAt  Int?    // cents – for "was $X" display
+  stock      Int     @default(0)
+  size       String?
+  color      String?
+  weight     Float?  // oz, for shipping
+
+  product    Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  orderItems OrderItem[]
+
+  @@map("product_variants")
+}
+
+// ─── Orders ───────────────────────────────────────────────────────────────────
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String
+  status          OrderStatus @default(PENDING)
+  stripePaymentId String?     @unique
+  subtotal        Int         // cents
+  shipping        Int         @default(0)
+  tax             Int         @default(0)
+  total           Int
+  shippingAddress Json?
+  trackingNumber  String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  user  User        @relation(fields: [userId], references: [id])
+  items OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String @id @default(cuid())
+  orderId   String
+  variantId String
+  productId String
+  quantity  Int
+  unitPrice Int    // cents at time of purchase
+
+  order   Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  variant ProductVariant @relation(fields: [variantId], references: [id])
+  product Product        @relation(fields: [productId], references: [id])
+
+  @@map("order_items")
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  USER
+  SUBSCRIBER
+  ADMIN
+}
+
+enum SubStatus {
+  NONE
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  PAUSED
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum ProductCat {
+  APPAREL
+  COOKWARE
+  ACCESSORIES
+  DIGITAL
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  REFUNDED
+  CANCELED
+}
