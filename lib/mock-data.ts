@@ -120,7 +120,7 @@ export const MOCK_RECIPES = [
     slug: 'citrus-olive-oil-cake',
     title: 'Citrus Olive Oil Cake',
     description: 'A bright, tender cake with candied citrus and a glossy olive oil crumb, served with hand-whipped cream and fresh berry compote.',
-    heroImage: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80',
+    heroImage: '/images/citrus-olive-oil-cake.jpg',
     prepTime: 30,
     cookTime: 45,
     servings: 6,

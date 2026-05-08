@@ -80,24 +80,31 @@ export default async function RecipeDetailPage({ params }: PageProps) {
             className="object-cover"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          {/* Editorial-style gradient overlay with rust/gold accents */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" style={{
+            background: `
+              radial-gradient(ellipse at 30% 20%, rgba(184, 68, 42, 0.3) 0%, transparent 35%),
+              radial-gradient(ellipse at 80% 90%, rgba(184, 102, 50, 0.2) 0%, transparent 40%),
+              linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7))
+            `
+          }} />
 
           {/* Hero meta */}
           <div className="absolute bottom-0 inset-x-0 section pb-8">
             <div className="max-w-3xl">
               <div className="flex flex-wrap gap-2 mb-3">
-                <span className="badge badge-brand">{recipe.category}</span>
-                <span className="badge badge-stone">{DIFF_LABEL[recipe.difficulty]}</span>
+                <span className="recipe-badge">{recipe.category}</span>
+                <span className="recipe-badge">{DIFF_LABEL[recipe.difficulty]}</span>
                 {recipe.isSubscriber && (
-                  <span className="badge bg-stone-900/80 text-white border border-white/20">
+                  <span className="recipe-badge">
                     <Lock size={10} /> Members only
                   </span>
                 )}
               </div>
-              <h1 className="text-display-md lg:text-display-lg font-serif text-white leading-tight mb-3">
+              <h1 className="text-display-md lg:text-display-lg font-serif recipe-hero-text leading-tight mb-3">
                 {recipe.title}
               </h1>
-              <p className="text-stone-300 text-lg max-w-2xl leading-relaxed">
+              <p className="recipe-description recipe-hero-text max-w-2xl">
                 {recipe.description}
               </p>
             </div>
@@ -105,7 +112,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
         </div>
 
         {/* Meta bar */}
-        <div className="bg-white border-b border-stone-100 sticky top-16 z-30 shadow-soft">
+        <div style={{ background: 'var(--cream)', borderBottom: '1px solid var(--rule)' }} className="sticky top-16 z-30 shadow-soft">
           <div className="section py-3 flex items-center justify-between gap-4 overflow-x-auto">
             <div className="flex items-center gap-6 min-w-0">
               <MetaStat icon={<Clock size={16} />} label="Prep" value={formatTime(recipe.prepTime)} />
@@ -139,13 +146,14 @@ export default async function RecipeDetailPage({ params }: PageProps) {
                   <div key={sectionIdx} className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     {/* Section ingredients (sidebar) */}
                     <aside className="lg:col-span-1">
-                      <div className="bg-stone-50 rounded-2xl p-6">
-                        <h3 className="font-serif text-lg font-bold text-stone-900 mb-4">{section.name}</h3>
-                        <h4 className="font-semibold text-sm uppercase tracking-wide text-stone-600 mb-3">Ingredients</h4>
+                      <div className="recipe-sidebar">
+                        <h3 className="font-serif text-lg font-bold mb-1">{section.name}</h3>
+                        <div className="h-1 w-12 bg-accent mb-6" style={{ background: 'var(--accent)' }}></div>
+                        <h4 className="eyebrow mb-4" style={{ marginBottom: '12px' }}>Ingredients</h4>
                         <ul className="space-y-2">
                           {section.ingredients.map((ing: string, i: number) => (
-                            <li key={i} className="text-sm text-stone-700">
-                              • {ing}
+                            <li key={i} className="recipe-ingredient-list text-sm leading-relaxed">
+                              {ing}
                             </li>
                           ))}
                         </ul>
@@ -154,14 +162,14 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
                     {/* Section instructions */}
                     <div className="lg:col-span-2">
-                      <h4 className="font-semibold text-sm uppercase tracking-wide text-stone-600 mb-6">Instructions</h4>
-                      <ol className="space-y-6">
+                      <h4 className="eyebrow mb-6">Instructions</h4>
+                      <ol className="space-y-8">
                         {section.instructions.map((instruction: string, i: number) => (
-                          <li key={i} className="flex gap-4">
-                            <div className="flex-shrink-0 w-7 h-7 rounded-full bg-brand-100 text-brand-700 font-bold text-xs flex items-center justify-center mt-0.5">
+                          <li key={i} className="flex gap-5">
+                            <div className="recipe-step-number">
                               {i + 1}
                             </div>
-                            <p className="text-stone-700 leading-relaxed flex-1 text-sm">{instruction}</p>
+                            <p className="recipe-ingredient-list leading-relaxed flex-1">{instruction}</p>
                           </li>
                         ))}
                       </ol>
@@ -175,37 +183,35 @@ export default async function RecipeDetailPage({ params }: PageProps) {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                   {/* Ingredients (sidebar) */}
                   <aside className="lg:col-span-1">
-                    <div className="bg-stone-50 rounded-2xl p-6 sticky top-32">
-                      <h2 className="font-serif text-xl font-bold text-stone-900 mb-5">Ingredients</h2>
+                    <div className="recipe-sidebar sticky top-32">
+                      <h2 className="section-title mb-3">Ingredients</h2>
                       {full ? (
                         <ul className="space-y-3">
                           {full.ingredients.map((ing, i) => (
-                            <li key={i} className="flex gap-2 text-sm">
-                              <span className="font-semibold text-stone-900 min-w-[3rem]">
+                            <li key={i} className="flex gap-2 text-sm recipe-ingredient-list">
+                              <span className="font-semibold min-w-[3rem]">
                                 {ing.amount}{ing.unit && ` ${ing.unit}`}
                               </span>
-                              <span className="text-stone-700">
+                              <span>
                                 {ing.name}
-                                {ing.note && <span className="text-stone-400">, {ing.note}</span>}
+                                {ing.note && <span className="text-muted">, {ing.note}</span>}
                               </span>
                             </li>
                           ))}
                         </ul>
                       ) : (
-                        <p className="text-stone-400 text-sm italic">Ingredients coming soon.</p>
+                        <p className="text-muted text-sm italic">Ingredients coming soon.</p>
                       )}
 
                       {/* Nutrition */}
                       {full?.nutrition && (
-                        <div className="mt-6 pt-6 border-t border-stone-200">
-                          <p className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-3">
-                            Per serving
-                          </p>
+                        <div className="mt-6 pt-6" style={{ borderTopColor: 'var(--rule)', borderTopWidth: '1px' }}>
+                          <p className="eyebrow mb-3">Per serving</p>
                           <div className="grid grid-cols-2 gap-3">
                             {Object.entries(full.nutrition).map(([k, v]) => (
-                              <div key={k} className="text-center bg-white rounded-xl p-2">
-                                <p className="text-lg font-bold text-stone-900">{v}</p>
-                                <p className="text-[10px] text-stone-400 uppercase tracking-wider">
+                              <div key={k} className="text-center rounded p-3" style={{ background: 'var(--cream)' }}>
+                                <p className="text-lg font-bold" style={{ color: 'var(--accent)' }}>{v}</p>
+                                <p className="eyebrow mt-1">
                                   {k === 'calories' ? 'kcal' : `${k}g`}
                                 </p>
                               </div>
@@ -218,20 +224,20 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
                   {/* Method */}
                   <div className="lg:col-span-2">
-                    <h2 className="font-serif text-2xl font-bold text-stone-900 mb-8">Method</h2>
+                    <h2 className="section-title">Method</h2>
                     {full ? (
                       <ol className="space-y-8">
                         {full.steps.map((step) => (
                           <li key={step.stepNumber} className="flex gap-5">
-                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold text-sm flex items-center justify-center mt-0.5">
+                            <div className="recipe-step-number">
                               {step.stepNumber}
                             </div>
-                            <p className="text-stone-700 leading-relaxed flex-1">{step.instruction}</p>
+                            <p className="recipe-ingredient-list leading-relaxed flex-1">{step.instruction}</p>
                           </li>
                         ))}
                       </ol>
                     ) : (
-                      <p className="text-stone-400 italic">Steps coming soon.</p>
+                      <p className="text-muted italic">Steps coming soon.</p>
                     )}
                   </div>
                 </div>
@@ -240,9 +246,9 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
             {/* Tags */}
             <div className="section pt-8 pb-12">
-              <div className="flex flex-wrap gap-2 pt-8 border-t border-stone-100">
+              <div className="recipe-tags">
                 {recipe.tags.map((tag) => (
-                  <span key={tag} className="badge badge-stone text-xs">#{tag}</span>
+                  <span key={tag} className="recipe-tag">#{tag}</span>
                 ))}
               </div>
             </div>
