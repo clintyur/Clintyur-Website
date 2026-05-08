@@ -1,45 +1,30 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { FryingPanCursor } from '@/components/cursor/FryingPanCursor'
 import { CartProvider } from '@/components/shop/CartProvider'
 import './globals.css'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-})
-
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://provecho.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://yurcooked.com'),
   title: {
-    default: 'Provecho — Recipes & Cookware',
-    template: '%s | Provecho',
+    default: 'yur cooked — Recipes, Goods & the Art of Eating Well',
+    template: '%s | yur cooked',
   },
-  description: 'Restaurant-quality recipes for home cooks, plus the cookware and apparel to match. Join the Provecho community.',
-  keywords: ['recipes', 'cooking', 'cookware', 'food', 'kitchen', 'provecho'],
+  description: 'Recipes, goods, and the art of eating well — from a kitchen in New York. Explore curated recipes, cookware, and join our membership community.',
+  keywords: ['recipes', 'cooking', 'cookware', 'food', 'kitchen', 'private chef', 'yur cooked'],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'Provecho',
-    title: 'Provecho — Recipes & Cookware',
-    description: 'Restaurant-quality recipes for home cooks, plus the cookware and apparel to match.',
+    siteName: 'yur cooked',
+    title: 'yur cooked — Recipes & Cookware',
+    description: 'Recipes, goods, and the art of eating well from a kitchen in New York.',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Provecho — Recipes & Cookware',
-    description: 'Restaurant-quality recipes for home cooks.',
+    title: 'yur cooked',
+    description: 'Recipes, goods, and the art of eating well.',
   },
   robots: {
     index: true,
@@ -49,14 +34,36 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#f59e0b',
+  themeColor: '#1a1814',
   width: 'device-width',
   initialScale: 1,
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en">
+      <head>
+        <script src="/image-slot.js" defer></script>
+        <svg id="filters" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="hand">
+              <feTurbulence
+                type="fractalNoise"
+                baseFrequency="0.04"
+                numOctaves="5"
+                result="noise"
+              />
+              <feDisplacementMap
+                in="SourceGraphic"
+                in2="noise"
+                scale="2"
+                xChannelSelector="R"
+                yChannelSelector="G"
+              />
+            </filter>
+          </defs>
+        </svg>
+      </head>
       <body>
         <CartProvider>
           <FryingPanCursor />

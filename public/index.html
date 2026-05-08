@@ -6,35 +6,35 @@
 <title>ClintYur — Chef, Recipes & Cookware</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --brand:     #f59e0b;
-    --brand-d:   #d97706;
-    --brand-l:   #fef3c7;
-    --terra:     #e05a31;
-    --terra-l:   #fbe6dc;
-    --stone-50:  #fafaf9;
-    --stone-100: #f5f5f4;
-    --stone-200: #e7e5e4;
-    --stone-300: #d6d3d1;
-    --stone-400: #a8a29e;
-    --stone-500: #78716c;
-    --stone-600: #57534e;
-    --stone-700: #44403c;
-    --stone-800: #292524;
-    --stone-900: #1c1917;
-    --stone-950: #0c0a09;
-    --radius:    12px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
-    --shadow:    0 4px 24px rgba(0,0,0,.08);
-    --shadow-lg: 0 8px 40px rgba(0,0,0,.13);
+    --brand:     #e8ff00;
+    --brand-d:   #c8dd00;
+    --brand-l:   #f5ffb0;
+    --accent:    #ff3300;
+    --accent-d:  #cc2200;
+    --stone-50:  #f2f0ec;
+    --stone-100: #e8e5e0;
+    --stone-200: #d0cdc8;
+    --stone-300: #b0ada8;
+    --stone-400: #888480;
+    --stone-500: #605d59;
+    --stone-600: #484542;
+    --stone-700: #302e2b;
+    --stone-800: #1e1c1a;
+    --stone-900: #111110;
+    --stone-950: #080807;
+    --radius:    4px;
+    --radius-lg: 6px;
+    --radius-xl: 8px;
+    --shadow:    0 2px 12px rgba(0,0,0,.12);
+    --shadow-lg: 0 4px 24px rgba(0,0,0,.2);
   }
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'DM Sans', system-ui, sans-serif;
     background: var(--stone-50);
     color: var(--stone-900);
     cursor: none;
@@ -56,158 +56,151 @@
     transition: background .3s, box-shadow .3s, backdrop-filter .3s;
   }
   nav.scrolled {
-    background: rgba(255,255,255,.96);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 var(--stone-200), 0 2px 16px rgba(0,0,0,.06);
+    background: rgba(242,240,236,.97);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 1px 0 var(--stone-200);
   }
   .nav-inner {
     max-width: 1280px; margin: 0 auto;
     padding: 0 2rem;
-    height: 64px;
+    height: 60px;
     display: flex; align-items: center; justify-content: space-between;
   }
   .logo {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.5rem; font-weight: 700;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.75rem; font-weight: 400;
+    letter-spacing: .08em;
     color: #fff;
     text-decoration: none;
     transition: color .2s;
   }
   nav.scrolled .logo { color: var(--stone-900); }
-  .nav-links { display: flex; align-items: center; gap: .25rem; list-style: none; }
+  .nav-links { display: flex; align-items: center; gap: 0; list-style: none; }
   .nav-links a {
-    display: block; padding: .5rem .875rem;
-    border-radius: 8px;
-    font-size: .875rem; font-weight: 500;
-    color: rgba(255,255,255,.82);
+    display: block; padding: .45rem .9rem;
+    font-size: .78rem; font-weight: 600;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: rgba(255,255,255,.75);
     text-decoration: none;
-    transition: color .2s, background .2s;
+    transition: color .15s;
   }
-  .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); }
-  nav.scrolled .nav-links a { color: var(--stone-600); }
-  nav.scrolled .nav-links a:hover { color: var(--stone-900); background: var(--stone-100); }
+  .nav-links a:hover { color: #fff; }
+  nav.scrolled .nav-links a { color: var(--stone-500); }
+  nav.scrolled .nav-links a:hover { color: var(--stone-900); }
   .nav-cta {
-    background: linear-gradient(135deg, var(--brand), var(--terra));
-    color: #fff !important;
-    padding: .5rem 1.25rem !important;
-    border-radius: 999px !important;
-    font-weight: 600 !important;
-    box-shadow: 0 4px 16px rgba(245,158,11,.3);
-    transition: transform .2s, box-shadow .2s !important;
+    background: var(--stone-900) !important;
+    color: var(--brand) !important;
+    padding: .45rem 1.1rem !important;
+    border-radius: 2px !important;
+    font-weight: 700 !important;
+    font-size: .78rem !important;
+    letter-spacing: .08em !important;
+    text-transform: uppercase !important;
+    transition: background .15s !important;
   }
-  .nav-cta:hover { transform: translateY(-2px) !important; box-shadow: 0 8px 24px rgba(245,158,11,.35) !important; background: linear-gradient(135deg, var(--brand), var(--terra)) !important; }
+  nav.scrolled .nav-cta { background: var(--stone-900) !important; color: var(--brand) !important; }
+  .nav-cta:hover { background: #000 !important; }
 
   /* ── HERO ─────────────────────────────────────────── */
   .hero {
     min-height: 100vh;
     position: relative;
-    display: flex; align-items: center;
-    background: linear-gradient(135deg, #1c1917 0%, #292524 50%, #3d1c0a 100%);
+    display: flex; align-items: flex-end;
+    background: #111;
     overflow: hidden;
   }
   .hero-img {
     position: absolute; inset: 0;
     background: url('images/hero-clint-wagyu.jpg') center top/cover;
-    opacity: .28;
+    opacity: .55;
+    filter: grayscale(20%) contrast(1.05);
   }
   .hero-grad {
     position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(28,25,23,.55) 0%, rgba(28,25,23,.35) 50%, rgba(28,25,23,.85) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,.08) 0%, rgba(0,0,0,.15) 40%, rgba(0,0,0,.82) 100%);
   }
-  .hero-blob1 {
-    position: absolute; top: 20%; right: 8%;
-    width: 360px; height: 360px; border-radius: 50%;
-    background: rgba(245,158,11,.12); filter: blur(80px);
-    animation: float 7s ease-in-out infinite;
-  }
-  .hero-blob2 {
-    position: absolute; bottom: 20%; left: 5%;
-    width: 220px; height: 220px; border-radius: 50%;
-    background: rgba(224,90,49,.1); filter: blur(60px);
-    animation: float 9s ease-in-out infinite reverse;
-  }
-  @keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-16px); }
-  }
+  .hero-blob1 { display: none; }
+  .hero-blob2 { display: none; }
   .hero-content {
     position: relative; z-index: 2;
     max-width: 1280px; margin: 0 auto; padding: 0 2rem;
-    padding-top: 5rem;
+    padding-bottom: 5rem;
+    width: 100%;
   }
   .hero-pill {
     display: inline-flex; align-items: center; gap: .5rem;
-    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
-    backdrop-filter: blur(8px);
-    border-radius: 999px; padding: .4rem 1rem;
+    background: transparent; border: 1px solid rgba(255,255,255,.3);
+    border-radius: 2px; padding: .3rem .875rem;
     margin-bottom: 1.5rem;
     animation: slideUp .6s ease-out both;
   }
   .stars { display: flex; gap: 2px; }
-  .star { color: #fbbf24; font-size: .75rem; }
-  .hero-pill span { color: #fff; font-size: .75rem; font-weight: 500; }
+  .star { color: var(--brand); font-size: .7rem; }
+  .hero-pill span { color: rgba(255,255,255,.7); font-size: .7rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
   .hero-h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-    font-weight: 700;
-    line-height: 1.08;
-    letter-spacing: -.02em;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4.5rem, 12vw, 9rem);
+    font-weight: 400;
+    line-height: .95;
+    letter-spacing: .02em;
     color: #fff;
     margin-bottom: .5rem;
     animation: slideUp .7s .1s ease-out both;
   }
   .hero-h1 .accent {
-    background: linear-gradient(135deg, var(--brand), var(--terra));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    font-style: italic;
+    color: var(--brand);
+    font-style: normal;
+    display: block;
   }
   .hero-sub {
-    margin-top: 1.25rem;
-    font-size: 1.125rem; line-height: 1.7;
-    color: rgba(214,211,209,.9); max-width: 38rem;
+    margin-top: 1.5rem;
+    font-size: .95rem; line-height: 1.7; font-weight: 400;
+    color: rgba(255,255,255,.65); max-width: 32rem;
+    letter-spacing: .01em;
     animation: slideUp .6s .25s ease-out both;
   }
   .hero-btns {
-    display: flex; flex-wrap: wrap; gap: .75rem;
+    display: flex; flex-wrap: wrap; gap: .625rem;
     margin-top: 2rem;
     animation: slideUp .6s .4s ease-out both;
   }
   .btn-primary {
     display: inline-flex; align-items: center; gap: .5rem;
-    background: linear-gradient(135deg, var(--brand), var(--terra));
-    color: #fff;
+    background: var(--brand);
+    color: #000;
     padding: .875rem 2rem;
-    border-radius: 999px;
-    font-size: 1rem; font-weight: 600;
+    border-radius: 2px;
+    font-size: .85rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
     text-decoration: none;
-    box-shadow: 0 4px 20px rgba(245,158,11,.28);
-    transition: transform .2s, box-shadow .2s;
+    transition: background .15s, transform .15s;
     border: none; cursor: none;
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(245,158,11,.35); }
+  .btn-primary:hover { background: var(--brand-d); transform: translateY(-1px); }
   .btn-secondary {
     display: inline-flex; align-items: center; gap: .5rem;
-    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.28);
+    background: transparent; border: 1px solid rgba(255,255,255,.4);
     color: #fff;
     padding: .875rem 2rem;
-    border-radius: 999px;
-    font-size: 1rem; font-weight: 600;
+    border-radius: 2px;
+    font-size: .85rem; font-weight: 600;
+    letter-spacing: .06em; text-transform: uppercase;
     text-decoration: none;
-    transition: background .2s;
+    transition: border-color .15s, background .15s;
     cursor: none;
   }
-  .btn-secondary:hover { background: rgba(255,255,255,.18); }
+  .btn-secondary:hover { border-color: #fff; background: rgba(255,255,255,.08); }
   .hero-stats {
-    display: flex; gap: 2.5rem;
-    margin-top: 3rem; padding-top: 2rem;
-    border-top: 1px solid rgba(255,255,255,.12);
+    display: flex; gap: 3rem;
+    margin-top: 3rem; padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,.15);
     animation: fadeIn .8s .6s ease-out both;
   }
   .stat-val {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.75rem; font-weight: 700; color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.25rem; font-weight: 400; letter-spacing: .04em; color: #fff;
   }
-  .stat-label { font-size: .8rem; color: rgba(168,162,158,.9); margin-top: .1rem; }
+  .stat-label { font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.45); margin-top: .15rem; }
   .scroll-hint {
     position: absolute; bottom: 2rem; left: 50%;
     transform: translateX(-50%);
@@ -228,127 +221,115 @@
   section { padding: 6rem 0; }
   .section-inner { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
   .section-eyebrow {
-    font-size: .7rem; font-weight: 700; letter-spacing: .12em;
-    text-transform: uppercase; color: var(--brand-d);
-    margin-bottom: .5rem;
+    font-size: .68rem; font-weight: 700; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--stone-400);
+    margin-bottom: .6rem; display: block;
   }
   .section-h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-    font-weight: 700; letter-spacing: -.01em;
-    color: var(--stone-900);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400; letter-spacing: .04em;
+    color: var(--stone-900); line-height: 1;
   }
   .section-head { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; }
   .view-all {
-    font-size: .875rem; font-weight: 500; color: var(--stone-500);
-    text-decoration: none;
+    font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--stone-400); text-decoration: none;
     display: flex; align-items: center; gap: .35rem;
-    transition: color .2s, gap .2s;
-    cursor: none;
+    transition: color .15s; cursor: none;
+    border-bottom: 1px solid var(--stone-300); padding-bottom: 1px;
   }
-  .view-all:hover { color: var(--stone-800); gap: .6rem; }
+  .view-all:hover { color: var(--stone-900); border-color: var(--stone-900); }
 
   /* ── RECIPE CARDS ────────────────────────────────── */
-  .card-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+  .card-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--stone-200); border: 1px solid var(--stone-200); }
   @media(max-width:900px){ .card-grid{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:600px){ .card-grid{grid-template-columns:1fr} }
 
   .recipe-card {
-    background: #fff;
-    border-radius: var(--radius-xl);
+    background: var(--stone-50);
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: transform .3s, box-shadow .3s;
+    transition: background .2s;
     cursor: none;
   }
-  .recipe-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+  .recipe-card:hover { background: #fff; }
   .card-img {
     position: relative;
-    aspect-ratio: 3/2;
+    aspect-ratio: 4/3;
     overflow: hidden;
     background: var(--stone-200);
   }
-  .card-img img { width:100%; height:100%; object-fit:cover; transition: transform .5s; display:block; }
-  .recipe-card:hover .card-img img { transform: scale(1.06); }
+  .card-img img { width:100%; height:100%; object-fit:cover; transition: transform .6s; display:block; filter: grayscale(8%); }
+  .recipe-card:hover .card-img img { transform: scale(1.04); filter: grayscale(0%); }
   .badge {
     display: inline-flex; align-items: center; gap: .25rem;
-    padding: .2rem .6rem;
-    border-radius: 999px;
-    font-size: .7rem; font-weight: 600;
+    padding: .18rem .5rem;
+    border-radius: 2px;
+    font-size: .65rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
   }
-  .badge-brand { background: var(--brand-l); color: #92400e; }
-  .badge-stone { background: var(--stone-100); color: var(--stone-600); }
-  .badge-terra { background: var(--terra-l); color: #9a3412; }
-  .badge-dark  { background: rgba(28,25,23,.75); color: #fff; backdrop-filter:blur(4px); font-size:.65rem; }
-  .card-cat { position: absolute; top: .75rem; left: .75rem; }
-  .card-lock { position: absolute; top: .75rem; right: .75rem; }
-  .card-body { padding: 1.25rem; }
-  .card-meta { display: flex; align-items: center; gap: .75rem; margin-bottom: .6rem; }
-  .card-meta span { font-size: .72rem; color: var(--stone-500); display:flex; align-items:center; gap:.2rem; }
+  .badge-brand { background: var(--brand); color: #000; }
+  .badge-stone { background: var(--stone-900); color: #fff; }
+  .badge-terra { background: var(--accent); color: #fff; }
+  .badge-dark  { background: rgba(0,0,0,.75); color: #fff; backdrop-filter:blur(4px); font-size:.6rem; }
+  .card-cat { position: absolute; top: .625rem; left: .625rem; }
+  .card-lock { position: absolute; top: .625rem; right: .625rem; }
+  .card-body { padding: 1.25rem 1rem; }
+  .card-meta { display: flex; align-items: center; gap: .75rem; margin-bottom: .5rem; }
+  .card-meta span { font-size: .68rem; color: var(--stone-400); display:flex; align-items:center; gap:.2rem; font-weight: 500; }
   .card-h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem; font-weight: 700;
-    color: var(--stone-900); margin-bottom: .4rem;
-    transition: color .2s; line-height: 1.25;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--stone-900); margin-bottom: .35rem;
+    transition: color .15s; line-height: 1.3; letter-spacing: -.01em;
   }
-  .recipe-card:hover .card-h3 { color: var(--brand-d); }
-  .card-desc { font-size: .83rem; color: var(--stone-500); line-height: 1.65; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .card-footer { display:flex; align-items:center; justify-content:space-between; margin-top:.9rem; padding-top:.9rem; border-top:1px solid var(--stone-100); }
+  .recipe-card:hover .card-h3 { color: #000; }
+  .card-desc { font-size: .8rem; color: var(--stone-500); line-height: 1.6; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .card-footer { display:flex; align-items:center; justify-content:space-between; margin-top:.875rem; padding-top:.875rem; border-top:1px solid var(--stone-100); }
   .card-stars { display:flex; align-items:center; gap:.3rem; }
   .card-stars .stars { gap:1px; }
-  .card-stars span { font-size:.75rem; font-weight:600; color:var(--stone-600); }
-  .card-likes { font-size:.72rem; color:var(--stone-400); display:flex;align-items:center;gap:.25rem; }
+  .card-stars span { font-size:.7rem; font-weight:700; color:var(--stone-700); }
+  .card-likes { font-size:.7rem; color:var(--stone-400); display:flex;align-items:center;gap:.25rem; }
 
   /* ── MEMBERSHIP BANNER ─────────────────────────── */
-  .membership {
-    background: linear-gradient(135deg, #1c1917, #292524, #3d1c0a);
-    position: relative; overflow: hidden;
-  }
-  .mem-blob1 {
-    position: absolute; top: -6rem; right: -6rem;
-    width: 24rem; height: 24rem; border-radius: 50%;
-    background: rgba(245,158,11,.08); filter: blur(60px);
-  }
-  .mem-blob2 {
-    position: absolute; bottom: -4rem; left: -4rem;
-    width: 16rem; height: 16rem; border-radius: 50%;
-    background: rgba(224,90,49,.08); filter: blur(40px);
-  }
+  .membership { background: var(--stone-900); position: relative; overflow: hidden; }
+  .mem-blob1 { display: none; }
+  .mem-blob2 { display: none; }
   .mem-head { text-align:center; max-width:40rem; margin:0 auto 3rem; }
-  .mem-head .section-eyebrow { color: var(--brand); }
+  .mem-head .section-eyebrow { color: var(--stone-500); }
   .mem-h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.75rem,3.5vw,2.5rem); font-weight:700;
-    color: #fff; margin-bottom:1rem; letter-spacing:-.01em;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem,5vw,4rem); font-weight:400; letter-spacing:.04em;
+    color: #fff; margin-bottom:1rem; line-height:1;
   }
-  .mem-sub { color: rgba(214,211,209,.85); font-size:1.1rem; line-height:1.7; }
+  .mem-sub { color: rgba(255,255,255,.55); font-size:.95rem; line-height:1.75; }
   .mem-sub strong { color: var(--brand); }
-  .perks-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-bottom:3rem; }
+  .perks-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.08); margin-bottom:3rem; }
   @media(max-width:900px){ .perks-grid{grid-template-columns:repeat(2,1fr)} }
   @media(max-width:500px){ .perks-grid{grid-template-columns:1fr} }
   .perk-card {
-    background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1);
-    border-radius: var(--radius-xl); padding: 1.5rem;
-    text-align: center; transition: background .2s;
+    background: var(--stone-900); padding: 1.75rem 1.5rem;
+    text-align: center; transition: background .15s;
   }
-  .perk-card:hover { background: rgba(255,255,255,.11); }
+  .perk-card:hover { background: var(--stone-800); }
   .perk-icon {
-    width: 3rem; height: 3rem; border-radius: .875rem;
-    background: rgba(245,158,11,.18);
+    width: 2.5rem; height: 2.5rem; border-radius: 2px;
+    background: rgba(232,255,0,.12);
     display: inline-flex; align-items:center; justify-content:center;
-    font-size: 1.25rem; margin-bottom: 1rem;
+    font-size: 1.1rem; margin-bottom: .875rem;
   }
-  .perk-title { font-weight:600; color:#fff; font-size:.875rem; margin-bottom:.25rem; }
-  .perk-sub { font-size:.75rem; color:rgba(168,162,158,.85); }
-  .mem-btns { display:flex; justify-content:center; gap:.75rem; flex-wrap:wrap; }
+  .perk-title { font-weight:700; color:#fff; font-size:.85rem; margin-bottom:.25rem; letter-spacing:.01em; }
+  .perk-sub { font-size:.72rem; color:rgba(255,255,255,.4); line-height:1.5; }
+  .mem-btns { display:flex; justify-content:center; gap:.625rem; flex-wrap:wrap; }
   .btn-white-ghost {
     display:inline-flex; align-items:center; gap:.5rem;
-    color: rgba(255,255,255,.65); font-size:1rem; font-weight:600;
+    color: rgba(255,255,255,.5); font-size:.8rem; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase;
     text-decoration:none; padding:.875rem 2rem;
-    transition: color .2s; cursor:none;
+    transition: color .15s; cursor:none;
   }
   .btn-white-ghost:hover { color:#fff; }
-  .mem-fine { text-align:center; color:rgba(168,162,158,.7); font-size:.75rem; margin-top:1rem; }
+  .mem-fine { text-align:center; color:rgba(255,255,255,.3); font-size:.7rem; margin-top:1rem; letter-spacing:.04em; }
 
   /* ── PRODUCT CARDS ──────────────────────────────── */
   .product-card {
@@ -402,7 +383,7 @@
   .yt-inner { max-width:1280px; margin:0 auto; padding:0 2rem; }
   .yt-head { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:2rem; flex-wrap:wrap; gap:1rem; }
   .yt-head-text .section-eyebrow { color:var(--brand); }
-  .yt-head-h2 { font-family:'Playfair Display',serif; font-size:clamp(1.75rem,3vw,2.5rem); font-weight:700; color:#fff; margin-top:.25rem; }
+  .yt-head-h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(1.75rem,3vw,2.5rem); font-weight:700; color:#fff; margin-top:.25rem; }
   .yt-sub-link {
     display:inline-flex; align-items:center; gap:.5rem;
     background:#dc2626; color:#fff; text-decoration:none;
@@ -455,7 +436,7 @@
     display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;
   }
   .ig-strip-text .section-eyebrow { color:var(--brand); margin-bottom:.4rem; }
-  .ig-strip-h { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:#fff; }
+  .ig-strip-h { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; font-weight:700; color:#fff; }
   .ig-strip-sub { font-size:.85rem; color:rgba(168,162,158,.75); margin-top:.35rem; }
   .ig-cta {
     display:inline-flex; align-items:center; gap:.6rem;
@@ -471,13 +452,13 @@
   .dining-inner { max-width:1100px; margin:0 auto; padding:0 2rem; display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
   @media(max-width:800px){ .dining-inner{grid-template-columns:1fr;gap:3rem} }
   .dining-left .section-eyebrow { margin-bottom:.75rem; }
-  .dining-h { font-family:'Playfair Display',serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:700; color:var(--stone-900); line-height:1.15; margin-bottom:1.25rem; }
+  .dining-h { font-family:'Bebas Neue',sans-serif; font-size:clamp(2rem,3.5vw,3rem); font-weight:700; color:var(--stone-900); line-height:1.15; margin-bottom:1.25rem; }
   .dining-desc { font-size:1rem; color:var(--stone-500); line-height:1.8; margin-bottom:2rem; }
   .dining-perks { list-style:none; display:flex; flex-direction:column; gap:.75rem; }
   .dining-perks li { display:flex; align-items:flex-start; gap:.75rem; font-size:.9rem; color:var(--stone-600); }
   .dining-perks li span.dp-icon { font-size:1rem; flex-shrink:0; margin-top:.1rem; }
   .dining-form { background:var(--stone-50); border:1px solid var(--stone-100); border-radius:var(--radius-xl); padding:2.25rem; }
-  .dining-form-title { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; color:var(--stone-900); margin-bottom:1.5rem; }
+  .dining-form-title { font-family:'Bebas Neue',sans-serif; font-size:1.25rem; font-weight:700; color:var(--stone-900); margin-bottom:1.5rem; }
   .form-row { display:grid; grid-template-columns:1fr 1fr; gap:.875rem; margin-bottom:.875rem; }
   @media(max-width:500px){ .form-row{grid-template-columns:1fr} }
   .form-group { display:flex; flex-direction:column; gap:.35rem; margin-bottom:.875rem; }
@@ -524,7 +505,7 @@
     display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap;
   }
   .nl-label { font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--brand); margin-bottom:.25rem; }
-  .nl-h { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:#fff; }
+  .nl-h { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; font-weight:700; color:#fff; }
   .nl-form { display:flex; gap:.5rem; flex:1; max-width:26rem; }
   .nl-input {
     flex:1; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
@@ -544,7 +525,7 @@
   .footer-cols { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr 1fr; gap:2rem; }
   @media(max-width:800px){ .footer-cols{grid-template-columns:1fr 1fr} }
   .footer-brand { grid-column: span 1; }
-  .footer-logo { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:#fff; text-decoration:none; }
+  .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; font-weight:700; color:#fff; text-decoration:none; }
   .footer-tagline { font-size:.8rem; line-height:1.7; color:rgba(168,162,158,.75); margin-top:.75rem; }
   .footer-socials { display:flex; gap:1rem; margin-top:1.25rem; }
   .footer-social { color:rgba(168,162,158,.7); font-size:.85rem; text-decoration:none; transition:color .2s; cursor:none; }
@@ -617,7 +598,7 @@
   .ing-amount { font-weight:600;color:var(--stone-900);min-width:3.5rem; }
   .ing-name { color:var(--stone-700); }
   .ing-note { color:var(--stone-400); }
-  .method-h2 { font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--stone-900);margin-bottom:2rem; }
+  .method-h2 { font-family:'Bebas Neue',sans-serif;font-size:1.5rem;font-weight:700;color:var(--stone-900);margin-bottom:2rem; }
   .steps { display:flex;flex-direction:column;gap:2rem;list-style:none; }
   .step { display:flex;gap:1.25rem; }
   .step-num {
@@ -650,7 +631,7 @@
     display:flex;align-items:center;gap:.25rem;
   }
   .plan-label { font-size:.75rem;font-weight:600;color:var(--stone-500);margin-bottom:.25rem; }
-  .plan-price { font-family:'Playfair Display',serif;font-size:2.25rem;font-weight:700;color:var(--stone-900);line-height:1; }
+  .plan-price { font-family:'Bebas Neue',sans-serif;font-size:2.25rem;font-weight:700;color:var(--stone-900);line-height:1; }
   .plan-period { font-size:.875rem;color:var(--stone-400);font-family:'Inter',sans-serif;font-weight:400; }
   .plan-note { font-size:.75rem;color:var(--stone-400);margin-top:.25rem; }
   .features-box { background:#fff;border-radius:var(--radius-xl);border:1px solid var(--stone-100);box-shadow:var(--shadow);padding:2rem;max-width:40rem;margin:0 auto 1.5rem; }
@@ -803,22 +784,21 @@
     <div class="hero-blob2"></div>
     <div class="hero-content">
       <div class="hero-pill">
-        <div class="stars">★★★★★</div>
-        <span>Join 50,000+ home cooks who cook better</span>
+        <span>NYC · ATX · Private Chef</span>
       </div>
       <h1 class="hero-h1">
-        Cook like you<br>
-        <span class="accent">actually mean it.</span>
+        Cook like<br>you mean it.
+        <span class="accent">For real.</span>
       </h1>
-      <p class="hero-sub">Restaurant-quality recipes that work in a home kitchen — plus the cookware and aprons to make every cook feel intentional.</p>
+      <p class="hero-sub">Restaurant-level food. No excuses, no shortcuts. Recipes, private dinners, and the gear to back it up.</p>
       <div class="hero-btns">
         <a href="#" class="btn-primary">Explore Recipes →</a>
-        <a href="#" class="btn-secondary">Join — $3.99/mo</a>
+        <a href="#" class="btn-secondary">Book a Dinner</a>
       </div>
       <div class="hero-stats">
-        <div><div class="stat-val">200+</div><div class="stat-label">Recipes</div></div>
-        <div><div class="stat-val">50K</div><div class="stat-label">Cooks</div></div>
-        <div><div class="stat-val">4.9★</div><div class="stat-label">Avg rating</div></div>
+        <div><div class="stat-val">47+</div><div class="stat-label">Videos</div></div>
+        <div><div class="stat-val">20K</div><div class="stat-label">Followers</div></div>
+        <div><div class="stat-val">5.9K</div><div class="stat-label">Subscribers</div></div>
       </div>
     </div>
     <div class="scroll-hint"><div class="scroll-ring"><div class="scroll-dot"></div></div></div>
@@ -1278,7 +1258,7 @@
           <span class="badge badge-brand">Mains</span>
           <span class="badge badge-stone" style="background:rgba(255,255,255,.15);color:#fff">Intermediate</span>
         </div>
-        <h1 style="font-family:'Playfair Display',serif;font-size:2.75rem;font-weight:700;color:#fff;line-height:1.1;margin-bottom:.75rem">Crispy Carnitas Tacos</h1>
+        <h1 style="font-family:'Bebas Neue',sans-serif;font-size:2.75rem;font-weight:700;color:#fff;line-height:1.1;margin-bottom:.75rem">Crispy Carnitas Tacos</h1>
         <p style="color:rgba(214,211,209,.9);font-size:1rem;max-width:36rem;line-height:1.65">Slow-braised pork shoulder crisped in its own fat, served on warm corn tortillas with pickled onions and salsa verde.</p>
       </div>
     </div>
@@ -1304,7 +1284,7 @@
         <!-- ingredients -->
         <div>
           <div class="ingredients-card">
-            <h2 style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--stone-900)">Ingredients</h2>
+            <h2 style="font-family:'Bebas Neue',sans-serif;font-size:1.25rem;font-weight:700;color:var(--stone-900)">Ingredients</h2>
             <ul class="ing-list">
               <li class="ing-item"><span class="ing-amount">3 lb</span><span class="ing-name">pork shoulder <span class="ing-note">, cut in 3" chunks</span></span></li>
               <li class="ing-item"><span class="ing-amount">1 tbsp</span><span class="ing-name">kosher salt</span></li>
@@ -1340,7 +1320,7 @@
           </ol>
           <!-- comments preview -->
           <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--stone-100)">
-            <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--stone-900);margin-bottom:.5rem">Comments & Ratings</h2>
+            <h2 style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;font-weight:700;color:var(--stone-900);margin-bottom:.5rem">Comments & Ratings</h2>
             <p style="color:var(--stone-500);font-size:.8rem;margin-bottom:1.5rem">3 comments — have you made this recipe? Share your experience.</p>
             <div style="background:var(--stone-50);border-radius:var(--radius-xl);padding:1.5rem;border:1px solid var(--stone-100);margin-bottom:1.5rem">
               <div style="font-weight:600;color:var(--stone-800);margin-bottom:1rem;font-size:.875rem">Leave a review</div>
@@ -1404,7 +1384,7 @@
         </div>
         <div>
           <span class="badge badge-stone" style="margin-bottom:1rem;display:inline-flex">Apparel</span>
-          <h1 style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--stone-900);line-height:1.2;margin-bottom:.5rem">Canvas Apron</h1>
+          <h1 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;font-weight:700;color:var(--stone-900);line-height:1.2;margin-bottom:.5rem">Canvas Apron</h1>
           <div class="pdp-price">$89.00</div>
           <p class="pdp-desc">Heavy-duty waxed canvas apron with genuine leather straps, a front pocket, and a bottle opener loop. Built to outlast your cooking obsession.</p>
           <div class="pdp-opt-label">Color: <span style="font-weight:400;color:var(--stone-500)">Natural</span></div>
@@ -1429,7 +1409,7 @@
 <div id="page-subscribe" class="page">
   <div class="subscribe-hero">
     <div class="section-eyebrow" style="color:var(--brand)">Membership</div>
-    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;margin:.75rem auto 1rem;max-width:32rem">Cook better. Every week.</h1>
+    <h1 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:400;letter-spacing:.04em;color:#fff;line-height:.95;margin:.75rem auto 1rem;max-width:32rem">Cook better. Every week.</h1>
     <p style="color:rgba(214,211,209,.85);font-size:1.05rem;max-width:30rem;margin:0 auto;line-height:1.7">Unlock the full recipe library, shop discounts, and early access for less than a cup of coffee per month.</p>
   </div>
   <div class="section-inner" style="padding:3rem 2rem">

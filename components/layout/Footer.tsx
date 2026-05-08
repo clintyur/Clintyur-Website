@@ -1,129 +1,98 @@
 import Link from 'next/link'
-import { Instagram, Youtube, Mail } from 'lucide-react'
 
-const LINKS = {
-  Recipes: [
-    { href: '/recipes?category=mains',    label: 'Mains' },
-    { href: '/recipes?category=desserts', label: 'Desserts' },
-    { href: '/recipes?category=baking',   label: 'Baking' },
-    { href: '/recipes?category=quick',    label: 'Quick & Easy' },
-  ],
-  Shop: [
-    { href: '/shop?category=cookware',    label: 'Cookware' },
-    { href: '/shop?category=apparel',     label: 'Apparel' },
-    { href: '/shop?category=accessories', label: 'Accessories' },
-    { href: '/shop/gift-cards',           label: 'Gift Cards' },
-  ],
-  Company: [
-    { href: '/about',    label: 'About' },
-    { href: '/blog',     label: 'Journal' },
-    { href: '/subscribe', label: 'Membership' },
-    { href: '/contact',  label: 'Contact' },
-  ],
-  Support: [
-    { href: '/faq',         label: 'FAQ' },
-    { href: '/shipping',    label: 'Shipping & Returns' },
-    { href: '/privacy',     label: 'Privacy Policy' },
-    { href: '/terms',       label: 'Terms of Service' },
-  ],
+// SVG Icons matching the yur cooked design
+const icons = {
+  ig: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.6"/>
+      <circle cx="12" cy="12" r="3.6" stroke="currentColor" strokeWidth="1.6"/>
+      <circle cx="17.2" cy="6.8" r="1" fill="currentColor"/>
+    </svg>
+  ),
+  yt: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="5" width="20" height="14" rx="3" stroke="currentColor" strokeWidth="1.6"/>
+      <path d="M10 9.5v5l4.5-2.5L10 9.5z" fill="currentColor"/>
+    </svg>
+  ),
+  tt: () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+      <path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M14 4c.5 2.5 2.5 4.5 5 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+    </svg>
+  ),
 }
 
 export function Footer() {
   return (
-    <footer className="bg-stone-950 text-stone-300">
-      {/* Newsletter band */}
-      <div className="border-b border-stone-800">
-        <div className="section py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-grid">
+          {/* Brand section */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-widest text-brand-400 mb-1">
-              Free recipes, weekly
-            </p>
-            <h3 className="text-white font-serif text-2xl font-bold">
-              Get the newsletter
-            </h3>
-          </div>
-          <form className="flex gap-2 w-full md:w-auto" onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="flex-1 md:w-72 bg-stone-900 border border-stone-700 rounded-full px-5 py-3 text-sm text-white placeholder:text-stone-500 focus:outline-none focus:border-brand-500 transition"
-            />
-            <button
-              type="submit"
-              className="btn-primary whitespace-nowrap"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
-      </div>
-
-      {/* Main footer */}
-      <div className="section py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
-          {/* Brand column */}
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="text-white font-serif text-2xl font-bold">
-              Provecho
-            </Link>
-            <p className="mt-3 text-sm text-stone-400 leading-relaxed">
-              Recipes made with intention. Cookware built to last. Made in California.
-            </p>
-            <div className="flex gap-4 mt-5">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="text-stone-400 hover:text-brand-400 transition-colors"
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                className="text-stone-400 hover:text-brand-400 transition-colors"
-              >
-                <Youtube size={20} />
-              </a>
-              <a
-                href="mailto:hello@provecho.com"
-                aria-label="Email"
-                className="text-stone-400 hover:text-brand-400 transition-colors"
-              >
-                <Mail size={20} />
+            <div className="footer-mark">yur cooked<span className="accent-dot"></span></div>
+            <p className="footer-tag">Recipes, goods, and the art of eating well — from a kitchen in New York.</p>
+            <div className="cluster" style={{ marginTop: '24px' }}>
+              <a href="https://instagram.com/clintyurr" target="_blank" rel="noreferrer" className="social-bar" style={{ display: 'inline-flex' }}>
+                <icons.ig /> @clintyurr
               </a>
             </div>
           </div>
 
-          {/* Link columns */}
-          {Object.entries(LINKS).map(([heading, links]) => (
-            <div key={heading}>
-              <h4 className="text-white text-sm font-semibold mb-4">{heading}</h4>
-              <ul className="space-y-2.5">
-                {links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-stone-400 hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
+          {/* Explore */}
+          <div>
+            <h4>Explore</h4>
+            <ul>
+              <li><Link href="/recipes">Recipes</Link></li>
+              <li><Link href="/shop">Shop</Link></li>
+              <li><Link href="/about">About</Link></li>
+              <li><Link href="/contact">Contact</Link></li>
+            </ul>
+          </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-stone-800">
-        <div className="section py-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-stone-500">
-          <p>© {new Date().getFullYear()} Provecho. All rights reserved.</p>
-          <p>Crafted with love in California 🍳</p>
+          {/* Follow */}
+          <div>
+            <h4>Follow</h4>
+            <ul>
+              <li>
+                <a href="https://instagram.com/clintyurr" target="_blank" rel="noreferrer">
+                  <span style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
+                    <icons.ig /> Instagram
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://youtube.com/@ClintYur" target="_blank" rel="noreferrer">
+                  <span style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
+                    <icons.yt /> YouTube
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://tiktok.com/@clintyurr" target="_blank" rel="noreferrer">
+                  <span style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
+                    <icons.tt /> TikTok
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Inquiries */}
+          <div>
+            <h4>Inquiries</h4>
+            <ul>
+              <li><Link href="/contact">Private Chef</Link></li>
+              <li><Link href="/contact">Brand Collaborations</Link></li>
+              <li><Link href="/contact">Press</Link></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Footer bottom */}
+        <div className="footer-bot">
+          <span>© {new Date().getFullYear()} yur cooked. All rights reserved.</span>
+          <span>New York, NY</span>
         </div>
       </div>
     </footer>
