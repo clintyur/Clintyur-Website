@@ -1,19 +1,21 @@
 import { Hero } from '@/components/home/Hero'
-import { FeaturedRecipes } from '@/components/home/FeaturedRecipes'
-import { MembershipBanner } from '@/components/home/MembershipBanner'
-import { ShopPreview } from '@/components/home/ShopPreview'
-import { SocialFeed } from '@/components/social/SocialFeed'
-import { Testimonials } from '@/components/home/Testimonials'
+import { Ticker } from '@/components/home/Ticker'
+import { Intro } from '@/components/home/Intro'
+import { PreviewGrid } from '@/components/home/PreviewGrid'
+import { WatchSection } from '@/components/home/WatchSection'
+import { PromoBar } from '@/components/home/PromoBar'
 
 export default function HomePage() {
   return (
     <>
+      <PromoBar />
       <Hero />
-      <FeaturedRecipes />
-      <MembershipBanner />
-      <ShopPreview />
-      <Testimonials />
-      <SocialFeed />
+      <Ticker />
+      <section className="container">
+        <Intro />
+        <PreviewGrid />
+      </section>
+      <WatchSection />
     </>
   )
 }
