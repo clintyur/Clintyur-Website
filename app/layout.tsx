@@ -44,7 +44,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         <script src="/image-slot.js" defer></script>
-        <svg id="filters" xmlns="http://www.w3.org/2000/svg">
+      </head>
+      <body>
+        {/* SVG filters for hand-drawn effect */}
+        <svg id="filters" xmlns="http://www.w3.org/2000/svg" style={{ display: 'none' }}>
           <defs>
             <filter id="hand">
               <feTurbulence
@@ -63,8 +66,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </filter>
           </defs>
         </svg>
-      </head>
-      <body>
         <CartProvider>
           <FryingPanCursor />
           <Navbar />

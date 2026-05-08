@@ -1,18 +1,14 @@
-'use client'
-
-import type { Metadata } from 'next'
-
-// This is simplified - in production you'd fetch real recipe data
-const RECIPES = [
-  { id: '1', num: '01', name: 'Simple Pasta', tags: ['pasta', 'weeknight'] },
-  { id: '2', num: '02', name: 'Roasted Chicken', tags: ['chicken', 'dinner'] },
-  { id: '3', num: '03', name: 'Fresh Salad', tags: ['vegetarian', 'quick'] },
-  { id: '4', num: '04', name: 'Bread Baking', tags: ['baking', 'weekend'] },
-  { id: '5', num: '05', name: 'Chocolate Cake', tags: ['dessert', 'special'] },
-  { id: '6', num: '06', name: 'Summer Risotto', tags: ['rice', 'vegetables'] },
-]
+import { MOCK_RECIPES } from '@/lib/mock-data'
 
 export default function RecipesPage() {
+  const recipes = MOCK_RECIPES.map((recipe, index) => ({
+    id: recipe.id,
+    slug: recipe.slug,
+    num: String(index + 1).padStart(2, '0'),
+    name: recipe.title,
+    tags: recipe.tags,
+  }))
+
   return (
     <div>
       {/* Book hero */}
@@ -53,8 +49,8 @@ export default function RecipesPage() {
       {/* Recipe grid */}
       <section className="container" style={{ padding: 'clamp(72px, 10vw, 140px) 0' }}>
         <div className="recipe-grid">
-          {RECIPES.map((recipe) => (
-            <a key={recipe.id} href={`/recipes/${recipe.id}`} className="recipe">
+          {recipes.map((recipe) => (
+            <a key={recipe.id} href={`/recipes/${recipe.slug}`} className="recipe">
               <div className="recipe-img">
                 <image-slot></image-slot>
               </div>

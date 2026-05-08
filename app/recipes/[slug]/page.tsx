@@ -63,6 +63,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
   const full = MOCK_FULL_RECIPE[slug as keyof typeof MOCK_FULL_RECIPE]
   const isGated = recipe.isSubscriber // In production: check session subscription status
+  const hasMultipleSections = 'sections' in recipe && recipe.sections && recipe.sections.length > 0
 
   return (
     <>
@@ -125,84 +126,128 @@ export default async function RecipeDetailPage({ params }: PageProps) {
         </div>
 
         {/* Body */}
-        <div className="section py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Ingredients (sidebar) */}
-            <aside className="lg:col-span-1">
-              <div className="bg-stone-50 rounded-2xl p-6 sticky top-32">
-                <h2 className="font-serif text-xl font-bold text-stone-900 mb-5">Ingredients</h2>
-                {full ? (
-                  <ul className="space-y-3">
-                    {full.ingredients.map((ing, i) => (
-                      <li key={i} className="flex gap-2 text-sm">
-                        <span className="font-semibold text-stone-900 min-w-[3rem]">
-                          {ing.amount}{ing.unit && ` ${ing.unit}`}
-                        </span>
-                        <span className="text-stone-700">
-                          {ing.name}
-                          {ing.note && <span className="text-stone-400">, {ing.note}</span>}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-stone-400 text-sm italic">Ingredients coming soon.</p>
-                )}
+        {isGated ? (
+          <div className="section py-12">
+            <SubscriberGate />
+          </div>
+        ) : (
+          <>
+            {hasMultipleSections ? (
+              // Multi-section recipe layout
+              <div className="section py-12 space-y-16">
+                {recipe.sections?.map((section: any, sectionIdx: number) => (
+                  <div key={sectionIdx} className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    {/* Section ingredients (sidebar) */}
+                    <aside className="lg:col-span-1">
+                      <div className="bg-stone-50 rounded-2xl p-6">
+                        <h3 className="font-serif text-lg font-bold text-stone-900 mb-4">{section.name}</h3>
+                        <h4 className="font-semibold text-sm uppercase tracking-wide text-stone-600 mb-3">Ingredients</h4>
+                        <ul className="space-y-2">
+                          {section.ingredients.map((ing: string, i: number) => (
+                            <li key={i} className="text-sm text-stone-700">
+                              • {ing}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </aside>
 
-                {/* Nutrition */}
-                {full?.nutrition && (
-                  <div className="mt-6 pt-6 border-t border-stone-200">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-3">
-                      Per serving
-                    </p>
-                    <div className="grid grid-cols-2 gap-3">
-                      {Object.entries(full.nutrition).map(([k, v]) => (
-                        <div key={k} className="text-center bg-white rounded-xl p-2">
-                          <p className="text-lg font-bold text-stone-900">{v}</p>
-                          <p className="text-[10px] text-stone-400 uppercase tracking-wider">
-                            {k === 'calories' ? 'kcal' : `${k}g`}
-                          </p>
-                        </div>
-                      ))}
+                    {/* Section instructions */}
+                    <div className="lg:col-span-2">
+                      <h4 className="font-semibold text-sm uppercase tracking-wide text-stone-600 mb-6">Instructions</h4>
+                      <ol className="space-y-6">
+                        {section.instructions.map((instruction: string, i: number) => (
+                          <li key={i} className="flex gap-4">
+                            <div className="flex-shrink-0 w-7 h-7 rounded-full bg-brand-100 text-brand-700 font-bold text-xs flex items-center justify-center mt-0.5">
+                              {i + 1}
+                            </div>
+                            <p className="text-stone-700 leading-relaxed flex-1 text-sm">{instruction}</p>
+                          </li>
+                        ))}
+                      </ol>
                     </div>
                   </div>
-                )}
+                ))}
               </div>
-            </aside>
+            ) : (
+              // Single section recipe layout
+              <div className="section py-12">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                  {/* Ingredients (sidebar) */}
+                  <aside className="lg:col-span-1">
+                    <div className="bg-stone-50 rounded-2xl p-6 sticky top-32">
+                      <h2 className="font-serif text-xl font-bold text-stone-900 mb-5">Ingredients</h2>
+                      {full ? (
+                        <ul className="space-y-3">
+                          {full.ingredients.map((ing, i) => (
+                            <li key={i} className="flex gap-2 text-sm">
+                              <span className="font-semibold text-stone-900 min-w-[3rem]">
+                                {ing.amount}{ing.unit && ` ${ing.unit}`}
+                              </span>
+                              <span className="text-stone-700">
+                                {ing.name}
+                                {ing.note && <span className="text-stone-400">, {ing.note}</span>}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-stone-400 text-sm italic">Ingredients coming soon.</p>
+                      )}
 
-            {/* Method */}
-            <div className="lg:col-span-2">
-              {isGated ? (
-                <SubscriberGate />
-              ) : (
-                <>
-                  <h2 className="font-serif text-2xl font-bold text-stone-900 mb-8">Method</h2>
-                  {full ? (
-                    <ol className="space-y-8">
-                      {full.steps.map((step) => (
-                        <li key={step.stepNumber} className="flex gap-5">
-                          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold text-sm flex items-center justify-center mt-0.5">
-                            {step.stepNumber}
+                      {/* Nutrition */}
+                      {full?.nutrition && (
+                        <div className="mt-6 pt-6 border-t border-stone-200">
+                          <p className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-3">
+                            Per serving
+                          </p>
+                          <div className="grid grid-cols-2 gap-3">
+                            {Object.entries(full.nutrition).map(([k, v]) => (
+                              <div key={k} className="text-center bg-white rounded-xl p-2">
+                                <p className="text-lg font-bold text-stone-900">{v}</p>
+                                <p className="text-[10px] text-stone-400 uppercase tracking-wider">
+                                  {k === 'calories' ? 'kcal' : `${k}g`}
+                                </p>
+                              </div>
+                            ))}
                           </div>
-                          <p className="text-stone-700 leading-relaxed flex-1">{step.instruction}</p>
-                        </li>
-                      ))}
-                    </ol>
-                  ) : (
-                    <p className="text-stone-400 italic">Steps coming soon.</p>
-                  )}
-                </>
-              )}
+                        </div>
+                      )}
+                    </div>
+                  </aside>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mt-10 pt-8 border-t border-stone-100">
+                  {/* Method */}
+                  <div className="lg:col-span-2">
+                    <h2 className="font-serif text-2xl font-bold text-stone-900 mb-8">Method</h2>
+                    {full ? (
+                      <ol className="space-y-8">
+                        {full.steps.map((step) => (
+                          <li key={step.stepNumber} className="flex gap-5">
+                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold text-sm flex items-center justify-center mt-0.5">
+                              {step.stepNumber}
+                            </div>
+                            <p className="text-stone-700 leading-relaxed flex-1">{step.instruction}</p>
+                          </li>
+                        ))}
+                      </ol>
+                    ) : (
+                      <p className="text-stone-400 italic">Steps coming soon.</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Tags */}
+            <div className="section pt-8 pb-12">
+              <div className="flex flex-wrap gap-2 pt-8 border-t border-stone-100">
                 {recipe.tags.map((tag) => (
                   <span key={tag} className="badge badge-stone text-xs">#{tag}</span>
                 ))}
               </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
 
         {/* Comments */}
         <div className="border-t border-stone-100">

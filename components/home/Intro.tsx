@@ -10,10 +10,10 @@ export function Intro() {
       </div>
       <div>
         <p className="intro-body">
-          Every recipe here is written with intention — tested in my own kitchen, refined through cooking for others, and presented so you can cook it confidently at home.
+          The recipes here are ones I've made a hundred times over. Some came from professional kitchens, some from late-night cooking at home, all of them from actually wanting to eat the food. They're tested, they work, and they're laid out so you can follow along.
         </p>
         <p className="intro-body">
-          This is food made simple, but never simplified. It's about understanding what you're cooking, why you're cooking it, and knowing it will turn out well.
+          Here's the thing though — anyone can make these dishes. You don't need fancy equipment or fancy training. Just put in a little time, pay attention to what you're doing, and trust the process. That's it.
         </p>
         <div className="intro-sig">
           <span>—</span>

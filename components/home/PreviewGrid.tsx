@@ -7,7 +7,7 @@ export function PreviewGrid() {
     {
       id: 'recipes',
       href: '/recipes',
-      name: 'Recipes',
+      name: 'Recipe Stash',
       num: '01',
       desc: 'Explore curated recipes tested in my kitchen',
     },

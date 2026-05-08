@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "provecho-preview",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "3847", "--directory", "public"],
-      "port": 3847
+      "name": "yur-cooked",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000
     }
   ]
 }
