@@ -1,53 +1,83 @@
-import type { Metadata } from 'next'
-import { ProductCard } from '@/components/shop/ProductCard'
-import { MOCK_PRODUCTS } from '@/lib/mock-data'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Shop',
-  description: 'Cookware, aprons, and apparel built for serious home cooks. Made with care.',
-}
+import { useState } from 'react'
 
-const CATEGORY_LABELS: Record<string, string> = {
-  APPAREL: 'Apparel',
-  COOKWARE: 'Cookware',
-  ACCESSORIES: 'Accessories',
-}
+const PRODUCTS = [
+  { id: '1', name: 'Cast Iron Pan', price: '$65', category: 'Cookware', tag: 'Essential' },
+  { id: '2', name: 'Chef Knife', price: '$140', category: 'Cookware', tag: null },
+  { id: '3', name: 'Apron', price: '$48', category: 'Apparel', tag: 'New' },
+  { id: '4', name: 'Cutting Board', price: '$85', category: 'Cookware', tag: null },
+  { id: '5', name: 'Cookbook', price: '$42', category: 'Books', tag: 'Limited' },
+  { id: '6', name: 'Kitchen Towel', price: '$16', category: 'Apparel', tag: null },
+]
 
-interface PageProps {
-  searchParams: Promise<{ category?: string }>
-}
+const CATEGORIES = ['All', 'Cookware', 'Apparel', 'Books']
 
-export default async function ShopPage({ searchParams }: PageProps) {
-  const params = await searchParams
-  const { category } = params
+export default function ShopPage() {
+  const [activeCategory, setActiveCategory] = useState('All')
 
-  const filtered = MOCK_PRODUCTS.filter((p) => {
-    if (category && p.category.toLowerCase() !== category.toLowerCase()) return false
-    return true
-  })
-
-  const CATS = ['APPAREL', 'COOKWARE', 'ACCESSORIES']
+  const filtered = activeCategory === 'All'
+    ? PRODUCTS
+    : PRODUCTS.filter(p => p.category === activeCategory)
 
   return (
-    <div className="pt-16">
-      {/* Header */}
-      <div className="bg-stone-50 border-b border-stone-100">
-        <div className="section py-12 lg:py-16">
-          <p className="text-xs font-semibold uppercase tracking-widest text-brand-600 mb-2">
-            The shop
-          </p>
-          <h1 className="text-display-lg font-serif text-stone-900 mb-4">
-            Built to last
-          </h1>
-          <p className="text-stone-500 text-lg max-w-xl">
-            Cookware you pass down. Aprons that tell a story. T-shirts soft enough to cook in on a Sunday.
+    <div>
+      {/* Shop hero */}
+      <section className="book-hero">
+        <div className="book-hero-img">
+          <image-slot></image-slot>
+        </div>
+        <div className="book-hero-info">
+          <div className="book-meta">
+            <span>Shop</span>
+            <span>Curated</span>
+          </div>
+          <h1 className="book-title">Goods that <span className="it">matter</span></h1>
+          <p className="book-desc">
+            Everything in the shop has been chosen because it's useful, well-made, and something I actually use in my own kitchen.
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* Category tabs */}
-      <div className="border-b border-stone-100 bg-white sticky top-16 z-20">
-        <div className="section flex gap-1 py-2 overflow-x-auto">
+      {/* Category filter */}
+      <section className="container" style={{ padding: 'clamp(40px, 6vw, 72px) 0' }}>
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`form pill${activeCategory === cat ? ' active' : ''}`}
+              style={{ margin: 0 }}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Shop grid */}
+      <section className="container" style={{ padding: '0 0 clamp(72px, 10vw, 140px)' }}>
+        <div className="shop-grid">
+          {filtered.map((product) => (
+            <a key={product.id} href={`/shop/${product.id}`} className="product">
+              <div className="product-img">
+                {product.tag && (
+                  <div className="product-tag-row">
+                    <span className="product-tag">{product.tag}</span>
+                  </div>
+                )}
+                <image-slot></image-slot>
+                <span className="product-img quick">Quick view</span>
+              </div>
+              <div className="product-meta">
+                <h3 className="product-name">{product.name}</h3>
+                <span className="product-price">{product.price}</span>
+              </div>
+              <p className="product-cat">{product.category}</p>
+            </a>
+          ))}
+        </div>
+      </section>
           <a
             href="/shop"
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${!category ? 'bg-stone-100 text-stone-900' : 'text-stone-500 hover:text-stone-700'}`}
