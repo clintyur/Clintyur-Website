@@ -23,33 +23,38 @@ export function Navbar({ cartCount = 0, user }: NavbarProps) {
   useEffect(() => { setOpen(false) }, [pathname])
 
   return (
-    <header className="nav">
-      <div className="container nav-row">
-        <Link href="/" className="logo">
-          yur cooked<span className="mark"></span>
-        </Link>
-        <nav className="nav-links">
-          {NAV_LINKS.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={`nav-link${pathname === href ? ' active' : ''}`}
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
-        <button
-          className={`nav-burger${open ? ' open' : ''}`}
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-        >
-          <span></span>
-          <span></span>
-        </button>
-      </div>
+    <>
+      <header className="nav">
+        <div className="container nav-row">
+          <Link href="/" className="logo">
+            yur cooked<span className="mark"></span>
+          </Link>
+          <nav className="nav-links">
+            {NAV_LINKS.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={`nav-link${pathname === href ? ' active' : ''}`}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+          <button
+            className={`nav-burger${open ? ' open' : ''}`}
+            onClick={() => setOpen(!open)}
+            aria-label="Menu"
+            aria-expanded={open}
+          >
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
 
-      {/* Mobile menu */}
+      {/* Mobile menu. Must live OUTSIDE <header>: .nav uses backdrop-filter,
+          which makes it the containing block for position:fixed descendants,
+          so an inset menu nested inside it collapses to the header's height. */}
       <div className={`mobile-menu${open ? ' open' : ''}`}>
         <Link href="/" className="nav-link" onClick={() => setOpen(false)}>
           Home
@@ -70,6 +75,6 @@ export function Navbar({ cartCount = 0, user }: NavbarProps) {
           <a href="https://tiktok.com/@clintyurr" target="_blank" rel="noreferrer">TikTok</a>
         </div>
       </div>
-    </header>
+    </>
   )
 }
