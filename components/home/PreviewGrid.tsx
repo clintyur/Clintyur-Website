@@ -1,5 +1,4 @@
-'use client'
-
+import Image from 'next/image'
 import Link from 'next/link'
 
 export function PreviewGrid() {
@@ -10,6 +9,8 @@ export function PreviewGrid() {
       name: 'Recipe Stash',
       num: '01',
       desc: 'Explore curated recipes tested in my kitchen',
+      image: '/images/recipe-short-ribs.jpg',
+      alt: 'Braised short ribs plated with sauce',
     },
     {
       id: 'shop',
@@ -17,6 +18,8 @@ export function PreviewGrid() {
       name: 'Shop',
       num: '02',
       desc: 'Cookware and goods carefully selected',
+      image: '/images/wagyu-prep.jpg',
+      alt: 'Cookware and knives laid out on a prep counter',
     },
     {
       id: 'about',
@@ -24,6 +27,8 @@ export function PreviewGrid() {
       name: 'About',
       num: '03',
       desc: 'Learn about the story and the vision',
+      image: '/images/clint-kitchen-line.jpg',
+      alt: 'Clint working the line in the kitchen',
     },
   ]
 
@@ -40,7 +45,13 @@ export function PreviewGrid() {
         {previews.map((preview) => (
           <Link key={preview.id} href={preview.href} className="preview">
             <div className="preview-img">
-              <image-slot></image-slot>
+              <Image
+                src={preview.image}
+                alt={preview.alt}
+                width={1200}
+                height={1600}
+                sizes="(max-width: 880px) 100vw, 33vw"
+              />
             </div>
             <div className="preview-meta">
               <h3 className="preview-name">{preview.name}</h3>

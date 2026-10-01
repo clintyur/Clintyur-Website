@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import { MOCK_RECIPES } from '@/lib/mock-data'
 import { MOCK_PRODUCTS } from '@/lib/mock-data'
 
-const BASE = process.env.NEXT_PUBLIC_APP_URL ?? 'https://provecho.com'
+const BASE = process.env.NEXT_PUBLIC_APP_URL ?? 'https://yurcooked.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [

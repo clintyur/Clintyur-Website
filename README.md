@@ -1,6 +1,6 @@
-# Provecho — Recipe & Cookware Website
+# yur cooked — Recipe & Cookware Website
 
-Production-ready Next.js 15 website for the Provecho brand. Apple-like aesthetic, subscription membership, ecommerce shop, custom frying-pan cursor, and social feed integration.
+Production-ready Next.js 15 website for the yur cooked brand. Apple-like aesthetic, subscription membership, ecommerce shop, custom frying-pan cursor, and social feed integration.
 
 ---
 
@@ -113,7 +113,7 @@ npm run dev           # http://localhost:3000
 
 1. Create a Stripe account at stripe.com
 2. In Stripe Dashboard → Products → Create product:
-   - Name: "Provecho Membership"
+   - Name: "yur cooked Membership"
    - Price: $3.99/month recurring
    - Copy the **Price ID** → `STRIPE_MONTHLY_PRICE_ID`
 3. Set up webhook: Dashboard → Developers → Webhooks → Add endpoint

@@ -1,13 +1,18 @@
-'use client'
-
-import Link from 'next/link'
+import Image from 'next/image'
 
 export function Hero() {
   return (
     <section className="hero">
-      {/* Background image slot */}
+      {/* Background image */}
       <div className="hero-img">
-        <image-slot></image-slot>
+        <Image
+          src="/images/hero-clint-wagyu.jpg"
+          alt="Clint searing A5 wagyu over open flame"
+          width={1200}
+          height={1600}
+          priority
+          sizes="100vw"
+        />
       </div>
 
       {/* Hero content */}

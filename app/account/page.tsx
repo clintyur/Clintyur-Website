@@ -25,7 +25,7 @@ export default async function AccountPage() {
   const subscriber = isSubscriber(user.subscriptionStatus)
 
   return (
-    <div className="pt-16 section py-12">
+    <div className="pt-16 container py-12">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-display-sm font-serif text-stone-900 mb-8">My Account</h1>
 
@@ -36,7 +36,7 @@ export default async function AccountPage() {
               {user.name?.[0] ?? user.email[0].toUpperCase()}
             </div>
             <div>
-              <p className="font-serif text-xl font-bold text-stone-900">{user.name ?? 'Provecho Member'}</p>
+              <p className="font-serif text-xl font-bold text-stone-900">{user.name ?? 'yur cooked Member'}</p>
               <p className="text-stone-500 text-sm">{user.email}</p>
               {subscriber && (
                 <span className="badge badge-brand mt-1">

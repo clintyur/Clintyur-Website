@@ -29,7 +29,7 @@ const FAQ = [
   },
   {
     q: 'Do you offer a family or team plan?',
-    a: "Not yet! It's on our roadmap. Email us at hello@provecho.com if you're interested.",
+    a: "Not yet! It's on our roadmap. Email us at hello@yurcooked.com if you're interested.",
   },
   {
     q: 'Is there a money-back guarantee?',
@@ -68,7 +68,7 @@ function SubscribePageInner() {
       {/* Header */}
       <div className="bg-gradient-hero text-center py-20 px-4">
         <p className="text-xs font-semibold uppercase tracking-widest text-brand-400 mb-3">
-          Provecho Membership
+          yur cooked Membership
         </p>
         <h1 className="text-display-lg font-serif text-white mb-4">
           Cook better. Every week.
@@ -79,7 +79,7 @@ function SubscribePageInner() {
       </div>
 
       {/* Pricing cards */}
-      <div className="section py-16">
+      <div className="container py-16">
         <div className="max-w-3xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
             {/* Trial card */}
@@ -164,7 +164,7 @@ function SubscribePageInner() {
 
       {/* FAQ */}
       <div className="bg-stone-50 border-t border-stone-100">
-        <div className="section py-16 max-w-2xl mx-auto">
+        <div className="container py-16 max-w-2xl mx-auto">
           <h2 className="text-display-sm font-serif text-stone-900 text-center mb-10">
             Frequently asked
           </h2>

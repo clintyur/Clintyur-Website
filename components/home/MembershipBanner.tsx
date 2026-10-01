@@ -18,7 +18,7 @@ export function MembershipBanner() {
       <div className="section relative z-10">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <p className="text-xs font-semibold uppercase tracking-widest text-brand-400 mb-3">
-            Provecho Membership
+            yur cooked Membership
           </p>
           <h2 className="text-display-md font-serif text-white mb-4">
             Unlock the full kitchen

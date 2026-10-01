@@ -27,7 +27,7 @@ const MOCK_COMMENTS: Comment[] = [
       {
         id: '1r',
         body: 'So glad it worked for you Sarah! That crisp is everything.',
-        author: 'Provecho',
+        author: 'yur cooked',
         avatar: 'P',
         createdAt: '2024-12-10',
       },

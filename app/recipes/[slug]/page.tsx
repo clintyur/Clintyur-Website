@@ -69,7 +69,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
     <>
       <RecipeSchema recipe={recipe} />
 
-      <article className="pt-16">
+      <article className="recipe-detail pt-16">
         {/* Hero image */}
         <div className="relative h-[50vh] lg:h-[65vh] overflow-hidden">
           <Image
@@ -90,7 +90,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
           }} />
 
           {/* Hero meta */}
-          <div className="absolute bottom-0 inset-x-0 section pb-8">
+          <div className="absolute bottom-0 inset-x-0 container pb-8">
             <div className="max-w-3xl">
               <div className="flex flex-wrap gap-2 mb-3">
                 <span className="recipe-badge">{recipe.category}</span>
@@ -113,7 +113,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
         {/* Meta bar */}
         <div style={{ background: 'var(--cream)', borderBottom: '1px solid var(--rule)' }} className="sticky top-16 z-30 shadow-soft">
-          <div className="section py-3 flex items-center justify-between gap-4 overflow-x-auto">
+          <div className="container py-3 flex items-center justify-between gap-4 overflow-x-auto">
             <div className="flex items-center gap-6 min-w-0">
               <MetaStat icon={<Clock size={16} />} label="Prep" value={formatTime(recipe.prepTime)} />
               <MetaStat icon={<Clock size={16} />} label="Cook" value={formatTime(recipe.cookTime)} />
@@ -134,14 +134,14 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
         {/* Body */}
         {isGated ? (
-          <div className="section py-12">
+          <div className="container py-12">
             <SubscriberGate />
           </div>
         ) : (
           <>
             {hasMultipleSections ? (
               // Multi-section recipe layout
-              <div className="section py-12 space-y-16">
+              <div className="container py-12 space-y-16">
                 {recipe.sections?.map((section: any, sectionIdx: number) => (
                   <div key={sectionIdx} className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                     {/* Section ingredients (sidebar) */}
@@ -179,7 +179,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
               </div>
             ) : (
               // Single section recipe layout
-              <div className="section py-12">
+              <div className="container py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                   {/* Ingredients (sidebar) */}
                   <aside className="lg:col-span-1">
@@ -245,7 +245,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
             )}
 
             {/* Tags */}
-            <div className="section pt-8 pb-12">
+            <div className="container pt-8 pb-12">
               <div className="recipe-tags">
                 {recipe.tags.map((tag) => (
                   <span key={tag} className="recipe-tag">#{tag}</span>
@@ -257,7 +257,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
         {/* Comments */}
         <div className="border-t border-stone-100">
-          <div className="section py-12 max-w-3xl">
+          <div className="container py-12 max-w-3xl">
             <CommentsSection recipeId={recipe.id} recipeSlug={recipe.slug} />
           </div>
         </div>
@@ -286,7 +286,7 @@ function SubscriberGate() {
         This recipe is for members
       </h3>
       <p className="text-stone-300 mb-6 max-w-sm mx-auto leading-relaxed">
-        Join Provecho for $3.99/month and get access to every subscriber-only recipe, plus 10% off the shop.
+        Join yur cooked for $3.99/month and get access to every subscriber-only recipe, plus 10% off the shop.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <a href="/subscribe?trial=true" className="btn-primary btn-lg">

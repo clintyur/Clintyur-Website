@@ -81,14 +81,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // Hydrate from localStorage
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('provecho-cart')
+      const saved = localStorage.getItem('yurcooked-cart')
       if (saved) dispatch({ type: 'HYDRATE', payload: JSON.parse(saved) })
     } catch { /* ignore parse errors */ }
   }, [])
 
   // Persist to localStorage
   useEffect(() => {
-    localStorage.setItem('provecho-cart', JSON.stringify(state.items))
+    localStorage.setItem('yurcooked-cart', JSON.stringify(state.items))
   }, [state.items])
 
   const addItem    = useCallback((item: CartItem) => dispatch({ type: 'ADD_ITEM', payload: item }), [])

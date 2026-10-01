@@ -4,7 +4,7 @@ import { db } from '@/lib/db'
 
 export async function POST(req: Request) {
   const session = await auth()
-  if (!session?.user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { recipeId } = await req.json()
   if (!recipeId) return NextResponse.json({ error: 'recipeId required' }, { status: 400 })
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
 
 export async function DELETE(req: Request) {
   const session = await auth()
-  if (!session?.user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { recipeId } = await req.json()
   if (!recipeId) return NextResponse.json({ error: 'recipeId required' }, { status: 400 })
@@ -41,7 +41,7 @@ export async function GET(req: Request) {
   if (!recipeId) return NextResponse.json({ error: 'recipeId required' }, { status: 400 })
 
   const count = await db.like.count({ where: { recipeId } })
-  const liked = session?.user
+  const liked = session?.user?.id
     ? !!(await db.like.findUnique({
         where: { userId_recipeId: { userId: session.user.id, recipeId } },
       }))

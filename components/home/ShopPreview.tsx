@@ -12,7 +12,7 @@ export function ShopPreview() {
         <div className="flex items-end justify-between mb-10">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-brand-600 mb-2">
-              The Provecho shop
+              The yur cooked shop
             </p>
             <h2 className="text-display-md font-serif text-stone-900">
               Made to last

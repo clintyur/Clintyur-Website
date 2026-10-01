@@ -44,7 +44,7 @@ export const MOCK_RECIPES = [
     slug: 'smash-burgers',
     title: 'Perfect Smash Burgers',
     description: 'Double smash patties, American cheese, caramelized onions, and secret sauce on a toasted brioche bun.',
-    heroImage: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80',
+    heroImage: '/images/recipe-smash-burger.jpg',
     prepTime: 10,
     cookTime: 15,
     servings: 4,
@@ -63,7 +63,7 @@ export const MOCK_RECIPES = [
     slug: 'miso-glazed-salmon',
     title: 'Miso-Glazed Salmon',
     description: 'Broiled salmon with a caramelized white miso glaze, served with sesame green beans and steamed rice.',
-    heroImage: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80',
+    heroImage: '/images/recipe-salmon-polenta.jpg',
     prepTime: 15,
     cookTime: 12,
     servings: 2,
@@ -82,7 +82,7 @@ export const MOCK_RECIPES = [
     slug: 'sourdough-bread',
     title: 'Open-Crumb Sourdough',
     description: 'A detailed guide to baking bakery-quality sourdough at home — scoring, steam, and that perfect ear.',
-    heroImage: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800&q=80',
+    heroImage: '/images/recipe-meat-bread.jpg',
     prepTime: 60,
     cookTime: 45,
     servings: 1,
@@ -101,7 +101,7 @@ export const MOCK_RECIPES = [
     slug: 'burnt-basque-cheesecake',
     title: 'Burnt Basque Cheesecake',
     description: 'Intentionally torched, crustless cheesecake with a molten center and silky texture. 5 ingredients.',
-    heroImage: 'https://images.unsplash.com/photo-1567171466295-4afa63d45416?w=800&q=80',
+    heroImage: '/images/recipe-basque-cheesecake.jpg',
     prepTime: 10,
     cookTime: 60,
     servings: 8,
@@ -120,7 +120,7 @@ export const MOCK_RECIPES = [
     slug: 'citrus-olive-oil-cake',
     title: 'Citrus Olive Oil Cake',
     description: 'A bright, tender cake with candied citrus and a glossy olive oil crumb, served with hand-whipped cream and fresh berry compote.',
-    heroImage: '/images/citrus-olive-oil-cake.jpg',
+    heroImage: 'https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=800&q=80',
     prepTime: 30,
     cookTime: 45,
     servings: 6,
@@ -204,11 +204,33 @@ export const MOCK_RECIPES = [
   },
 ]
 
-export const MOCK_PRODUCTS = [
+export interface ProductVariant {
+  id: string
+  name: string
+  sku: string
+  price: number
+  stock: number
+  color?: string
+  size?: string
+}
+
+export interface Product {
+  id: string
+  slug: string
+  name: string
+  description: string
+  heroImage: string
+  images: string[]
+  category: string
+  isFeatured: boolean
+  variants: ProductVariant[]
+}
+
+export const MOCK_PRODUCTS: Product[] = [
   {
     id: '1',
-    slug: 'provecho-canvas-apron',
-    name: 'Provecho Canvas Apron',
+    slug: 'yurcooked-canvas-apron',
+    name: 'yur cooked Canvas Apron',
     description: 'Heavy-duty waxed canvas apron with genuine leather straps, a front pocket, and a bottle opener loop. Built to outlast your cooking obsession.',
     heroImage: 'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=800&q=80',
     images: [
@@ -224,9 +246,9 @@ export const MOCK_PRODUCTS = [
   },
   {
     id: '2',
-    slug: 'provecho-chef-tee',
+    slug: 'yurcooked-chef-tee',
     name: 'Chef Tee — Heavy Cotton',
-    description: '7 oz ring-spun cotton, relaxed fit. "Provecho" embroidered chest logo. Washes beautifully, keeps its shape.',
+    description: '7 oz ring-spun cotton, relaxed fit. "yur cooked" embroidered chest logo. Washes beautifully, keeps its shape.',
     heroImage: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
     images: [
       'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
@@ -263,7 +285,7 @@ export const MOCK_PRODUCTS = [
   {
     id: '4',
     slug: 'spice-collection',
-    name: 'Provecho Spice Collection',
+    name: 'yur cooked Spice Collection',
     description: 'Our 6-jar curated spice set — the exact blends we use on the channel. Custom-ground weekly, shipped fresh.',
     heroImage: 'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=800&q=80',
     images: [
@@ -331,5 +353,47 @@ export const MOCK_SOCIAL_POSTS = [
     url: 'https://youtube.com',
     views: 97000,
     duration: '9:48',
+  },
+]
+
+export interface BlogPost {
+  slug: string
+  title: string
+  excerpt: string
+  category: string
+  heroImage: string
+  publishedAt: string
+  readTime: number
+  /** Article body as paragraphs. Empty until the post is written. */
+  body?: string[]
+}
+
+export const MOCK_POSTS: BlogPost[] = [
+  {
+    slug: 'carbon-steel-vs-cast-iron',
+    title: 'Carbon Steel vs. Cast Iron: The Real Differences',
+    excerpt: 'We cooked the same meal in both pans for 30 days. Here is what we found.',
+    category: 'Gear',
+    heroImage: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=1200&q=80',
+    publishedAt: '2024-12-15',
+    readTime: 7,
+  },
+  {
+    slug: 'how-to-build-flavor',
+    title: 'The 5 Techniques That Build Real Flavor',
+    excerpt: 'Caramelization, fond, fat, acid, salt — master these and everything you cook improves.',
+    category: 'Technique',
+    heroImage: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80',
+    publishedAt: '2024-12-08',
+    readTime: 10,
+  },
+  {
+    slug: 'pantry-setup-guide',
+    title: 'The yur cooked Pantry Setup Guide',
+    excerpt: 'The 40 ingredients we always have on hand — and why they matter.',
+    category: 'Pantry',
+    heroImage: 'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=1200&q=80',
+    publishedAt: '2024-11-30',
+    readTime: 12,
   },
 ]

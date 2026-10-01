@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { MOCK_RECIPES } from '@/lib/mock-data'
 
 export default function RecipesPage() {
@@ -7,6 +8,7 @@ export default function RecipesPage() {
     num: String(index + 1).padStart(2, '0'),
     name: recipe.title,
     tags: recipe.tags,
+    image: recipe.heroImage,
   }))
 
   return (
@@ -14,7 +16,14 @@ export default function RecipesPage() {
       {/* Book hero */}
       <section className="book-hero">
         <div className="book-hero-img">
-          <image-slot></image-slot>
+          <Image
+            src="/images/recipe-short-ribs.jpg"
+            alt="Braised short ribs resting in the pan"
+            width={1200}
+            height={1600}
+            priority
+            sizes="(max-width: 880px) 100vw, 50vw"
+          />
         </div>
         <div className="book-hero-info">
           <div className="book-meta">
@@ -52,7 +61,13 @@ export default function RecipesPage() {
           {recipes.map((recipe) => (
             <a key={recipe.id} href={`/recipes/${recipe.slug}`} className="recipe">
               <div className="recipe-img">
-                <image-slot></image-slot>
+                <Image
+                  src={recipe.image}
+                  alt={recipe.name}
+                  width={1200}
+                  height={1600}
+                  sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                />
               </div>
               <p className="recipe-num">№ {recipe.num}</p>
               <h3 className="recipe-name">{recipe.name}</h3>

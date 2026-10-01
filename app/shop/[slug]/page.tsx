@@ -26,18 +26,18 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
   const { addItem } = useCart()
 
   const colors = [...new Set(product.variants.map((v) => v.color).filter(Boolean))]
-  const sizes  = [...new Set(product.variants.map((v) => (v as { size?: string }).size).filter(Boolean))]
+  const sizes  = [...new Set(product.variants.map((v) => v.size).filter(Boolean))]
 
-  function selectVariant(color?: string, size?: string) {
+  const selectVariant = (color?: string, size?: string) => {
     const match = product.variants.find((v) => {
       const matchColor = !color || v.color === color
-      const matchSize  = !size  || (v as { size?: string }).size === size
+      const matchSize  = !size  || v.size === size
       return matchColor && matchSize
     })
     if (match) setSelectedVariant(match)
   }
 
-  function handleAddToCart() {
+  const handleAddToCart = () => {
     addItem({
       variantId: selectedVariant.id,
       productId: product.id,
@@ -51,8 +51,9 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
     setTimeout(() => setAdded(false), 2500)
   }
 
+
   return (
-    <div className="pt-16 section py-12">
+    <div className="pt-16 container py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
         {/* Image gallery */}
         <div>
@@ -102,7 +103,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                 {colors.map((color) => (
                   <button
                     key={color}
-                    onClick={() => selectVariant(color ?? undefined, (selectedVariant as { size?: string }).size ?? undefined)}
+                    onClick={() => selectVariant(color ?? undefined, selectedVariant.size ?? undefined)}
                     className={cn(
                       'px-4 py-2 rounded-xl border text-sm font-medium transition-all',
                       selectedVariant.color === color
@@ -121,11 +122,11 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
           {sizes.length > 0 && (
             <div className="mb-6">
               <p className="label mb-2">
-                Size: <span className="text-stone-500 font-normal">{(selectedVariant as { size?: string }).size}</span>
+                Size: <span className="text-stone-500 font-normal">{selectedVariant.size}</span>
               </p>
               <div className="flex gap-2 flex-wrap">
                 {sizes.map((size) => {
-                  const v = product.variants.find((vv) => (vv as { size?: string }).size === size && vv.color === selectedVariant.color)
+                  const v = product.variants.find((vv) => vv.size === size && vv.color === selectedVariant.color)
                   const outOfStock = v?.stock === 0
                   return (
                     <button
@@ -134,7 +135,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
                       onClick={() => selectVariant(selectedVariant.color ?? undefined, size ?? undefined)}
                       className={cn(
                         'w-12 h-12 rounded-xl border text-sm font-medium transition-all',
-                        (selectedVariant as { size?: string }).size === size
+                        selectedVariant.size === size
                           ? 'border-stone-800 bg-stone-900 text-white'
                           : outOfStock
                           ? 'border-stone-100 text-stone-300 cursor-not-allowed line-through'
@@ -174,7 +175,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
 
           {/* Member discount note */}
           <p className="text-center text-sm text-stone-400 mb-6">
-            Provecho members save 10% on every order.{' '}
+            yur cooked members save 10% on every order.{' '}
             <a href="/subscribe" className="text-brand-600 hover:underline">Join today →</a>
           </p>
 

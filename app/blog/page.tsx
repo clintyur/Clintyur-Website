@@ -3,41 +3,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
+import { MOCK_POSTS } from '@/lib/mock-data'
 
 export const metadata: Metadata = {
   title: 'Journal',
-  description: 'Stories, guides, and essays from the Provecho kitchen.',
+  description: 'Stories, guides, and essays from the yur cooked kitchen.',
 }
 
-const MOCK_POSTS = [
-  {
-    slug: 'carbon-steel-vs-cast-iron',
-    title: 'Carbon Steel vs. Cast Iron: The Real Differences',
-    excerpt: 'We cooked the same meal in both pans for 30 days. Here is what we found.',
-    category: 'Gear',
-    heroImage: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=800&q=80',
-    publishedAt: '2024-12-15',
-    readTime: 7,
-  },
-  {
-    slug: 'how-to-build-flavor',
-    title: 'The 5 Techniques That Build Real Flavor',
-    excerpt: 'Caramelization, fond, fat, acid, salt — master these and everything you cook improves.',
-    category: 'Technique',
-    heroImage: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
-    publishedAt: '2024-12-08',
-    readTime: 10,
-  },
-  {
-    slug: 'pantry-setup-guide',
-    title: 'The Provecho Pantry Setup Guide',
-    excerpt: 'The 40 ingredients we always have on hand — and why they matter.',
-    category: 'Pantry',
-    heroImage: 'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=800&q=80',
-    publishedAt: '2024-11-30',
-    readTime: 12,
-  },
-]
 
 export default function BlogPage() {
   const [featured, ...rest] = MOCK_POSTS
@@ -45,14 +17,14 @@ export default function BlogPage() {
   return (
     <div className="pt-16">
       <div className="bg-stone-50 border-b border-stone-100">
-        <div className="section py-12 lg:py-16">
+        <div className="container py-12 lg:py-16">
           <p className="text-xs font-semibold uppercase tracking-widest text-brand-600 mb-2">The journal</p>
           <h1 className="text-display-lg font-serif text-stone-900 mb-4">Stories from the kitchen</h1>
           <p className="text-stone-500 text-lg max-w-xl">Technique deep-dives, gear guides, and essays about cooking with intention.</p>
         </div>
       </div>
 
-      <div className="section py-12">
+      <div className="container py-12">
         {/* Featured post */}
         <Link href={`/blog/${featured.slug}`} className="group block mb-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">

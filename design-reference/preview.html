@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yur cooked — Preview</title>
+  <style>
+    :root {
+      --cream: #efe9dd;
+      --cream-2: #e7e0d1;
+      --ink: #1a1814;
+      --ink-2: #2a2620;
+      --muted: #6b6358;
+      --rule: #d8cfbe;
+      --accent: #b8442a;
+      --accent-ink: #fafaf7;
+      --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+      --serif: "Bodoni Moda", "Bodoni 72", "Didot", serif;
+      --mono: "Space Mono", ui-monospace, monospace;
+      --gutter: clamp(20px, 4vw, 56px);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Bodoni+Moda:ital@0;1&family=Caveat:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--display);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .container { max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* Nav */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in oklab, var(--cream) 88%, transparent);
+      backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      font-family: "Caveat", cursive;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: baseline;
+      line-height: 1;
+      letter-spacing: -0.005em;
+    }
+
+    .logo .mark {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+      margin-left: 2px;
+      transform: translateY(-2px);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      position: relative;
+      padding: 6px 0;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 64px);
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      background: linear-gradient(180deg, #221e18 0%, #15130f 100%);
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23333" width="1200" height="800"/><text x="50%" y="50%" font-size="48" fill="%23666" text-anchor="middle" dominant-baseline="middle">Hero Image</text></svg>');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+
+    .hero-img::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.55) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 var(--gutter) clamp(40px, 6vw, 80px);
+      width: 100%;
+      color: #f8f3e7;
+    }
+
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .hero-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(16px, 1.4vw, 20px);
+      max-width: 320px;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .hero-wordmark {
+      font-family: "Caveat", cursive;
+      font-weight: 700;
+      font-size: clamp(96px, 18vw, 260px);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      margin: 0 auto;
+      white-space: nowrap;
+      position: relative;
+      z-index: 2;
+      color: #f8f3e7;
+      width: 100%;
+      padding: 0 var(--gutter);
+      max-width: 1440px;
+    }
+
+    .hero-wordmark .accent-dot {
+      display: inline-block;
+      width: 0.18em;
+      height: 0.18em;
+      border-radius: 50%;
+      background: var(--accent);
+      vertical-align: middle;
+      margin-left: -0.05em;
+      transform: translateY(-0.15em);
+    }
+
+    .hero-wordmark .it {
+      font-style: italic;
+      font-weight: 800;
+    }
+
+    /* Ticker */
+    .ticker {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 18px 0;
+      overflow: hidden;
+      border-block: 1px solid var(--ink);
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      gap: 56px;
+      white-space: nowrap;
+      animation: ticker 40s linear infinite;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      align-items: center;
+    }
+
+    .ticker-track .sep {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* Section */
+    .section {
+      padding: clamp(72px, 10vw, 140px) 0;
+      position: relative;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: clamp(40px, 6vw, 72px);
+    }
+
+    @media (min-width: 880px) {
+      .section-head {
+        grid-template-columns: 1fr 1.6fr;
+        align-items: end;
+        gap: 80px;
+      }
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(40px, 6vw, 80px);
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      margin: 0;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .section-title .it {
+      font-style: italic;
+    }
+
+    .eyebrow {
+      font-family: var(--display);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .eyebrow .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      vertical-align: middle;
+      margin-right: 8px;
+      transform: translateY(-1px);
+    }
+
+    /* Intro */
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: clamp(80px, 10vw, 140px) 0;
+    }
+
+    @media (min-width: 880px) {
+      .intro {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+    }
+
+    .intro-quote {
+      font-family: var(--display);
+      font-size: clamp(26px, 3.2vw, 42px);
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      font-weight: 600;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .intro-quote .it {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .intro-body {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--ink-2);
+      max-width: 52ch;
+    }
+
+    .intro-body p + p {
+      margin-top: 1.2em;
+    }
+
+    /* Preview grid */
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    @media (min-width: 800px) {
+      .preview-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 32px;
+      }
+    }
+
+    .preview {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .preview-img {
+      aspect-ratio: 3 / 4;
+      background: var(--cream-2);
+      overflow: hidden;
+      position: relative;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .preview-name {
+      font-family: var(--display);
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .preview-name .it {
+      font-style: italic;
+    }
+
+    .preview-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--ink);
+      color: var(--cream);
+      padding: clamp(56px, 8vw, 96px) 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(239, 233, 221, 0.18);
+    }
+
+    @media (min-width: 800px) {
+      .footer-grid {
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 64px;
+      }
+    }
+
+    .footer-mark {
+      font-family: "Caveat", cursive;
+      font-weight: 700;
+      font-size: 64px;
+      letter-spacing: -0.005em;
+      line-height: 1;
+      text-transform: none;
+    }
+
+    .footer-tag {
+      margin-top: 16px;
+      font-size: 14px;
+      color: rgba(239, 233, 221, 0.7);
+      max-width: 30ch;
+      line-height: 1.5;
+    }
+
+    .footer h4 {
+      font-family: var(--display);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin: 0 0 16px;
+      color: rgba(239, 233, 221, 0.6);
+    }
+
+    .footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer ul a {
+      font-size: 15px;
+      color: var(--cream);
+      transition: color 0.2s ease;
+    }
+
+    .footer ul a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bot {
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: rgba(239, 233, 221, 0.55);
+    }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .nav-burger { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="nav">
+    <div class="container nav-row">
+      <a href="#" class="logo">
+        yur cooked<span class="mark"></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#" class="nav-link active">Recipes</a>
+        <a href="#" class="nav-link">Shop</a>
+        <a href="#" class="nav-link">About</a>
+        <a href="#" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-img"></div>
+    <div class="hero-content">
+      <div class="hero-meta">
+        <p class="hero-tagline">Recipes, goods, and the art of eating well from a kitchen in New York</p>
+        <div class="hero-wordmark">
+          yur <span class="it">cooked</span><span class="accent-dot"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ticker -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>Recipes</span>
+      <span class="sep"></span>
+      <span>Goods</span>
+      <span class="sep"></span>
+      <span>The art of eating well</span>
+      <span class="sep"></span>
+      <span>From New York</span>
+      <span class="sep"></span>
+      <span>Recipes</span>
+      <span class="sep"></span>
+      <span>Goods</span>
+      <span class="sep"></span>
+      <span>The art of eating well</span>
+      <span class="sep"></span>
+      <span>From New York</span>
+      <span class="sep"></span>
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <div class="container">
+    <div class="intro">
+      <div>
+        <p class="intro-quote">
+          The best meal is one you cook <span class="it">for someone</span> you care about
+        </p>
+      </div>
+      <div>
+        <p class="intro-body">
+          Every recipe here is written with intention — tested in my own kitchen, refined through cooking for others, and presented so you can cook it confidently at home.
+        </p>
+        <p class="intro-body">
+          This is food made simple, but never simplified. It's about understanding what you're cooking, why you're cooking it, and knowing it will turn out well.
+        </p>
+      </div>
+    </div>
+
+    <!-- Preview Grid -->
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>Explore</div>
+          <h2 class="section-title">What's <span class="it">here</span></h2>
+        </div>
+      </div>
+
+      <div class="preview-grid">
+        <a href="#" class="preview">
+          <div class="preview-img">Recipes Image</div>
+          <h3 class="preview-name">Recipes</h3>
+          <p class="preview-desc">Explore curated recipes tested in my kitchen</p>
+        </a>
+        <a href="#" class="preview">
+          <div class="preview-img">Shop Image</div>
+          <h3 class="preview-name">Shop</h3>
+          <p class="preview-desc">Cookware and goods carefully selected</p>
+        </a>
+        <a href="#" class="preview">
+          <div class="preview-img">About Image</div>
+          <h3 class="preview-name">About</h3>
+          <p class="preview-desc">Learn about the story and the vision</p>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-mark">yur cooked<span class="accent-dot" style="width: 8px; height: 8px; display: inline-block; margin-left: 4px; transform: translateY(-12px);"></span></div>
+          <p class="footer-tag">Recipes, goods, and the art of eating well — from a kitchen in New York.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#">Recipes</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">TikTok</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Inquiries</h4>
+          <ul>
+            <li><a href="#">Private Chef</a></li>
+            <li><a href="#">Brand Collaborations</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bot">
+        <span>© 2026 yur cooked. All rights reserved.</span>
+        <span>New York, NY</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

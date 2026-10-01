@@ -33,7 +33,7 @@ export default function CartPage() {
 
   if (count === 0) {
     return (
-      <div className="pt-16 section py-24 text-center">
+      <div className="pt-16 container py-24 text-center">
         <ShoppingBag size={48} className="text-stone-200 mx-auto mb-4" />
         <h1 className="font-serif text-2xl text-stone-900 mb-2">Your bag is empty</h1>
         <p className="text-stone-500 mb-6">Looks like you haven&apos;t added anything yet.</p>
@@ -43,7 +43,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="pt-16 section py-12">
+    <div className="pt-16 container py-12">
       <h1 className="font-serif text-display-sm text-stone-900 mb-8">Your bag ({count})</h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

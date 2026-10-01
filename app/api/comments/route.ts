@@ -33,9 +33,10 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   const session = await auth()
-  if (!session?.user) {
+  if (!session?.user?.id) {
     return NextResponse.json({ error: 'You must be signed in to comment' }, { status: 401 })
   }
+  const userId = session.user.id
 
   const body = await req.json()
   const parsed = commentSchema.safeParse(body)
@@ -46,7 +47,7 @@ export async function POST(req: Request) {
   const comment = await db.comment.create({
     data: {
       ...parsed.data,
-      userId: session.user.id,
+      userId,
     },
     include: {
       user: { select: { id: true, name: true, image: true } },
@@ -58,7 +59,7 @@ export async function POST(req: Request) {
 
 export async function DELETE(req: Request) {
   const session = await auth()
-  if (!session?.user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   const { searchParams } = new URL(req.url)
   const id = searchParams.get('id')

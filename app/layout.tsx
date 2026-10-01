@@ -42,9 +42,6 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        <script src="/image-slot.js" defer></script>
-      </head>
       <body>
         {/* SVG filters for hand-drawn effect */}
         <svg id="filters" xmlns="http://www.w3.org/2000/svg" style={{ display: 'none' }}>

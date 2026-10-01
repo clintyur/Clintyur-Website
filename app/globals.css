@@ -4,6 +4,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Bodoni+Moda:ital@0;1&family=Caveat:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
 
+/* Tailwind. These directives were missing entirely, so PostCSS emitted no
+   utilities at all and every Tailwind class in the app was a no-op.
+   `base` (preflight) is loaded first so the editorial CSS below overrides it;
+   `utilities` is loaded last so utilities win in markup. */
+@tailwind base;
+@tailwind components;
+
 :root {
   --cream: #efe9dd;
   --cream-2: #e7e0d1;
@@ -265,16 +272,17 @@ button { font-family: inherit; cursor: pointer; }
   height: 100%;
   z-index: 0;
 }
-.hero-img image-slot { width: 100%; height: 100%; }
+.hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hero-img::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-    rgba(0,0,0,0.15) 0%,
-    rgba(0,0,0,0) 30%,
-    rgba(0,0,0,0) 50%,
-    rgba(0,0,0,0.55) 100%);
+    rgba(0,0,0,0.30) 0%,
+    rgba(0,0,0,0.05) 22%,
+    rgba(0,0,0,0.18) 45%,
+    rgba(0,0,0,0.58) 72%,
+    rgba(0,0,0,0.82) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -382,7 +390,7 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 700;
   text-transform: uppercase;
 }
-.section-title .it { font-style: italic; }
+.section-title .it { font-style: italic; margin-right: 0.08em; }
 .section-lede {
   font-size: 17px;
   line-height: 1.55;
@@ -459,7 +467,7 @@ button { font-family: inherit; cursor: pointer; }
   overflow: hidden;
   position: relative;
 }
-.preview-img image-slot { width: 100%; height: 100%; }
+.preview-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .preview-img::after {
   content: "";
   position: absolute;
@@ -605,7 +613,7 @@ button { font-family: inherit; cursor: pointer; }
   min-height: 60vh;
   overflow: hidden;
 }
-.book-hero-img image-slot { width: 100%; height: 100%; }
+.book-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .book-hero-info {
   display: flex;
   flex-direction: column;
@@ -632,7 +640,9 @@ button { font-family: inherit; cursor: pointer; }
   text-transform: uppercase;
   margin: 0;
 }
-.book-title .it { font-style: italic; }
+/* Negative tracking on the title plus the italic slant closes up the word space
+   after an italic run, so give it back a little. */
+.book-title .it { font-style: italic; margin-right: 0.08em; }
 .book-desc {
   font-size: 17px;
   line-height: 1.65;
@@ -713,7 +723,7 @@ button { font-family: inherit; cursor: pointer; }
   margin: -24px -24px 0;
   overflow: hidden;
 }
-.recipe-img image-slot { width: 100%; height: 100%; }
+.recipe-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .recipe-num {
   font-family: var(--serif);
   font-style: italic;
@@ -766,7 +776,7 @@ button { font-family: inherit; cursor: pointer; }
   overflow: hidden;
   position: relative;
 }
-.product-img image-slot { width: 100%; height: 100%; }
+.product-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .product-img .quick {
   position: absolute;
   bottom: 12px;
@@ -852,7 +862,7 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--cream-2);
   overflow: hidden;
 }
-.about-hero-img image-slot { width: 100%; height: 100%; }
+.about-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .about-story {
   display: grid;
@@ -934,7 +944,7 @@ button { font-family: inherit; cursor: pointer; }
   background: var(--cream-2);
   overflow: hidden;
 }
-.about-gallery .g image-slot { width: 100%; height: 100%; }
+.about-gallery .g img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .about-gallery .g.a { grid-column: span 4; grid-row: span 3; }
 .about-gallery .g.b { grid-column: span 2; grid-row: span 2; }
 .about-gallery .g.c { grid-column: span 2; grid-row: span 1; }
@@ -1113,7 +1123,7 @@ button { font-family: inherit; cursor: pointer; }
   position: relative;
   overflow: hidden;
 }
-.modal-img image-slot { width: 100%; height: 100%; }
+.modal-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .modal-info {
   padding: clamp(28px, 4vw, 48px);
   display: flex;
@@ -1266,7 +1276,7 @@ button { font-family: inherit; cursor: pointer; }
   position: relative;
   overflow: hidden;
 }
-.watch-thumb image-slot { width: 100%; height: 100%; }
+.watch-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .watch-thumb::after {
   content: "";
   position: absolute;
@@ -1448,7 +1458,9 @@ svg#filters {
 }
 
 /* ---------- recipe detail page styling ---------- */
-.section-title {
+/* Scoped to .recipe-detail: these used to be bare `.section-title` rules, which
+   silently overrode the site-wide section titles on the home and about pages. */
+.recipe-detail .section-title {
   font-family: var(--display);
   font-weight: 700;
   font-size: clamp(1.75rem, 5vw, 2.5rem);
@@ -1456,7 +1468,7 @@ svg#filters {
   margin: 0 0 clamp(24px, 4vw, 40px) 0;
 }
 
-.section-title .it {
+.recipe-detail .section-title .it {
   font-style: italic;
   color: var(--accent);
 }
@@ -1520,7 +1532,7 @@ svg#filters {
   color: var(--accent);
 }
 
-.recipe-tags {
+.recipe-detail .recipe-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -1529,7 +1541,7 @@ svg#filters {
   border-top: 1px solid var(--rule);
 }
 
-.recipe-tag {
+.recipe-detail .recipe-tag {
   display: inline-block;
   font-size: 13px;
   letter-spacing: 0.05em;
@@ -1540,7 +1552,97 @@ svg#filters {
   transition: all .2s ease;
 }
 
-.recipe-tag:hover {
+.recipe-detail .recipe-tag:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
+
+/* ============================================================
+   Compatibility layer for pages still written against the
+   pre-redesign Tailwind markup (shop detail, cart, subscribe,
+   login, account, blog, recipe detail).
+
+   These class names were used throughout that markup but were
+   never actually defined anywhere, so the elements rendered
+   completely unstyled. Defined here in the editorial language
+   so the whole site reads as one design.
+   ============================================================ */
+
+.btn-primary,
+.btn-secondary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 22px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+.btn-primary { background: var(--ink); color: var(--cream); }
+.btn-primary:hover:not(:disabled) { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn-secondary { background: transparent; color: var(--ink); }
+.btn-secondary:hover:not(:disabled) { background: var(--ink); color: var(--cream); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: transparent; }
+.btn-ghost:hover:not(:disabled) { color: var(--accent); }
+
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-ghost:disabled { opacity: .45; cursor: not-allowed; }
+
+.btn-lg { padding: 18px 28px; font-size: 13px; }
+
+.card {
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  overflow: hidden;
+  transition: border-color .25s ease, background-color .25s ease;
+}
+.card:hover { border-color: var(--muted); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 5px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  color: var(--muted);
+}
+.badge-stone { color: var(--muted); border-color: var(--rule); background: transparent; }
+.badge-brand { color: var(--accent); border-color: var(--accent); background: transparent; }
+
+.label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* The old markup used `stagger` for a cascading reveal. Keep it as a plain
+   fade so the class is no longer a no-op, without hiding content if JS fails. */
+.stagger > * { animation: fadeIn .5s ease-out both; }
+.stagger > *:nth-child(2) { animation-delay: .06s; }
+.stagger > *:nth-child(3) { animation-delay: .12s; }
+.stagger > *:nth-child(4) { animation-delay: .18s; }
+.stagger > *:nth-child(5) { animation-delay: .24s; }
+.stagger > *:nth-child(6) { animation-delay: .30s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger > * { animation: none; }
+}
+
+@tailwind utilities;

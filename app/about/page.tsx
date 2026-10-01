@@ -1,11 +1,18 @@
-'use client'
+import Image from 'next/image'
 
 export default function AboutPage() {
   return (
     <div>
       <section className="book-hero">
         <div className="book-hero-img">
-          <image-slot></image-slot>
+          <Image
+            src="/images/clint-kitchen-line.jpg"
+            alt="Clint working the line in the kitchen"
+            width={1200}
+            height={1600}
+            priority
+            sizes="(max-width: 880px) 100vw, 50vw"
+          />
         </div>
         <div className="book-hero-info">
           <div className="book-meta">

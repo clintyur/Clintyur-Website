@@ -39,12 +39,12 @@ export function RecipeSchema({ recipe }: { recipe: Recipe }) {
     }),
     author: {
       '@type': 'Person',
-      name: 'Provecho',
+      name: 'yur cooked',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Provecho',
-      url: 'https://provecho.com',
+      name: 'yur cooked',
+      url: 'https://yurcooked.com',
     },
   }
 

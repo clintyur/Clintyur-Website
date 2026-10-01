@@ -1,12 +1,34 @@
 import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { db } from '@/lib/db'
+import type { SubStatus } from '@prisma/client'
 import Stripe from 'stripe'
 
 // Required: disable body parsing so we can verify Stripe signature
 export const runtime = 'nodejs'
 
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET!
+
+/**
+ * Stripe's ShippingDetails is a typed interface with no index signature, so it
+ * can't be handed straight to a Prisma Json column. Map it to a plain object.
+ */
+function toShippingJson(details: Stripe.Checkout.Session.ShippingDetails | null | undefined) {
+  if (!details) return {}
+  return {
+    name: details.name ?? null,
+    address: details.address
+      ? {
+          line1: details.address.line1 ?? null,
+          line2: details.address.line2 ?? null,
+          city: details.address.city ?? null,
+          state: details.address.state ?? null,
+          postalCode: details.address.postal_code ?? null,
+          country: details.address.country ?? null,
+        }
+      : null,
+  }
+}
 
 export async function POST(req: Request) {
   const body = await req.text()
@@ -90,7 +112,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
         stripePaymentId: session.payment_intent as string,
         subtotal: total,
         total,
-        shippingAddress: session.shipping_details ?? {},
+        shippingAddress: toShippingJson(session.shipping_details),
       },
     })
 
@@ -124,7 +146,7 @@ async function syncSubscription(sub: Stripe.Subscription) {
   const user = await db.user.findFirst({ where: { stripeCustomerId: customerId } })
   if (!user) return
 
-  const statusMap: Record<string, string> = {
+  const statusMap: Record<string, SubStatus> = {
     active:   'ACTIVE',
     trialing: 'TRIALING',
     past_due: 'PAST_DUE',
