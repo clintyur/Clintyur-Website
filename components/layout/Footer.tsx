@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Logo } from '@/components/layout/Logo'
 
 // SVG Icons matching the yur cooked design
 const icons = {
@@ -30,7 +31,7 @@ export function Footer() {
         <div className="footer-grid">
           {/* Brand section */}
           <div>
-            <div className="footer-mark">yur cooked<span className="accent-dot"></span></div>
+            <div className="footer-mark"><Logo height={56} /></div>
             <p className="footer-tag">Recipes, goods, and the art of eating well — from a kitchen in New York.</p>
             <div className="cluster" style={{ marginTop: '24px' }}>
               <a href="https://instagram.com/clintyurr" target="_blank" rel="noreferrer" className="social-bar" style={{ display: 'inline-flex' }}>

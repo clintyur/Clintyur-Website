@@ -1646,3 +1646,24 @@ svg#filters {
 }
 
 @tailwind utilities;
+
+/* ---------- brand mark ---------- */
+/* Pencil-on-paper artwork: multiply drops the white paper out against the
+   cream background so only the drawn marks show. */
+.brand-logo {
+  display: block;
+  width: auto;
+  mix-blend-mode: multiply;
+  object-fit: contain;
+}
+/* Dark surfaces (footer, hero overlay) need screen instead, or the dark
+   pencil disappears into the background. */
+.brand-logo.on-dark { mix-blend-mode: screen; filter: invert(1); }
+
+.logo-wordmark {
+  font-family: "Caveat", cursive;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1;
+  white-space: nowrap;
+}

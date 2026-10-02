@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Logo } from '@/components/layout/Logo'
 
 const NAV_LINKS = [
   { href: '/recipes', label: 'Recipes' },
@@ -26,8 +27,8 @@ export function Navbar({ cartCount = 0, user }: NavbarProps) {
     <>
       <header className="nav">
         <div className="container nav-row">
-          <Link href="/" className="logo">
-            yur cooked<span className="mark"></span>
+          <Link href="/" className="logo" aria-label="yur cooked — home">
+            <Logo height={40} priority />
           </Link>
           <nav className="nav-links">
             {NAV_LINKS.map(({ href, label }) => (
