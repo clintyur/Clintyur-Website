@@ -31,7 +31,7 @@ export const PLANS = {
   monthly: {
     priceId: process.env.STRIPE_MONTHLY_PRICE_ID!,
     price: 399,   // $3.99
-    name: 'yur cooked Member',
+    name: 'yurr cooked Member',
     interval: 'month' as const,
     features: [
       'All subscriber-only recipes',

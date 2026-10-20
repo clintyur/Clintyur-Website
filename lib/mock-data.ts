@@ -230,7 +230,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: '1',
     slug: 'yurcooked-canvas-apron',
-    name: 'yur cooked Canvas Apron',
+    name: 'yurr cooked Canvas Apron',
     description: 'Heavy-duty waxed canvas apron with genuine leather straps, a front pocket, and a bottle opener loop. Built to outlast your cooking obsession.',
     heroImage: 'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=800&q=80',
     images: [
@@ -248,7 +248,7 @@ export const MOCK_PRODUCTS: Product[] = [
     id: '2',
     slug: 'yurcooked-chef-tee',
     name: 'Chef Tee — Heavy Cotton',
-    description: '7 oz ring-spun cotton, relaxed fit. "yur cooked" embroidered chest logo. Washes beautifully, keeps its shape.',
+    description: '7 oz ring-spun cotton, relaxed fit. "yurr cooked" embroidered chest logo. Washes beautifully, keeps its shape.',
     heroImage: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
     images: [
       'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
@@ -285,7 +285,7 @@ export const MOCK_PRODUCTS: Product[] = [
   {
     id: '4',
     slug: 'spice-collection',
-    name: 'yur cooked Spice Collection',
+    name: 'yurr cooked Spice Collection',
     description: 'Our 6-jar curated spice set — the exact blends we use on the channel. Custom-ground weekly, shipped fresh.',
     heroImage: 'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=800&q=80',
     images: [
@@ -389,7 +389,7 @@ export const MOCK_POSTS: BlogPost[] = [
   },
   {
     slug: 'pantry-setup-guide',
-    title: 'The yur cooked Pantry Setup Guide',
+    title: 'The yurr cooked Pantry Setup Guide',
     excerpt: 'The 40 ingredients we always have on hand — and why they matter.',
     category: 'Pantry',
     heroImage: 'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=1200&q=80',

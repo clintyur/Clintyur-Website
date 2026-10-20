@@ -26,7 +26,7 @@ export function Logo({ height = 36, className = '', priority = false }: LogoProp
   if (failed) {
     return (
       <span className={`logo-wordmark ${className}`.trim()}>
-        yur cooked<span className="mark"></span>
+        yurr cooked<span className="mark"></span>
       </span>
     )
   }
@@ -34,7 +34,7 @@ export function Logo({ height = 36, className = '', priority = false }: LogoProp
   return (
     <Image
       src={LOGO_SRC}
-      alt="yur cooked"
+      alt="yurr cooked"
       width={height}
       height={height}
       priority={priority}

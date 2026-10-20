@@ -27,7 +27,7 @@ export function Navbar({ cartCount = 0, user }: NavbarProps) {
     <>
       <header className="nav">
         <div className="container nav-row">
-          <Link href="/" className="logo" aria-label="yur cooked — home">
+          <Link href="/" className="logo" aria-label="yurr cooked — home">
             <Logo height={40} priority />
           </Link>
           <nav className="nav-links">

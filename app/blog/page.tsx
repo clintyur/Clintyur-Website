@@ -7,7 +7,7 @@ import { MOCK_POSTS } from '@/lib/mock-data'
 
 export const metadata: Metadata = {
   title: 'Journal',
-  description: 'Stories, guides, and essays from the yur cooked kitchen.',
+  description: 'Stories, guides, and essays from the yurr cooked kitchen.',
 }
 
 

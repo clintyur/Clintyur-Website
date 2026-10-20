@@ -36,7 +36,7 @@ export default async function AccountPage() {
               {user.name?.[0] ?? user.email[0].toUpperCase()}
             </div>
             <div>
-              <p className="font-serif text-xl font-bold text-stone-900">{user.name ?? 'yur cooked Member'}</p>
+              <p className="font-serif text-xl font-bold text-stone-900">{user.name ?? 'yurr cooked Member'}</p>
               <p className="text-stone-500 text-sm">{user.email}</p>
               {subscriber && (
                 <span className="badge badge-brand mt-1">

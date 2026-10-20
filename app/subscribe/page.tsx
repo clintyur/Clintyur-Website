@@ -68,7 +68,7 @@ function SubscribePageInner() {
       {/* Header */}
       <div className="bg-gradient-hero text-center py-20 px-4">
         <p className="text-xs font-semibold uppercase tracking-widest text-brand-400 mb-3">
-          yur cooked Membership
+          yurr cooked Membership
         </p>
         <h1 className="text-display-lg font-serif text-white mb-4">
           Cook better. Every week.

@@ -8,22 +8,22 @@ import './globals.css'
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://clintyur.com'),
   title: {
-    default: 'yur cooked — Recipes, Goods & the Art of Eating Well',
-    template: '%s | yur cooked',
+    default: 'yurr cooked — Recipes, Goods & the Art of Eating Well',
+    template: '%s | yurr cooked',
   },
   description: 'Recipes, goods, and the art of eating well — from a kitchen in New York. Explore curated recipes, cookware, and join our membership community.',
-  keywords: ['recipes', 'cooking', 'cookware', 'food', 'kitchen', 'private chef', 'yur cooked'],
+  keywords: ['recipes', 'cooking', 'cookware', 'food', 'kitchen', 'private chef', 'yurr cooked'],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    siteName: 'yur cooked',
-    title: 'yur cooked — Recipes & Cookware',
+    siteName: 'yurr cooked',
+    title: 'yurr cooked — Recipes & Cookware',
     description: 'Recipes, goods, and the art of eating well from a kitchen in New York.',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'yur cooked',
+    title: 'yurr cooked',
     description: 'Recipes, goods, and the art of eating well.',
   },
   robots: {

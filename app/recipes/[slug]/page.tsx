@@ -286,7 +286,7 @@ function SubscriberGate() {
         This recipe is for members
       </h3>
       <p className="text-stone-300 mb-6 max-w-sm mx-auto leading-relaxed">
-        Join yur cooked for $3.99/month and get access to every subscriber-only recipe, plus 10% off the shop.
+        Join yurr cooked for $3.99/month and get access to every subscriber-only recipe, plus 10% off the shop.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <a href="/subscribe?trial=true" className="btn-primary btn-lg">

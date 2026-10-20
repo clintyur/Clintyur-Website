@@ -19,7 +19,7 @@ export default function AboutPage() {
             <span>About</span>
             <span>2024</span>
           </div>
-          <h1 className="book-title">The story <span className="it">behind</span> yur cooked</h1>
+          <h1 className="book-title">The story <span className="it">behind</span> yurr cooked</h1>
           <p className="book-desc">
             Built from years of cooking professionally and for people I care about. This is a space to share recipes that work, goods that matter, and the philosophy of intentional cooking.
           </p>

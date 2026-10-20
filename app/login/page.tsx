@@ -14,7 +14,7 @@ function LoginPageInner() {
     <div className="min-h-screen bg-stone-50 flex items-center justify-center px-4 pt-16">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <a href="/" className="inline-block" aria-label="yur cooked — home"><Logo height={64} /></a>
+          <a href="/" className="inline-block" aria-label="yurr cooked — home"><Logo height={64} /></a>
           <p className="text-stone-500 text-sm mt-2">Sign in to your account</p>
         </div>
 

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Logo } from '@/components/layout/Logo'
 
-// SVG Icons matching the yur cooked design
+// SVG Icons matching the yurr cooked design
 const icons = {
   ig: () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -92,7 +92,7 @@ export function Footer() {
 
         {/* Footer bottom */}
         <div className="footer-bot">
-          <span>© {new Date().getFullYear()} yur cooked. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} yurr cooked. All rights reserved.</span>
           <span>New York, NY</span>
         </div>
       </div>

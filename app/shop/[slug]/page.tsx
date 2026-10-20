@@ -175,7 +175,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
 
           {/* Member discount note */}
           <p className="text-center text-sm text-stone-400 mb-6">
-            yur cooked members save 10% on every order.{' '}
+            yurr cooked members save 10% on every order.{' '}
             <a href="/subscribe" className="text-brand-600 hover:underline">Join today →</a>
           </p>
 

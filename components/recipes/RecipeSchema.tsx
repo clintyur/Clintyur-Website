@@ -39,11 +39,11 @@ export function RecipeSchema({ recipe }: { recipe: Recipe }) {
     }),
     author: {
       '@type': 'Person',
-      name: 'yur cooked',
+      name: 'yurr cooked',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'yur cooked',
+      name: 'yurr cooked',
       url: 'https://clintyur.com',
     },
   }

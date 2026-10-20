@@ -49,7 +49,7 @@ export async function POST(req: Request) {
       from,
       to,
       reply_to: email,
-      subject: `[yur cooked] ${topic ?? 'New message'} — ${name}`,
+      subject: `[yurr cooked] ${topic ?? 'New message'} — ${name}`,
       text: [
         `Name:  ${name}`,
         `Email: ${email}`,
