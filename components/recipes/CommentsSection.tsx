@@ -15,41 +15,19 @@ interface Comment {
   replies?: Comment[]
 }
 
-const MOCK_COMMENTS: Comment[] = [
-  {
-    id: '1',
-    body: 'Made this last Sunday — absolutely incredible. The key is really letting those final 20 minutes go until the pork is properly crispy.',
-    rating: 5,
-    author: 'Sarah M.',
-    avatar: 'S',
-    createdAt: '2024-12-10',
-    replies: [
-      {
-        id: '1r',
-        body: 'So glad it worked for you Sarah! That crisp is everything.',
-        author: 'yurr cooked',
-        avatar: 'P',
-        createdAt: '2024-12-10',
-      },
-    ],
-  },
-  {
-    id: '2',
-    body: "Used lard like you recommended and it's a completely different level from oil. This is the carnitas recipe I've been looking for for years.",
-    rating: 5,
-    author: 'Carlos R.',
-    avatar: 'C',
-    createdAt: '2024-12-08',
-  },
-  {
-    id: '3',
-    body: 'Can you make this in a slow cooker? I don\'t have a Dutch oven.',
-    rating: 4,
-    author: 'Emma T.',
-    avatar: 'E',
-    createdAt: '2024-12-05',
-  },
-]
+// No comment backend is wired up yet (the API routes need a database), so the
+// list renders an empty state. It previously shipped three hardcoded reviews
+// written about carnitas, which showed on every recipe — including the
+// cheesecake — and amounted to fake social proof on a live site.
+const COMMENTS: Comment[] = []
+
+/**
+ * The review form showed "Thanks for your review!" while posting nowhere —
+ * submit() only set local state. /api/comments needs a database and a signed-in
+ * user, neither of which is provisioned, so the form stays hidden rather than
+ * lying to visitors. Flip this to true once DATABASE_URL and auth are set up.
+ */
+const REVIEWS_ENABLED = false
 
 function StarRating({ value, onChange }: { value: number; onChange: (v: number) => void }) {
   const [hover, setHover] = useState(0)
@@ -165,11 +143,13 @@ export function CommentsSection({ recipeId }: CommentsSectionProps) {
         Comments & Ratings
       </h2>
       <p className="text-stone-500 text-sm mb-8">
-        {MOCK_COMMENTS.length} comments — have you made this recipe? Share your experience.
+        {COMMENTS.length > 0
+          ? `${COMMENTS.length} comments — have you made this recipe? Share your experience.`
+          : 'No reviews yet — have you made this recipe? Be the first to share.'}
       </p>
 
       {/* Comment form */}
-      {!submitted ? (
+      {REVIEWS_ENABLED && (!submitted ? (
         <form onSubmit={submit} className="bg-stone-50 rounded-2xl p-6 mb-10 border border-stone-100">
           <p className="font-semibold text-stone-800 mb-4">Leave a review</p>
           <div className="mb-4">
@@ -196,14 +176,16 @@ export function CommentsSection({ recipeId }: CommentsSectionProps) {
           <p className="text-brand-700 font-semibold">Thanks for your review! 🎉</p>
           <p className="text-brand-600 text-sm mt-1">It will appear after a quick check.</p>
         </div>
-      )}
+      ))}
 
       {/* Comments list */}
-      <div className="space-y-8">
-        {MOCK_COMMENTS.map((c) => (
-          <CommentItem key={c.id} comment={c} />
-        ))}
-      </div>
+      {COMMENTS.length > 0 && (
+        <div className="space-y-8">
+          {COMMENTS.map((c) => (
+            <CommentItem key={c.id} comment={c} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

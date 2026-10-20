@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 
 const FEATURES = [
-  'All subscriber-only recipes (50+ and growing)',
+  'All subscriber-only recipes',
   'Early access to new recipes before they go public',
   '10% discount on every shop order, forever',
   'Priority comment visibility on all recipes',

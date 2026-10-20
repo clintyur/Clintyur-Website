@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { Clock, Users, ChefHat, Heart, Printer, Share2, Lock } from 'lucide-react'
@@ -139,7 +140,25 @@ export default async function RecipeDetailPage({ params }: PageProps) {
           </div>
         ) : (
           <>
-            {hasMultipleSections ? (
+            {!hasMultipleSections && !full ? (
+              // No ingredients or steps written yet. Render one honest notice
+              // rather than an empty two-column scaffold saying "coming soon"
+              // twice, which just reads as broken.
+              <div className="container py-12">
+                <div className="recipe-sidebar" style={{ maxWidth: '640px' }}>
+                  <h2 className="font-serif text-xl font-bold mb-2">
+                    The full method is being written up
+                  </h2>
+                  <p className="recipe-description" style={{ fontStyle: 'normal' }}>
+                    This one&apos;s cooked and photographed — the ingredient list and
+                    step-by-step are still being typed out. Check back shortly, or{' '}
+                    <Link href="/recipes" style={{ color: 'var(--accent)' }}>
+                      browse the recipes that are ready
+                    </Link>.
+                  </p>
+                </div>
+              </div>
+            ) : hasMultipleSections ? (
               // Multi-section recipe layout
               <div className="container py-12 space-y-16">
                 {recipe.sections?.map((section: any, sectionIdx: number) => (

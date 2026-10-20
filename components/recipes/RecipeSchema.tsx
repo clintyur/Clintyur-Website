@@ -44,7 +44,7 @@ export function RecipeSchema({ recipe }: { recipe: Recipe }) {
     publisher: {
       '@type': 'Organization',
       name: 'yurr cooked',
-      url: 'https://clintyur.com',
+      url: 'https://yurr-cooked.vercel.app',
     },
   }
 

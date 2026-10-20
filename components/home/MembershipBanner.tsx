@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Lock, Zap, Tag, Star } from 'lucide-react'
 
 const PERKS = [
-  { icon: Lock,  label: 'Subscriber-only recipes', sub: '50+ exclusive dishes' },
+  { icon: Lock,  label: 'Subscriber-only recipes', sub: 'Exclusive dishes' },
   { icon: Zap,   label: 'Early access',             sub: 'New content first' },
   { icon: Tag,   label: '10% off the shop',         sub: 'Every order, forever' },
   { icon: Star,  label: 'Priority community',        sub: 'Your comments rise first' },
