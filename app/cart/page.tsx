@@ -11,21 +11,29 @@ export default function CartPage() {
   const { items, count, subtotal, removeItem, updateQty, clear } = useCart()
   const [coupon, setCoupon] = useState('')
   const [loading, setLoading] = useState(false)
+  const [checkoutError, setCheckoutError] = useState<string | null>(null)
   const shipping = subtotal >= 7500 ? 0 : 695
 
   async function handleCheckout() {
     setLoading(true)
+    setCheckoutError(null)
     try {
-      const res = await fetch('/api/stripe/create-checkout', {
+      const res = await fetch('/api/paypal/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           items: items.map((i) => ({ variantId: i.variantId, quantity: i.quantity })),
-          couponCode: coupon || undefined,
         }),
       })
-      const { url } = await res.json()
-      if (url) window.location.href = url
+      const body = await res.json().catch(() => null)
+      if (!res.ok || !body?.url) {
+        // Surface the reason rather than leaving the button looking inert.
+        setCheckoutError(body?.error ?? 'Could not start checkout. Please try again.')
+        return
+      }
+      window.location.href = body.url
+    } catch {
+      setCheckoutError('Network error — please try again.')
     } finally {
       setLoading(false)
     }
@@ -136,12 +144,22 @@ export default function CartPage() {
               disabled={loading}
               className="btn-primary btn-lg w-full gap-2"
             >
-              {loading ? 'Redirecting…' : 'Checkout'}
+              {loading ? 'Redirecting…' : 'Pay with PayPal'}
               {!loading && <ArrowRight size={16} />}
             </button>
 
+            {checkoutError && (
+              <p
+                role="alert"
+                className="text-center text-sm mt-3"
+                style={{ color: 'var(--accent)' }}
+              >
+                {checkoutError}
+              </p>
+            )}
+
             <p className="text-center text-xs text-stone-400 mt-3">
-              Members save 10% automatically at checkout
+              Secure checkout handled by PayPal
             </p>
 
             <Link href="/shop" className="block text-center text-sm text-stone-400 hover:text-stone-600 mt-3 transition-colors">

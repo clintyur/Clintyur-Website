@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 }
 
 // TODO: Replace with a real privacy policy before launch.
-// This site uses OAuth sign-in and Stripe, so the real policy needs to cover
+// This site uses OAuth sign-in and PayPal, so the real policy needs to cover
 // account data, payment processing and cookies. The sign-in page links here.
 export default function PrivacyPage() {
   return (

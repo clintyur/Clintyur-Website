@@ -43,21 +43,26 @@ function SubscribePageInner() {
   const [selectedPlan, setSelectedPlan] = useState<'trial' | 'monthly'>(isTrial ? 'trial' : 'monthly')
   const [loading, setLoading] = useState(false)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [checkoutError, setCheckoutError] = useState<string | null>(null)
 
   async function handleCheckout() {
     setLoading(true)
+    setCheckoutError(null)
     try {
-      const res = await fetch('/api/stripe/create-subscription', {
+      const res = await fetch('/api/paypal/create-subscription', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ plan: selectedPlan }),
       })
-      const data = await res.json()
-      if (data.url) {
-        window.location.href = data.url
+      const data = await res.json().catch(() => null)
+      if (!res.ok || !data?.url) {
+        // Say why, instead of leaving the button looking dead.
+        setCheckoutError(data?.error ?? 'Could not start the membership. Please try again.')
+        return
       }
-    } catch (err) {
-      console.error(err)
+      window.location.href = data.url
+    } catch {
+      setCheckoutError('Network error — please try again.')
     } finally {
       setLoading(false)
     }
@@ -156,8 +161,13 @@ function SubscribePageInner() {
               ? 'Start 99¢ trial — billed monthly after'
               : 'Start membership — $3.99/month'}
           </button>
+          {checkoutError && (
+            <p role="alert" className="text-center text-sm mb-3" style={{ color: 'var(--accent)' }}>
+              {checkoutError}
+            </p>
+          )}
           <p className="text-center text-xs text-stone-400">
-            Secured by Stripe. No commitment. 30-day money-back guarantee.
+            Secured by PayPal. No commitment. Cancel anytime.
           </p>
         </div>
       </div>
