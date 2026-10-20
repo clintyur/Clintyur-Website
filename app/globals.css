@@ -324,7 +324,11 @@ button { font-family: inherit; cursor: pointer; }
   z-index: 2;
   color: #f8f3e7;
   width: 100%;
-  padding: 0 var(--gutter);
+  /* Caveat's ascenders overrun the line box by ~0.19em at line-height .9, while
+     the flex gap above is a fixed 32px — so at wide viewports (font scales to
+     260px) they collided with the tagline. Top padding in em keeps the
+     clearance proportional to the type. */
+  padding: 0.18em var(--gutter) 0;
   max-width: var(--max);
   filter: url(#hand);
 }
