@@ -29,7 +29,7 @@ const FAQ = [
   },
   {
     q: 'Do you offer a family or team plan?',
-    a: "Not yet! It's on our roadmap. Email us at hello@yurcooked.com if you're interested.",
+    a: "Not yet! It's on our roadmap. Email us at hello@clintyur.com if you're interested.",
   },
   {
     q: 'Is there a money-back guarantee?',

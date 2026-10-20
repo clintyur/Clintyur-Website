@@ -44,7 +44,7 @@ export function RecipeSchema({ recipe }: { recipe: Recipe }) {
     publisher: {
       '@type': 'Organization',
       name: 'yur cooked',
-      url: 'https://yurcooked.com',
+      url: 'https://clintyur.com',
     },
   }
 

@@ -6,7 +6,7 @@ import { CartProvider } from '@/components/shop/CartProvider'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://yurcooked.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'https://clintyur.com'),
   title: {
     default: 'yur cooked — Recipes, Goods & the Art of Eating Well',
     template: '%s | yur cooked',

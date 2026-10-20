@@ -31,13 +31,13 @@ their absence does not break the rest of the site.
    `postinstall` runs `prisma generate`, which Vercel's clean install requires.
 2. Add the custom domain under **Settings -> Domains**.
 3. Set `NEXT_PUBLIC_APP_URL` to the live URL. Without it, `sitemap.xml`,
-   `robots.txt` and Open Graph tags fall back to `https://yurcooked.com`.
+   `robots.txt` and Open Graph tags fall back to `https://clintyur.com`.
 
 ### Environment variables
 
 | Variable | Needed for | Without it |
 |---|---|---|
-| `NEXT_PUBLIC_APP_URL` | Correct sitemap / OG URLs | Falls back to `https://yurcooked.com` |
+| `NEXT_PUBLIC_APP_URL` | Correct sitemap / OG URLs | Falls back to `https://clintyur.com` |
 | `DATABASE_URL` | Accounts, comments, likes | Those API routes return 500; browsing is unaffected |
 | `AUTH_SECRET`, `AUTH_GOOGLE_*`, `AUTH_GITHUB_*` | Sign-in | `/login` renders but sign-in fails |
 | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Contact form | Form reports delivery is not configured |
