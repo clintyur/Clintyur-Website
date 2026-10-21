@@ -55,6 +55,23 @@ export default function AboutPage() {
         </div>
       </div>
 
+      {/* Commissioned brand artwork */}
+      <section className="container artwork-section">
+        <figure className="artwork">
+          <Image
+            src="/images/logo-yurr.png"
+            alt="Graphite and coloured-pencil drawing of a lit joint, its smoke spelling out yurr"
+            width={1187}
+            height={1200}
+            sizes="(max-width: 700px) 86vw, 520px"
+            className="artwork-img"
+          />
+          <figcaption className="artwork-caption">
+            Artwork by <span className="it">Aurel Schmidt</span>
+          </figcaption>
+        </figure>
+      </section>
+
       <section className="container" style={{ paddingTop: 'clamp(60px, 8vw, 120px)', paddingBottom: 0 }}>
         <div className="section-head">
           <div>
