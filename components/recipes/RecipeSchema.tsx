@@ -4,9 +4,9 @@ interface Recipe {
   title: string
   description: string
   heroImage: string | null
-  prepTime: number
-  cookTime: number
-  servings: number
+  prepTime: number | null
+  cookTime: number | null
+  servings: number | null
   difficulty: string
   cuisine?: string
   tags: string[]
@@ -21,10 +21,11 @@ export function RecipeSchema({ recipe }: { recipe: Recipe }) {
     name: recipe.title,
     description: recipe.description,
     ...(recipe.heroImage ? { image: [recipe.heroImage] } : {}),
-    prepTime: `PT${recipe.prepTime}M`,
-    cookTime: `PT${recipe.cookTime}M`,
-    totalTime: `PT${recipe.prepTime + recipe.cookTime}M`,
-    recipeYield: `${recipe.servings} servings`,
+    ...(recipe.prepTime != null ? { prepTime: `PT${recipe.prepTime}M` } : {}),
+    ...(recipe.cookTime != null ? { cookTime: `PT${recipe.cookTime}M` } : {}),
+    ...(recipe.prepTime != null && recipe.cookTime != null
+      ? { totalTime: `PT${recipe.prepTime + recipe.cookTime}M` } : {}),
+    ...(recipe.servings != null ? { recipeYield: `${recipe.servings} servings` } : {}),
     recipeCategory: recipe.tags[0] ?? 'Main',
     recipeCuisine: recipe.cuisine ?? 'American',
     keywords: recipe.tags.join(', '),

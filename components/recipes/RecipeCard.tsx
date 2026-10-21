@@ -10,9 +10,9 @@ interface RecipeCardProps {
     title: string
     description: string
     heroImage: string | null
-    prepTime: number
-    cookTime: number
-    servings: number
+    prepTime: number | null
+    cookTime: number | null
+    servings: number | null
     difficulty: string
     category: string
     tags: string[]
@@ -32,7 +32,7 @@ const DIFFICULTY_COLORS: Record<string, string> = {
 }
 
 export function RecipeCard({ recipe, size = 'default' }: RecipeCardProps) {
-  const totalTime = recipe.prepTime + recipe.cookTime
+  const totalTime = (recipe.prepTime ?? 0) + (recipe.cookTime ?? 0)
 
   return (
     <article className="card group animate-slide-up">

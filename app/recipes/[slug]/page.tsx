@@ -101,9 +101,17 @@ export default async function RecipeDetailPage({ params }: PageProps) {
         <div style={{ background: 'var(--cream)', borderBottom: '1px solid var(--rule)' }} className="sticky top-16 z-30 shadow-soft">
           <div className="container py-3 flex items-center justify-between gap-4 overflow-x-auto">
             <div className="flex items-center gap-6 min-w-0">
-              <MetaStat icon={<Clock size={16} />} label="Prep" value={formatTime(recipe.prepTime)} />
-              <MetaStat icon={<Clock size={16} />} label="Cook" value={formatTime(recipe.cookTime)} />
-              <MetaStat icon={<Users size={16} />} label="Serves" value={String(recipe.servings)} />
+              {/* Times and yield are omitted until the recipe is written up,
+                  rather than displaying an invented 0m. */}
+              {recipe.prepTime != null && (
+                <MetaStat icon={<Clock size={16} />} label="Prep" value={formatTime(recipe.prepTime)} />
+              )}
+              {recipe.cookTime != null && (
+                <MetaStat icon={<Clock size={16} />} label="Cook" value={formatTime(recipe.cookTime)} />
+              )}
+              {recipe.servings != null && (
+                <MetaStat icon={<Users size={16} />} label="Serves" value={String(recipe.servings)} />
+              )}
               <MetaStat icon={<ChefHat size={16} />} label="Skill" value={DIFF_LABEL[recipe.difficulty]} />
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">
