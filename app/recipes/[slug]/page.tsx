@@ -27,31 +27,11 @@ export async function generateStaticParams() {
 }
 
 // Mock full recipe data — in production, fetch from DB
-const MOCK_FULL_RECIPE = {
-  'crispy-carnitas-tacos': {
-    ingredients: [
-      { amount: '3', unit: 'lb', name: 'pork shoulder', note: 'cut into 3-inch chunks' },
-      { amount: '1', unit: 'tbsp', name: 'kosher salt' },
-      { amount: '1', unit: 'tsp', name: 'black pepper' },
-      { amount: '1', unit: 'tsp', name: 'cumin' },
-      { amount: '1', unit: 'tsp', name: 'dried oregano' },
-      { amount: '4', unit: 'cloves', name: 'garlic', note: 'smashed' },
-      { amount: '1',  unit: '',    name: 'orange', note: 'halved' },
-      { amount: '1',  unit: '',    name: 'lime', note: 'halved' },
-      { amount: '1',  unit: 'cup', name: 'lard or neutral oil' },
-      { amount: '16', unit: '',    name: 'corn tortillas', note: 'warmed' },
-    ],
-    steps: [
-      { stepNumber: 1, instruction: 'Season pork chunks all over with salt, pepper, cumin, and oregano. Let sit at room temperature for 30 minutes, or refrigerate uncovered overnight for best results.' },
-      { stepNumber: 2, instruction: 'In a Dutch oven or heavy pot, combine pork, garlic, and lard over medium heat. Squeeze orange and lime over pork, then drop in the spent halves.' },
-      { stepNumber: 3, instruction: 'Braise uncovered on medium-low for 2–2.5 hours, turning occasionally, until pork is very tender and fat has rendered out.' },
-      { stepNumber: 4, instruction: 'Increase heat to medium-high. Fry pork in its own fat, stirring occasionally, until golden and crispy on the outside — about 15–20 minutes.' },
-      { stepNumber: 5, instruction: 'Transfer crispy pork to a cutting board. Shred roughly with two forks. Taste and adjust seasoning.' },
-      { stepNumber: 6, instruction: 'Serve on warm corn tortillas with pickled red onions, salsa verde, cilantro, and lime wedges.' },
-    ],
-    nutrition: { calories: 520, protein: 38, fat: 28, carbs: 32 },
-  },
-}
+const MOCK_FULL_RECIPE: Record<string, {
+  ingredients: { amount: string; unit: string; name: string; note?: string }[]
+  steps: { stepNumber: number; instruction: string }[]
+  nutrition?: { calories: number; protein: number; fat: number; carbs: number }
+}> = {}
 
 const DIFF_LABEL: Record<string, string> = { EASY: 'Easy', MEDIUM: 'Intermediate', HARD: 'Advanced' }
 
