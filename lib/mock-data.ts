@@ -40,25 +40,6 @@ export const MOCK_RECIPES = [
     likeCount: 284,
   },
   {
-    id: '5',
-    slug: 'sourdough-bread',
-    title: 'Open-Crumb Sourdough',
-    description: 'A detailed guide to baking bakery-quality sourdough at home — scoring, steam, and that perfect ear.',
-    heroImage: '/images/recipe-meat-bread.jpg',
-    prepTime: 60,
-    cookTime: 45,
-    servings: 1,
-    difficulty: 'HARD',
-    cuisine: 'French',
-    category: 'Baking',
-    tags: ['bread', 'sourdough', 'baking', 'fermentation'],
-    isSubscriber: true,
-    isFeatured: false,
-    rating: 4.9,
-    commentCount: 112,
-    likeCount: 891,
-  },
-  {
     id: '6',
     slug: 'burnt-basque-cheesecake',
     title: 'Burnt Basque Cheesecake',
@@ -396,6 +377,685 @@ export const MOCK_RECIPES = [
     commentCount: 0,
     likeCount: 0,
   },
+  {
+    id: '20',
+    slug: 'spanish-omelette-taleggio',
+    title: 'Spanish Omelette with Taleggio, Bacon & Spinach',
+    description: 'Spanish Omelette with Taleggio, Bacon & Spinach.',
+    heroImage: '/images/recipe-spanish-omelette.jpg',
+    prepTime: null,
+    cookTime: null,
+    servings: 2,
+    difficulty: 'MEDIUM',
+    cuisine: 'Spanish-inspired',
+    category: 'Breakfast',
+    tags: ['brunch', '30-min'],
+    isSubscriber: false,
+    isFeatured: false,
+    rating: 0,
+    commentCount: 0,
+    likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'The Base',
+        items: [
+          '3 strips Thick-cut bacon',
+          '1 handful Spinach',
+          '2 small Yukon Gold potatoes'
+        ],
+      },
+      {
+        name: 'The Omelette',
+        items: [
+          '4 large Eggs',
+          '10–12 cubes Taleggio',
+          'for frying Olive oil',
+          'to taste Salt',
+          'to taste Black pepper'
+        ],
+      },
+      {
+        name: 'To Finish',
+        items: [
+          'finely grated Sharp white cheddar',
+          'to top Chives',
+          'to serve Croissant toast'
+        ],
+      }
+    ],
+    stepGroups: [
+      {
+        name: 'Prep',
+        items: [
+          'Chop 3 strips of thick-cut bacon into small pieces. Add to a pan over medium heat and stir constantly until fully cooked and crispy.',
+          'Add a handful of spinach to the same pan. Cook until wilted, season with salt and pepper, then transfer to a bowl and set aside.',
+          'Remove the spinach from the bowl and squeeze out all the excess liquid. Place on a cutting board, cut into 4 pieces, and return to the bowl.',
+          'Peel 2 small Yukon Gold potatoes and place in a bowl of water to rinse off the starch. Using the same peeler like a mandoline, thinly slice the potatoes into the water. Remove and lay on a paper-towel-lined sheet tray, patting completely dry.',
+          'Crack 4 eggs into a bowl and season lightly with salt and pepper. Whisk until fully combined and smooth, then set aside.',
+          'Cube a generous amount of Taleggio — about 10–12 pieces — and set aside for later.'
+        ],
+      },
+      {
+        name: 'Cook',
+        items: [
+          'Heat a small non-stick pan over medium with a drizzle of olive oil. Once hot, add a small handful of the sliced potatoes and fry until golden and crispy.',
+          'Once the potatoes are crispy, swirl the pan to coat evenly with oil. Pour in the whisked eggs and gently scramble. Add the Taleggio, bacon, and spinach, giving everything a light stir to combine.',
+          'Maintain steady medium heat. Every 1–2 minutes, gently pull the edges toward the center to let uncooked egg flow in and cook. Continue until just a minimal amount of wet egg remains.',
+          'When the omelette is set and semi-firm, place a small sheet tray over the pan. Press down and carefully flip the omelette onto the tray. Lightly oil the pan again, then slide it back in to cook the other side for at least 3–4 minutes — longer if you prefer a firmer omelette.'
+        ],
+      },
+      {
+        name: 'Plate',
+        items: [
+          'Transfer to a cutting board and slice into 3 pieces.',
+          'Top with finely grated sharp white cheddar and a sprinkle of chives. Serve alongside croissant toast.'
+        ],
+      }
+    ],
+  },
+  {
+    id: '21',
+    slug: 'confit-leeks-burrata',
+    title: 'Confit Leeks & Burrata',
+    description: 'Confit Leeks & Burrata.',
+    heroImage: '/images/recipe-confit-leeks-burrata.jpg',
+    prepTime: null,
+    cookTime: null,
+    servings: 2,
+    difficulty: 'EASY',
+    cuisine: 'Italian-inspired',
+    category: 'Starters',
+    tags: ['starter', 'vegetarian'],
+    isSubscriber: false,
+    isFeatured: false,
+    rating: 0,
+    commentCount: 0,
+    likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'The Confit',
+        items: [
+          '6–7, white & pale green only Leeks',
+          '4–5 cloves, smashed Garlic',
+          '10–15 Whole peppercorns',
+          '4–5 sprigs Fresh thyme',
+          '4–5 sprigs Fresh rosemary',
+          '2 Bay leaves',
+          'a couple strips Lemon rind',
+          'enough to submerge Olive oil'
+        ],
+      },
+      {
+        name: 'To Plate',
+        items: [
+          '1 ball Burrata',
+          'to drizzle Fig balsamic glaze',
+          'a touch Whipped honey',
+          'to finish Flaky salt',
+          'to serve Baguette'
+        ],
+      }
+    ],
+    stepGroups: [
+      {
+        name: 'The Confit',
+        items: [
+          'Trim the tough, dark green tops from 6–7 leeks, keeping only the tender, pale green and white parts. Slice into 1–1.5-inch pieces, then rinse thoroughly to remove any dirt or grit. Pat them dry — you want them clean, not soggy.',
+          'Place the leeks in a pot or pan large enough to hold them. Add 4–5 smashed garlic cloves, 10–15 whole peppercorns, 4–5 sprigs each of thyme and rosemary, 2 bay leaves, and a couple strips of lemon rind. Everything goes in together — this is your flavor base.',
+          'Pour in enough olive oil to completely submerge everything. Set over the lowest heat and let it slowly come up to temperature — you\'re looking for a gentle, lazy bubble, nothing aggressive. The goal is to let the leeks and aromatics infuse, not fry.',
+          'While the oil comes up to temp, preheat your oven to 275°F. Once ready, transfer the whole pot — leeks, oil, and all — into the oven. Cook low and slow for about 1½ hours, or until the leeks are melt-in-your-mouth tender when pierced with a fork.',
+          'Carefully pull the pot from the oven and let everything cool before plating. That oil is hot as hell — give it a few minutes before you touch anything.'
+        ],
+      },
+      {
+        name: 'To Plate',
+        items: [
+          'Grab a plate and place half a burrata — or a whole one if you\'re feeling generous — right in the center. If using a full ball, cut it open so that creamy center shows off a little. Drizzle with fig balsamic glaze and a touch of whipped honey.',
+          'Add 2–3 confit leeks alongside with a spoonful of that golden oil, then finish with a pinch of flaky salt. Serve with baguette or whatever good bread you\'ve got on hand.'
+        ],
+      }
+    ],
+  },
+  {
+    id: '22',
+    slug: 'creamy-chicken-kale-pasta',
+    title: 'Creamy Chicken and Kale Pasta',
+    description: 'Creamy Chicken and Kale Pasta.',
+    heroImage: '/images/recipe-chicken-kale-pasta.jpg',
+    prepTime: null,
+    cookTime: null,
+    servings: 4,
+    difficulty: 'EASY',
+    cuisine: 'Italian-inspired',
+    category: 'Mains',
+    tags: ['mains', 'comfort'],
+    isSubscriber: false,
+    isFeatured: false,
+    rating: 0,
+    commentCount: 0,
+    likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'The Crunch Topping',
+        items: [
+          'equal parts w/ pistachios Panko breadcrumbs',
+          'crushed to panko size Pistachios',
+          'to coat Olive oil',
+          '2–3 cloves, smashed Garlic',
+          '1–2 sprigs Fresh rosemary',
+          '1–2 sprigs Fresh thyme'
+        ],
+      },
+      {
+        name: 'The Pasta',
+        items: [
+          'bite-sized cubes Chicken thighs',
+          '1 large, diced Shallot',
+          '5 cloves total Garlic',
+          '1 bunch, chopped Kale',
+          '1 cup White wine',
+          '3–4 cups Chicken stock',
+          'of choice Pasta',
+          '1 cup Heavy cream',
+          '1–2 cups, grated Parmigiano Reggiano',
+          '2 tbsp Butter',
+          'to taste Salt & black pepper'
+        ],
+      }
+    ],
+    stepGroups: [
+      {
+        name: 'The Crunch Topping',
+        items: [
+          'Preheat your oven to 375°F.',
+          'Crush pistachios until they\'re about the size of panko, or slightly bigger — a food processor works perfectly. On a sheet tray, combine equal parts panko and crushed pistachios, drizzle with olive oil, and add 2–3 smashed garlic cloves plus 1–2 sprigs each of rosemary and thyme.',
+          'Bake at 375°F for 10–15 minutes until golden and toasted. Remove from the oven and set aside to cool.'
+        ],
+      },
+      {
+        name: 'The Pasta',
+        items: [
+          'Dice a large shallot and thinly slice 3 garlic cloves. Set aside. Cut the chicken thighs into bite-sized cubes and smash 2 more garlic cloves with 2 sprigs each of rosemary and thyme to cook with the chicken.',
+          'Wash a bunch of kale and chop into bite-sized pieces.',
+          'Heat a large pot over medium-high with a drizzle of oil. Add the chicken, season with salt, and spread evenly. Let it sit undisturbed until a golden crust forms on one side.',
+          'Flip each piece. Add the 2 smashed garlic cloves, rosemary, and thyme. Drizzle in a bit more oil, shake the pot gently, and let the other side crust up golden.',
+          'Once golden on both sides, remove the chicken and set aside in a bowl.',
+          'Add a bit more oil and reduce heat to medium. Add the shallot and sliced garlic, then the kale. Sauté until the kale wilts and shrinks down.',
+          'Pour in 1 cup of white wine. Let it cook until the alcohol cooks off and the liquid reduces slightly.',
+          'Add 3–4 cups of chicken stock and the chicken. Simmer and reduce for 15–20 minutes.',
+          'Meanwhile, bring a separate pot of heavily salted water to a rolling boil. Cook your pasta of choice. Before straining, save about ¼ cup of pasta water.',
+          'Stir 1 cup of heavy cream into the chicken-stock mixture. Add a generous amount of Parmigiano Reggiano — a cup, maybe two — and mix until rich and creamy.',
+          'Season with salt and pepper. Add the pasta and pasta water. Stir in 2 tablespoons of butter. Creamy, cheesy perfection.'
+        ],
+      },
+      {
+        name: 'To Serve',
+        items: [
+          'Serve in a bowl, scooping up plenty of sauce and chicken. Top generously with Parmigiano Reggiano and a big sprinkle of the toasted panko-pistachio crunch.'
+        ],
+      }
+    ],
+  },
+  {
+    id: '23',
+    slug: 'luther-burger',
+    title: 'Luther Burger',
+    description: 'Luther Burger.',
+    heroImage: '/images/recipe-luther-burger.jpg',
+    prepTime: null,
+    cookTime: null,
+    servings: 2,
+    difficulty: 'MEDIUM',
+    cuisine: 'American',
+    category: 'Mains',
+    tags: ['mains', 'smash-burger'],
+    isSubscriber: false,
+    isFeatured: false,
+    rating: 0,
+    commentCount: 0,
+    likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'The Bacon Jam',
+        items: [
+          '4–6 slices, thinly sliced Bacon',
+          '1, half-moon sliced Red onion',
+          'a knob Butter',
+          '2–3 tbsp Brown sugar',
+          '2 tbsp Champagne vinegar',
+          '2–3 tbsp Balsamic glaze',
+          'to taste Salt'
+        ],
+      },
+      {
+        name: 'The Smash Burger',
+        items: [
+          '1 lb, 4 portions 80/20 ground beef',
+          'for the pan Beef tallow',
+          '1 slice per patty American cheese',
+          'to season Salt & black pepper'
+        ],
+      },
+      {
+        name: 'To Build',
+        items: [
+          '2–4, as the bun Glazed donuts',
+          'to taste Sauce of choice'
+        ],
+      }
+    ],
+    stepGroups: [
+      {
+        name: 'The Bacon Jam',
+        items: [
+          'Divide 1 pound of 80/20 ground beef into 4 even portions. Shape each into a ball and set aside.',
+          'Thinly slice 4–6 bacon strips. Place in a cold pan over medium heat and stir constantly until perfectly crispy. Remove and discard the bacon fat.',
+          'Trim both ends off a red onion, halve it, and slice thinly into half-moon shapes.',
+          'Heat the same pan over medium-low. Add a knob of butter and all the sliced onions. Sauté until beautifully caramelized, seasoning with salt as you go — this draws out moisture and builds flavor. Lower the heat if the pan gets too hot.',
+          'Stir in 2–3 tablespoons of brown sugar, then 2 tablespoons of champagne vinegar. Fold in the crispy bacon until combined.',
+          'Stir in 2–3 tablespoons of balsamic glaze. Taste and adjust with more glaze, brown sugar, or salt. Bacon jam is done.'
+        ],
+      },
+      {
+        name: 'The Smash Burger',
+        items: [
+          'Cut a large sheet of parchment into 4 squares — about 2–3 times the size of your beef balls. Place each ball on its own square.',
+          'Heat a cast iron or stainless steel pan over medium-high until smoking hot.',
+          'Add a knob of beef tallow and coat the surface. Place a beef ball in the pan with parchment on top. Press down hard with a second pan and smash it flat.',
+          'Remove the parchment, season immediately with salt and pepper. Cook 45–60 seconds, then flip. Add a slice of American cheese and cook another 45–60 seconds. Transfer to your glazed donut.',
+          'Repeat for the remaining patties — stack a second for a double if you\'re feeling it.'
+        ],
+      },
+      {
+        name: 'To Build',
+        items: [
+          'Spoon bacon jam generously over the patty. Add whatever sauce you want, close the donut top, and go.'
+        ],
+      }
+    ],
+  },
+  {
+    id: '24',
+    slug: 'perfect-crispy-gnocchi',
+    title: 'Perfect Crispy Gnocchi',
+    description: 'Perfect Crispy Gnocchi.',
+    heroImage: '/images/recipe-crispy-gnocchi.jpg',
+    prepTime: null,
+    cookTime: null,
+    servings: 2,
+    difficulty: 'EASY',
+    cuisine: 'Italian',
+    category: 'Mains',
+    tags: ['mains', 'comfort'],
+    isSubscriber: false,
+    isFeatured: false,
+    rating: 0,
+    commentCount: 0,
+    likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'The Gnocchi',
+        items: [
+          '4 large Yukon Gold potatoes',
+          'for bed + seasoning Salt',
+          '1 Egg yolk',
+          '⅓ cup + more if needed All-purpose flour'
+        ],
+      },
+      {
+        name: 'To Crisp',
+        items: [
+          'plenty Butter',
+          'optional, to taste Fresh sage'
+        ],
+      },
+      {
+        name: 'To Finish',
+        items: [
+          'generous sprinkle Parmigiano Reggiano',
+          'freshly cracked Black pepper',
+          'to drizzle Calabrian chili oil',
+          'optional, for a herby twist Pesto'
+        ],
+      }
+    ],
+    stepGroups: [
+      {
+        name: 'The Gnocchi',
+        items: [
+          'Preheat your oven to 400°F. Cover the bottom of a tray with a layer of salt. Poke holes all over 4 large Yukon Gold potatoes, lay them on the salt bed, and roast for 45–60 minutes — until a knife slides through effortlessly.',
+          'Let the potatoes rest 10 minutes before peeling. Pass them through a potato ricer, or roughly mash then push through a fine sieve. Add 1 egg yolk and ⅓ cup of flour, then gently knead in the bowl. Add a little more flour if the dough feels too wet, but don\'t overwork it.',
+          'Let the dough rest 20–30 minutes to relax — it makes rolling much easier.',
+          'Roll the dough into a log about ½ inch thick. Cut into pieces roughly ¾ inch long — perfect bite-sized gnocchi. Shape them if you like, or leave them as-is.'
+        ],
+      },
+      {
+        name: 'Crisp & Serve',
+        items: [
+          'Bring a pot of salted water to a boil. Cook the gnocchi until they float, then immediately transfer to a hot pan over medium-high heat with plenty of butter. Let them crisp on one side, then flip and repeat until golden all over.',
+          'After the first flip, toss in some fresh sage if using. Remove to a plate and finish with a generous sprinkle of Parmigiano Reggiano, freshly cracked black pepper, and a drizzle of Calabrian chili oil. Or serve in a bowl topped with plenty of pesto for a herby twist.'
+        ],
+      }
+    ],
+  },
+  {
+    id: '25',
+    slug: 'arugula-caesar-pistachio-panko',
+    title: 'Arugula Caesar with Toasted Pistachio-Panko Crunch',
+    description: 'Arugula Caesar with Toasted Pistachio-Panko Crunch.',
+    heroImage: '/images/recipe-arugula-caesar.jpg',
+    prepTime: null,
+    cookTime: null,
+    servings: 2,
+    difficulty: 'EASY',
+    cuisine: 'Italian-inspired',
+    category: 'Salads',
+    tags: ['salads', '30-min'],
+    isSubscriber: false,
+    isFeatured: false,
+    rating: 0,
+    commentCount: 0,
+    likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'The Crunch',
+        items: [
+          'equal parts w/ panko Pistachios',
+          'equal parts w/ pistachios Panko breadcrumbs',
+          'to coat Olive oil',
+          '2 cloves, smashed Garlic',
+          '1 sprig Fresh rosemary',
+          '1 sprig Fresh thyme'
+        ],
+      },
+      {
+        name: 'The Caesar Dressing',
+        items: [
+          '2–3, minced to a paste Anchovies',
+          '1 cup Mayonnaise',
+          '⅓ cup Dijon mustard',
+          '2 tbsp + more to dress Champagne citrus vinegar',
+          'zested + juice of 2 wedges Lemon',
+          '2 cloves, minced Garlic',
+          '½ cup, grated Parmigiano Reggiano',
+          'to loosen Olive oil',
+          'to taste Salt & black pepper'
+        ],
+      },
+      {
+        name: 'The Salad',
+        items: [
+          '1 large bunch, rinsed Arugula',
+          'generous pile, to top Parmigiano Reggiano'
+        ],
+      }
+    ],
+    stepGroups: [
+      {
+        name: 'The Crunch',
+        items: [
+          'Crush up your pistachios. Chop them by hand or give them a quick blitz in a food processor. You\'re aiming for pieces about twice the size of panko — small enough to stick, but still with some texture and crunch.',
+          'Toss the crushed pistachios with an equal amount of panko on a sheet tray. Drizzle lightly with olive oil and mix gently so everything gets a thin, even coating — you want them shiny, not drenched.',
+          'Smash 2 garlic cloves and scatter them over the tray. Add 1 sprig each of rosemary and thyme, letting the aromatics mingle with the pistachio-panko mix.',
+          'Slide the tray into a 375°F oven and toast for 10–15 minutes, until everything turns golden brown and your kitchen smells absolutely amazing. Pull out and set aside — this is your crunch garnish.'
+        ],
+      },
+      {
+        name: 'The Caesar Dressing',
+        items: [
+          'Mince 2–3 anchovies until they form a paste. Transfer to a bowl or deli container — this is your punchy flavor base.',
+          'Into the same bowl, add 1 cup mayo, ⅓ cup Dijon mustard, 2 tablespoons champagne citrus vinegar, the zest of a whole lemon, juice from 2 lemon wedges, 2 minced garlic cloves, and ½ cup grated Parmigiano Reggiano. Stir everything together until smooth.',
+          'Season with salt and pepper to taste. Drizzle in a bit of olive oil to loosen the dressing and add a subtle, silky finish. Taste and adjust — more lemon, more Parm, whatever it needs.'
+        ],
+      },
+      {
+        name: 'To Plate',
+        items: [
+          'Rinse your arugula thoroughly and toss it into a bowl. Lightly dress with a splash of champagne citrus vinegar, then add as much Caesar dressing as you like — go heavy if you\'re feeling indulgent.',
+          'Toss to coat evenly, then plate it up. Pile on a generous mountain of Parmigiano Reggiano and finish with a hearty sprinkle of that toasty pistachio-panko crunch. Enjoy.'
+        ],
+      }
+    ],
+  },
+  {
+    id: '26',
+    slug: 'tomato-tart',
+    title: 'Tomato Tart',
+    description: 'Tomato Tart.',
+    heroImage: '/images/recipe-tomato-tart.jpg',
+    prepTime: null,
+    cookTime: null,
+    servings: 2,
+    difficulty: 'EASY',
+    cuisine: 'French-inspired',
+    category: 'Starters',
+    tags: ['starter', 'summer'],
+    isSubscriber: false,
+    isFeatured: false,
+    rating: 0,
+    commentCount: 0,
+    likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'The Tart',
+        items: [
+          '1 sheet, room temp Puff pastry',
+          'thinly sliced Heirloom tomatoes',
+          '2–3 cloves, razor-thin Garlic',
+          'to season Salt'
+        ],
+      },
+      {
+        name: 'To Finish',
+        items: [
+          'to drizzle Finishing olive oil',
+          'freshly grated Parmigiano Reggiano',
+          'to drizzle Fig balsamic glaze',
+          '1 bunch, thinly sliced Chives',
+          'torn, to finish Fresh basil'
+        ],
+      }
+    ],
+    stepGroups: [
+      {
+        name: 'The Tart',
+        items: [
+          'Preheat your oven to 375°F. Take your puff pastry out and let it come to room temperature so it\'s easier to work with.',
+          'Thinly slice your heirloom tomatoes, season lightly with salt, and set aside. Slice 2–3 garlic cloves as thinly as humanly possible — razor-thin, the thinner the better.',
+          'Place the puff pastry on a lightly floured sheet tray. Pat the tomatoes dry, then arrange them in a stacked, staircase-like row. Top each tomato slice with a thin slice of garlic. Bake at 375°F for 15–20 minutes, until the pastry is golden and the tomatoes are perfectly cooked.',
+          'While the tart bakes, thinly slice a whole bunch of chives for garnish.'
+        ],
+      },
+      {
+        name: 'To Finish',
+        items: [
+          'Once out of the oven, drizzle with a good finishing olive oil. Grate Parmigiano Reggiano around the edges, drizzle fig balsamic glaze over the top, and finish with a scattering of sliced chives and freshly torn basil leaves.'
+        ],
+      }
+    ],
+  },
+  {
+    id: '27',
+    slug: 'famous-fried-chicken',
+    title: 'Famous Fried Chicken',
+    description: 'Famous Fried Chicken.',
+    heroImage: '/images/recipe-famous-fried-chicken.jpg',
+    prepTime: null,
+    cookTime: null,
+    servings: 2,
+    difficulty: 'MEDIUM',
+    cuisine: 'American',
+    category: 'Mains',
+    tags: ['mains', 'fried'],
+    isSubscriber: false,
+    isFeatured: false,
+    rating: 0,
+    commentCount: 0,
+    likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'The Marinade',
+        items: [
+          '4–6 pieces (or any cut) Chicken thighs',
+          'enough to fully cover Buttermilk',
+          '3 tbsp Pickle juice',
+          'to season Kosher salt',
+          'to season Black pepper',
+          'to season Garlic powder',
+          'to season Onion powder',
+          'to season Smoked paprika'
+        ],
+      },
+      {
+        name: 'The Dredge',
+        items: [
+          'a generous amount All-purpose flour',
+          'to season the flour Kosher salt',
+          'to season the flour Black pepper',
+          'to season the flour Onion powder',
+          'to season the flour Garlic powder',
+          'to season the flour Smoked paprika'
+        ],
+      },
+      {
+        name: 'To Fry',
+        items: [
+          'enough to fill pot halfway Duck fat'
+        ],
+      }
+    ],
+    stepGroups: [
+      {
+        name: 'The Marinade',
+        items: [
+          'This marinade and dredge work with any cut of chicken you want to fry — thighs, drumsticks, breast, wings. Whatever you\'re working with, the method is the same.',
+          'Season the chicken generously with salt, pepper, garlic powder, onion powder, and smoked paprika.',
+          'Place the chicken in a gallon Ziploc bag and pour in enough buttermilk to fully cover it. Add 3 tablespoons of pickle juice, then sprinkle in a bit of the same seasonings — not too much, just enough to complement.',
+          'Place the bag in a bowl and refrigerate for at least 4 hours. Overnight is even better for maximum flavor.'
+        ],
+      },
+      {
+        name: 'The Dredge',
+        items: [
+          'When you\'re ready, remove the chicken from the fridge. Grab a large bowl and add a generous amount of flour. Season it generously with salt, pepper, onion powder, garlic powder, and smoked paprika.',
+          'Now the most crucial part — pour a couple tablespoons of the buttermilk mixture into the seasoned flour. Use a fork to stir it in until it forms little flour clumps. Those clumps are everything. That\'s what makes the crust shatter.'
+        ],
+      },
+      {
+        name: 'Batter & Fry',
+        items: [
+          'Fill a large pot halfway with duck fat. Set over medium heat and let it come up to temperature. To test, drop a pinch of flour into the oil — if it bubbles and fries immediately, you\'re good to go.',
+          'Take one piece of chicken out of the bag, letting the excess buttermilk drip back in. Place it in the flour, scoop more flour on top, and press firmly so the entire piece is fully coated. Repeat with the remaining chicken and set the coated pieces on a plate or wire rack.',
+          'Carefully add 2–3 pieces of chicken to the hot duck fat. Fry for 10–15 minutes, or until fully cooked through, stirring gently and occasionally. Work in batches — don\'t crowd the pot.'
+        ],
+      },
+      {
+        name: 'Serve',
+        items: [
+          'Transfer to a wire rack or a paper-towel-lined plate to drain and cool slightly. Then enjoy that shit.'
+        ],
+      }
+    ],
+  },
+  {
+    id: '28',
+    slug: 'favorite-burger',
+    title: 'Probably my FAVORITE burger...',
+    description: 'Probably my FAVORITE burger....',
+    heroImage: '/images/recipe-favorite-burger.jpg',
+    prepTime: null,
+    cookTime: null,
+    servings: 2,
+    difficulty: 'MEDIUM',
+    cuisine: 'American',
+    category: 'Mains',
+    tags: ['mains', 'burgers'],
+    isSubscriber: false,
+    isFeatured: false,
+    rating: 0,
+    commentCount: 0,
+    likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'Bacon Jam',
+        items: [
+          '6 strips, cut into lardons Bacon',
+          '1 medium, thinly sliced Sweet onion',
+          '2 tbsp Brown sugar',
+          '1 tbsp Champagne vinegar',
+          '1 tbsp Balsamic glaze',
+          '1 tsp (optional) Maple syrup'
+        ],
+      },
+      {
+        name: 'Special Burger Sauce',
+        items: [
+          '1 small, minced Shallot',
+          '3 tbsp Mayonnaise',
+          '1 tbsp Ketchup',
+          '1 tsp Dijon mustard',
+          '½ tsp Champagne vinegar',
+          'to taste Salt & black pepper'
+        ],
+      },
+      {
+        name: 'The Burger',
+        items: [
+          '½ lb per patty Ground beef (80/20)',
+          '2 slices per patty Gouda cheese',
+          '1 thick slice, whole ring Sweet onion',
+          '1 tbsp Unsalted butter',
+          '1 per burger Eggs',
+          '1 per burger, toasted Brioche bun',
+          'to season Salt & black pepper'
+        ],
+      }
+    ],
+    stepGroups: [
+      {
+        name: 'Make the Bacon Jam',
+        items: [
+          'This is the move that elevates everything. In a cold pan, add the bacon lardons and bring the heat up slowly over medium. Render out all that fat until the bacon is crispy. Don\'t rush it.',
+          'Remove the bacon and set aside, leaving all the fat in the pan. Add the sliced onions and cook low and slow — 20–25 minutes — stirring occasionally until deeply caramelized and jammy.',
+          'Add the brown sugar, champagne vinegar, balsamic glaze, and maple syrup if using. Stir everything together. Return the bacon to the pan. Cook another 5 minutes until thick, sticky, and glossy. Pull off heat and set aside.'
+        ],
+      },
+      {
+        name: 'Make the Burger Sauce',
+        items: [
+          'Combine the minced shallot, mayo, ketchup, Dijon, champagne vinegar, salt, and pepper in a small bowl. Whisk together and taste — adjust salt and vinegar as needed. Refrigerate until you\'re ready to build.'
+        ],
+      },
+      {
+        name: 'Grill the Whole Onion',
+        items: [
+          'Cut a thick slice from the center of a sweet onion — you want a full ring, intact. Season with salt and pepper. Heat a cast iron or grill pan over medium-high with butter. Sear the onion slice 3–4 minutes per side until caramelized on both sides. Set aside.'
+        ],
+      },
+      {
+        name: 'Cook the Patty',
+        items: [
+          'Divide the 80/20 ground beef into ½ lb portions. Season generously with salt and pepper on both sides. Form loosely — don\'t overwork it.',
+          'Get a cast iron ripping hot. Add the patties and press firmly with a spatula — smash burgers get their crust from contact. Let it cook undisturbed for 2–3 minutes until a deep crust forms.',
+          'Flip once. Immediately lay 2 slices of gouda on top. Cook another 2 minutes to medium-rare — internal temp 130–135°F. Pull and let it rest.'
+        ],
+      },
+      {
+        name: 'Fry the Egg',
+        items: [
+          'In a separate non-stick pan over low heat, melt a knob of butter. Crack in the egg and let it cook completely undisturbed until the whites are fully set but the yolk is still runny. Season with salt and pepper.'
+        ],
+      },
+      {
+        name: 'Toast the Bun & Build',
+        items: [
+          'Toast the brioche bun cut-side down in a dry pan over medium heat until golden. Don\'t skip this — a toasted bun holds everything together and adds texture.',
+          'Spread burger sauce generously on both sides of the bun. Bottom bun gets the patty. Layer on the whole grilled onion, then a generous spoonful of bacon jam. Crown it with the sunny side up egg. Top bun goes on.',
+          'Cut in half if you want to show off the yolk break. Serve immediately.'
+        ],
+      }
+    ],
+  }
 ]
 
 export interface ProductVariant {

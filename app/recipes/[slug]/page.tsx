@@ -43,6 +43,11 @@ export default async function RecipeDetailPage({ params }: PageProps) {
   const full = MOCK_FULL_RECIPE[slug as keyof typeof MOCK_FULL_RECIPE]
   const isGated = recipe.isSubscriber // In production: check session subscription status
   const hasMultipleSections = 'sections' in recipe && recipe.sections && recipe.sections.length > 0
+  // Recipes imported from the previous site group ingredients and steps
+  // independently — the two groupings rarely line up one-to-one.
+  const ingredientGroups = 'ingredientGroups' in recipe ? recipe.ingredientGroups : undefined
+  const stepGroups = 'stepGroups' in recipe ? recipe.stepGroups : undefined
+  const hasGroups = Boolean(ingredientGroups?.length && stepGroups?.length)
 
   return (
     <>
@@ -133,7 +138,43 @@ export default async function RecipeDetailPage({ params }: PageProps) {
           </div>
         ) : (
           <>
-            {!hasMultipleSections && !full ? (
+            {hasGroups ? (
+              <div className="container py-12">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                  <aside className="lg:col-span-1">
+                    <div className="recipe-sidebar lg:sticky lg:top-32">
+                      <h4 className="eyebrow" style={{ marginBottom: '16px' }}>Ingredients</h4>
+                      {ingredientGroups!.map((g, gi) => (
+                        <div key={gi} style={{ marginBottom: '24px' }}>
+                          <h5 className="recipe-group-name">{g.name}</h5>
+                          <ul className="space-y-2">
+                            {g.items.map((it, i) => (
+                              <li key={i} className="recipe-ingredient-list text-sm leading-relaxed">{it}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </aside>
+                  <div className="lg:col-span-2">
+                    <h4 className="eyebrow mb-6">Method</h4>
+                    {stepGroups!.map((g, gi) => (
+                      <div key={gi} style={{ marginBottom: '40px' }}>
+                        <h5 className="recipe-group-name">{g.name}</h5>
+                        <ol className="space-y-8">
+                          {g.items.map((st, i) => (
+                            <li key={i} className="flex gap-5">
+                              <div className="recipe-step-number">{i + 1}</div>
+                              <p className="recipe-ingredient-list leading-relaxed flex-1">{st}</p>
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : !hasMultipleSections && !full ? (
               // No ingredients or steps written yet. Render one honest notice
               // rather than an empty two-column scaffold saying "coming soon"
               // twice, which just reads as broken.
