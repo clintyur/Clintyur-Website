@@ -3,7 +3,7 @@
 interface Recipe {
   title: string
   description: string
-  heroImage: string
+  heroImage: string | null
   prepTime: number
   cookTime: number
   servings: number
@@ -20,7 +20,7 @@ export function RecipeSchema({ recipe }: { recipe: Recipe }) {
     '@type': 'Recipe',
     name: recipe.title,
     description: recipe.description,
-    image: [recipe.heroImage],
+    ...(recipe.heroImage ? { image: [recipe.heroImage] } : {}),
     prepTime: `PT${recipe.prepTime}M`,
     cookTime: `PT${recipe.cookTime}M`,
     totalTime: `PT${recipe.prepTime + recipe.cookTime}M`,

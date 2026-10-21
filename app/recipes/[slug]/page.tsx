@@ -18,9 +18,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: recipe.title,
     description: recipe.description,
-    openGraph: {
-      images: [{ url: recipe.heroImage }],
-    },
+    ...(recipe.heroImage ? { openGraph: { images: [{ url: recipe.heroImage }] } } : {}),
   }
 }
 
@@ -73,14 +71,21 @@ export default async function RecipeDetailPage({ params }: PageProps) {
       <article className="recipe-detail pt-16">
         {/* Hero image */}
         <div className="relative h-[50vh] lg:h-[65vh] overflow-hidden">
-          <Image
-            src={recipe.heroImage}
-            alt={recipe.title}
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
-          />
+          {recipe.heroImage ? (
+            <Image
+              src={recipe.heroImage}
+              alt={recipe.title}
+              fill
+              priority
+              className="object-cover"
+              sizes="100vw"
+            />
+          ) : (
+            // Recipe is written but not yet photographed — fall back to the
+            // brand's dark ground so the hero still reads, instead of a
+            // mismatched stock photo.
+            <div className="absolute inset-0" style={{ background: 'var(--ink)' }} />
+          )}
           {/* Editorial-style gradient overlay with rust/gold accents */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" style={{
             background: `
@@ -93,7 +98,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
           {/* Hero meta */}
           <div className="absolute bottom-0 inset-x-0 container pb-8">
             <div className="max-w-3xl">
-              <div className="flex flex-wrap gap-2 mb-3">
+              <div className="flex flex-wrap gap-2 mb-3 recipe-hero-badges">
                 <span className="recipe-badge">{recipe.category}</span>
                 <span className="recipe-badge">{DIFF_LABEL[recipe.difficulty]}</span>
                 {recipe.isSubscriber && (

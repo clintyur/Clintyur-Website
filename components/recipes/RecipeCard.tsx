@@ -9,7 +9,7 @@ interface RecipeCardProps {
     slug: string
     title: string
     description: string
-    heroImage: string
+    heroImage: string | null
     prepTime: number
     cookTime: number
     servings: number
@@ -39,7 +39,7 @@ export function RecipeCard({ recipe, size = 'default' }: RecipeCardProps) {
       {/* Image */}
       <div className={cn('relative overflow-hidden', size === 'large' ? 'aspect-[4/3]' : 'aspect-[3/2]')}>
         <Image
-          src={recipe.heroImage}
+          src={recipe.heroImage ?? ""}
           alt={recipe.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"

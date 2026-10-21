@@ -61,13 +61,18 @@ export default function RecipesPage() {
           {recipes.map((recipe) => (
             <a key={recipe.id} href={`/recipes/${recipe.slug}`} className="recipe">
               <div className="recipe-img">
-                <Image
-                  src={recipe.image}
-                  alt={recipe.name}
-                  width={1200}
-                  height={1600}
-                  sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
-                />
+                {recipe.image ? (
+                  <Image
+                    src={recipe.image}
+                    alt={recipe.name}
+                    width={1200}
+                    height={1600}
+                    sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                  />
+                ) : (
+                  // Written up but not photographed yet.
+                  <span className="recipe-img-pending">Photo coming</span>
+                )}
               </div>
               <p className="recipe-num">№ {recipe.num}</p>
               <h3 className="recipe-name">{recipe.name}</h3>
