@@ -74,13 +74,18 @@ export default async function RecipeDetailPage({ params }: PageProps) {
             // mismatched stock photo.
             <div className="absolute inset-0" style={{ background: 'var(--ink)' }} />
           )}
-          {/* Editorial-style gradient overlay with rust/gold accents */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70" style={{
-            background: `
-              radial-gradient(ellipse at 30% 20%, rgba(184, 68, 42, 0.3) 0%, transparent 35%),
-              radial-gradient(ellipse at 80% 90%, rgba(184, 102, 50, 0.2) 0%, transparent 40%),
-              linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7))
-            `
+          {/* Scrim for the title only. This used to lay 40–70% black over the
+              whole frame plus two rust tints, which buried the food — the one
+              thing someone opening a recipe actually wants to see. Keep the top
+              two thirds close to clear and ramp up only behind the text. */}
+          <div className="absolute inset-0" style={{
+            background: `linear-gradient(to bottom,
+              rgba(0, 0, 0, 0.10) 0%,
+              rgba(0, 0, 0, 0.03) 30%,
+              rgba(0, 0, 0, 0.16) 48%,
+              rgba(0, 0, 0, 0.50) 66%,
+              rgba(0, 0, 0, 0.74) 82%,
+              rgba(0, 0, 0, 0.86) 100%)`
           }} />
 
           {/* Hero meta */}
@@ -107,8 +112,10 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
         {/* Meta bar */}
         <div style={{ background: 'var(--cream)', borderBottom: '1px solid var(--rule)' }} className="sticky top-16 z-30 shadow-soft">
-          <div className="container py-3 flex items-center justify-between gap-4 overflow-x-auto">
-            <div className="flex items-center gap-6 min-w-0">
+          <div className="container py-3 flex items-center justify-between gap-4">
+            {/* The stats need more room than they get on a narrow screen, and
+                were being clipped mid-word by the actions. Let them scroll. */}
+            <div className="flex items-center gap-6 min-w-0 recipe-meta-stats">
               {/* Times and yield are omitted until the recipe is written up,
                   rather than displaying an invented 0m. */}
               {recipe.prepTime != null && (

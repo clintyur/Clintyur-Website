@@ -1848,3 +1848,21 @@ svg#filters {
   line-height: 1.65;
   margin-bottom: 10px;
 }
+
+/* Hero type sits on photography that ranges from a dark grill to a white
+   plate, so the scrim alone cannot guarantee contrast. A soft shadow holds
+   the text legible either way without darkening the food further. */
+.recipe-hero-text {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55), 0 2px 16px rgba(0, 0, 0, 0.35);
+}
+.recipe-hero-badges .recipe-badge {
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.recipe-meta-stats {
+  overflow-x: auto;
+  padding-right: 8px;
+  scrollbar-width: none;
+}
+.recipe-meta-stats::-webkit-scrollbar { display: none; }
