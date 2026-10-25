@@ -324,30 +324,78 @@ export const MOCK_RECIPES = [
     id: '11',
     slug: 'thai-smashed-cucumber-salad',
     title: 'Thai Smashed Cucumber Salad',
-    description: 'Smashed cucumbers in a sharp chilli-garlic dressing, finished with chopped roasted peanuts, cilantro and mint.',
+    description: 'Cool, crunchy cucumbers in a bright lime-chili dressing, finished with cilantro and mint. Vegan.',
+    intro: [
+      'Smashing the cucumbers instead of slicing them is the whole trick — the jagged torn edges hold onto far more dressing than a clean cut ever will.',
+    ],
     heroImage: '/images/recipe-thai-smashed-cucumber.jpg',
-    prepTime: null,
+    prepTime: 30,
     cookTime: null,
-    servings: null,
+    servings: 10,
     difficulty: 'EASY',
     cuisine: 'Thai',
     category: 'Salads',
-    tags: ['salad', 'thai', 'cucumber', 'no-cook'],
+    tags: ['salad', 'thai', 'cucumber', 'vegan'],
     isSubscriber: false,
     isFeatured: false,
     rating: 0,
     commentCount: 0,
     likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'For the salad',
+        items: [
+          'English cucumbers — 3 (or 6–8 Persian cucumbers)',
+          'Kosher salt — 1 1/2 tsp',
+        ],
+      },
+      {
+        name: 'For the dressing',
+        items: [
+          'Rice vinegar — 3 tbsp',
+          'Fresh lime juice — 2 tbsp (about 1 lime)',
+          'Soy sauce — 2 tbsp',
+          'Sugar — 1 tbsp',
+          'Garlic — 2 cloves, finely grated',
+          'Red chile — 1, thinly sliced',
+          'Avocado oil — 2 tbsp',
+        ],
+      },
+      {
+        name: 'To finish',
+        items: [
+          'Cilantro and mint leaves — 1/2 cup',
+        ],
+      },
+    ],
+    stepGroups: [
+      {
+        name: 'Method',
+        items: [
+          'Lay each cucumber on a cutting board and press down hard with the flat side of a chef\'s knife, or tap it with a rolling pin, until it cracks open. Cut into rough bite-size pieces — jagged is exactly what you want here.',
+          'Toss the cucumbers with the salt in a colander set over a bowl and refrigerate at least 20 minutes. This pulls the excess water out. Skip it and you end up with a watery salad.',
+          'Whisk the rice vinegar, lime juice, soy sauce, sugar, garlic, chile and oil together until the sugar is fully dissolved.',
+          'Shake the liquid off the cucumbers, toss them with the dressing and pile into a shallow bowl. Top with the herbs and serve right away.',
+        ],
+      },
+    ],
+    notes: [
+      'Dress the cucumbers just before serving so they stay crunchy. The dressing keeps up to a day ahead.',
+      'Top with crispy fried shallots for extra crunch.',
+    ],
   },
   {
     id: '12',
     slug: 'thai-roasted-chicken',
-    title: 'Thai Roasted Chicken',
-    description: 'Roasted chicken finished with nam jim — the sharp, herby Thai green sauce.',
+    title: 'Roasted Half Chicken with Roasted Carrots',
+    description: 'Dry-brined half chickens roasted over carrots, shallots, lemongrass and ginger, finished with a bright green nam jim blended with the warm pan drippings.',
+    intro: [
+      'The vegetables cook in the drippings underneath while the skin goes dark and crackly on top. The sauce is where it all comes together — nam jim blended green and bright, then loosened at the very last second with the warm fat off the pan.',
+    ],
     heroImage: '/images/recipe-thai-roasted-chicken.jpg',
-    prepTime: null,
-    cookTime: null,
-    servings: null,
+    prepTime: 30,
+    cookTime: 60,
+    servings: 10,
     difficulty: 'MEDIUM',
     cuisine: 'Thai',
     category: 'Mains',
@@ -357,6 +405,88 @@ export const MOCK_RECIPES = [
     rating: 0,
     commentCount: 0,
     likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'For the chicken',
+        items: [
+          'Whole chickens — 3 (3.5–4 lb each), backbones removed and split in half',
+          'Kosher salt — 4 tbsp (Diamond Crystal; use 2 tbsp if using Morton)',
+          'Black pepper — 1 tbsp',
+          'Ground coriander — 1 tbsp',
+          'Limes — zest of 3',
+        ],
+      },
+      {
+        name: 'For the roasting base',
+        items: [
+          'Carrots — 4 lb, halved lengthwise',
+          'Shallots — 8, peeled and halved',
+          'Lemongrass — 4 stalks, smashed and cut into 3-inch lengths',
+          'Ginger — one 2-inch piece, sliced into coins',
+          'Avocado oil — 2 tbsp',
+          'Kosher salt — 1 tsp',
+        ],
+      },
+      {
+        name: 'For the Thai drippings sauce',
+        items: [
+          'Green Thai chiles — 5 (or 2 serranos)',
+          'Garlic — 4 cloves',
+          'Cilantro — 1 cup packed, leaves and stems',
+          'Fresh lime juice — 1/3 cup (about 3 limes)',
+          'Fish sauce — 3 tbsp',
+          'Sugar — 1 tbsp',
+          'Warm pan drippings — 1/2 cup',
+        ],
+      },
+      {
+        name: 'To garnish',
+        items: [
+          'Chives — cut into 2-inch batons on a slight angle',
+          'Red chile — 1, thinly sliced',
+          'Cilantro and mint leaves',
+          'Lime wedges',
+        ],
+      },
+    ],
+    stepGroups: [
+      {
+        name: 'Dry-brine the chicken',
+        items: [
+          'Pat the chicken halves completely dry — moisture is the enemy of crispy skin, so be thorough here.',
+          'Mix the salt, pepper, coriander and lime zest together, then rub it all over every half. Set them skin-up on a sheet pan and refrigerate uncovered for at least 2 hours, ideally overnight. The longer they sit the drier the skin gets, and dry skin is crispy skin.',
+        ],
+      },
+      {
+        name: 'Blend the sauce',
+        items: [
+          'Blend the green chiles, garlic, cilantro, lime juice, fish sauce and sugar until mostly smooth — leave a little texture in there, you are not making baby food.',
+          'Taste it. It should hit sour first, then salty, then spicy. Set it aside. The drippings do not go in until the very end.',
+        ],
+      },
+      {
+        name: 'Roast',
+        items: [
+          'Pull the chicken out of the fridge about 30 minutes before you roast and get your oven to 475°F. Toss the carrots, shallots, lemongrass and ginger with the avocado oil and salt, then spread them across 2 sheet pans.',
+          'Set the chicken halves right on top of the vegetables, skin-up. Roast 35–45 minutes, swapping the pans halfway through, until the thighs hit 175°F. Everything underneath is cooking in the drippings — that is the whole point.',
+          'Broil one pan at a time for 3–5 minutes, until the skin is deep mahogany with blistered dark spots. Watch it closely, this turns on you fast.',
+          'Move the chicken to a cutting board and let it rest 10 minutes. Leave the carrots and shallots on the pans.',
+        ],
+      },
+      {
+        name: 'Finish and plate',
+        items: [
+          'Spoon about 1/2 cup of the warm drippings — the fat and the dark juices underneath — into the blended sauce and stir. Taste and adjust with more lime or fish sauce.',
+          'Cut each half into breast, thigh and drumstick. Pile the carrots and shallots onto a platter and lay the chicken on top.',
+          'Spoon the sauce across the middle and leave some of that crisp skin showing. Finish with chive batons, red chile, cilantro, mint and lime wedges.',
+        ],
+      },
+    ],
+    notes: [
+      'Adding the drippings at the end, after blending, keeps the sauce bright green and gives it a rich, savory depth.',
+      'Take the lemongrass and ginger off the platter before serving, or leave them for presentation — either way they are not meant to be eaten.',
+      'Remove some of the chile seeds before blending if you want a milder sauce.',
+    ],
   },
   {
     id: '13',

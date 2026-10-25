@@ -1835,3 +1835,16 @@ svg#filters {
 }
 .recipe-intro p { margin: 0 0 16px; }
 .recipe-intro p:last-child { margin-bottom: 0; }
+
+/* Cook's notes under a recipe method. */
+.recipe-notes {
+  max-width: 660px;
+  border-top: 1px solid var(--rule);
+  padding-top: clamp(24px, 3vw, 32px);
+}
+.recipe-notes ul { margin: 0; padding-left: 18px; }
+.recipe-notes li {
+  color: var(--ink-2);
+  line-height: 1.65;
+  margin-bottom: 10px;
+}

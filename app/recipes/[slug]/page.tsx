@@ -50,6 +50,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
   const hasGroups = Boolean(ingredientGroups?.length && stepGroups?.length)
   // Optional headnote in Clint's own voice, shown above the method.
   const intro = 'intro' in recipe ? recipe.intro : undefined
+  const notes = 'notes' in recipe ? recipe.notes : undefined
 
   return (
     <>
@@ -306,6 +307,17 @@ export default async function RecipeDetailPage({ params }: PageProps) {
                 </div>
               </div>
             )}
+
+            {notes?.length ? (
+              <div className="container" style={{ paddingBottom: 'clamp(16px,3vw,32px)' }}>
+                <div className="recipe-notes">
+                  <h4 className="eyebrow" style={{ marginBottom: '14px' }}>Notes</h4>
+                  <ul>
+                    {notes.map((n, i) => <li key={i}>{n}</li>)}
+                  </ul>
+                </div>
+              </div>
+            ) : null}
 
             {/* Tags */}
             <div className="container pt-8 pb-12">
