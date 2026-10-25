@@ -48,6 +48,8 @@ export default async function RecipeDetailPage({ params }: PageProps) {
   const ingredientGroups = 'ingredientGroups' in recipe ? recipe.ingredientGroups : undefined
   const stepGroups = 'stepGroups' in recipe ? recipe.stepGroups : undefined
   const hasGroups = Boolean(ingredientGroups?.length && stepGroups?.length)
+  // Optional headnote in Clint's own voice, shown above the method.
+  const intro = 'intro' in recipe ? recipe.intro : undefined
 
   return (
     <>
@@ -138,6 +140,14 @@ export default async function RecipeDetailPage({ params }: PageProps) {
           </div>
         ) : (
           <>
+            {intro?.length ? (
+              <div className="container" style={{ paddingTop: 'clamp(40px,5vw,64px)' }}>
+                <div className="recipe-intro">
+                  {intro.map((para, i) => <p key={i}>{para}</p>)}
+                </div>
+              </div>
+            ) : null}
+
             {hasGroups ? (
               <div className="container py-12">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

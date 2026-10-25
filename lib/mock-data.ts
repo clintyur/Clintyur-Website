@@ -399,27 +399,27 @@ export const MOCK_RECIPES = [
       {
         name: 'The Base',
         items: [
-          '3 strips Thick-cut bacon',
-          '1 handful Spinach',
-          '2 small Yukon Gold potatoes'
+          'Thick-cut bacon — 3 strips',
+          'Spinach — 1 handful',
+          'Yukon Gold potatoes — 2 small'
         ],
       },
       {
         name: 'The Omelette',
         items: [
-          '4 large Eggs',
-          '10–12 cubes Taleggio',
-          'for frying Olive oil',
-          'to taste Salt',
-          'to taste Black pepper'
+          'Eggs — 4 large',
+          'Taleggio — 10–12 cubes',
+          'Olive oil — for frying',
+          'Salt — to taste',
+          'Black pepper — to taste'
         ],
       },
       {
         name: 'To Finish',
         items: [
-          'finely grated Sharp white cheddar',
-          'to top Chives',
-          'to serve Croissant toast'
+          'Sharp white cheddar — finely grated',
+          'Chives — to top',
+          'Croissant toast — to serve'
         ],
       }
     ],
@@ -475,24 +475,24 @@ export const MOCK_RECIPES = [
       {
         name: 'The Confit',
         items: [
-          '6–7, white & pale green only Leeks',
-          '4–5 cloves, smashed Garlic',
-          '10–15 Whole peppercorns',
-          '4–5 sprigs Fresh thyme',
-          '4–5 sprigs Fresh rosemary',
-          '2 Bay leaves',
-          'a couple strips Lemon rind',
-          'enough to submerge Olive oil'
+          'Leeks — 6–7, white & pale green only',
+          'Garlic — 4–5 cloves, smashed',
+          'Whole peppercorns — 10–15',
+          'Fresh thyme — 4–5 sprigs',
+          'Fresh rosemary — 4–5 sprigs',
+          'Bay leaves — 2',
+          'Lemon rind — a couple strips',
+          'Olive oil — enough to submerge'
         ],
       },
       {
         name: 'To Plate',
         items: [
-          '1 ball Burrata',
-          'to drizzle Fig balsamic glaze',
-          'a touch Whipped honey',
-          'to finish Flaky salt',
-          'to serve Baguette'
+          'Burrata — 1 ball',
+          'Fig balsamic glaze — to drizzle',
+          'Whipped honey — a touch',
+          'Flaky salt — to finish',
+          'Baguette — to serve'
         ],
       }
     ],
@@ -538,28 +538,28 @@ export const MOCK_RECIPES = [
       {
         name: 'The Crunch Topping',
         items: [
-          'equal parts w/ pistachios Panko breadcrumbs',
-          'crushed to panko size Pistachios',
-          'to coat Olive oil',
-          '2–3 cloves, smashed Garlic',
-          '1–2 sprigs Fresh rosemary',
-          '1–2 sprigs Fresh thyme'
+          'Panko breadcrumbs — equal parts w/ pistachios',
+          'Pistachios — crushed to panko size',
+          'Olive oil — to coat',
+          'Garlic — 2–3 cloves, smashed',
+          'Fresh rosemary — 1–2 sprigs',
+          'Fresh thyme — 1–2 sprigs'
         ],
       },
       {
         name: 'The Pasta',
         items: [
-          'bite-sized cubes Chicken thighs',
-          '1 large, diced Shallot',
-          '5 cloves total Garlic',
-          '1 bunch, chopped Kale',
-          '1 cup White wine',
-          '3–4 cups Chicken stock',
-          'of choice Pasta',
-          '1 cup Heavy cream',
-          '1–2 cups, grated Parmigiano Reggiano',
-          '2 tbsp Butter',
-          'to taste Salt & black pepper'
+          'Chicken thighs — bite-sized cubes',
+          'Shallot — 1 large, diced',
+          'Garlic — 5 cloves total',
+          'Kale — 1 bunch, chopped',
+          'White wine — 1 cup',
+          'Chicken stock — 3–4 cups',
+          'Pasta — of choice',
+          'Heavy cream — 1 cup',
+          'Parmigiano Reggiano — 1–2 cups, grated',
+          'Butter — 2 tbsp',
+          'Salt & black pepper — to taste'
         ],
       }
     ],
@@ -618,29 +618,29 @@ export const MOCK_RECIPES = [
       {
         name: 'The Bacon Jam',
         items: [
-          '4–6 slices, thinly sliced Bacon',
-          '1, half-moon sliced Red onion',
-          'a knob Butter',
-          '2–3 tbsp Brown sugar',
-          '2 tbsp Champagne vinegar',
-          '2–3 tbsp Balsamic glaze',
-          'to taste Salt'
+          'Bacon — 4–6 slices, thinly sliced',
+          'Red onion — 1, half-moon sliced',
+          'Butter — a knob',
+          'Brown sugar — 2–3 tbsp',
+          'Champagne vinegar — 2 tbsp',
+          'Balsamic glaze — 2–3 tbsp',
+          'Salt — to taste'
         ],
       },
       {
         name: 'The Smash Burger',
         items: [
-          '1 lb, 4 portions 80/20 ground beef',
-          'for the pan Beef tallow',
-          '1 slice per patty American cheese',
-          'to season Salt & black pepper'
+          '80/20 ground beef — 1 lb, 4 portions',
+          'Beef tallow — for the pan',
+          'American cheese — 1 slice per patty',
+          'Salt & black pepper — to season'
         ],
       },
       {
         name: 'To Build',
         items: [
-          '2–4, as the bun Glazed donuts',
-          'to taste Sauce of choice'
+          'Glazed donuts — 2–4, as the bun',
+          'Sauce of choice — to taste'
         ],
       }
     ],
@@ -696,26 +696,26 @@ export const MOCK_RECIPES = [
       {
         name: 'The Gnocchi',
         items: [
-          '4 large Yukon Gold potatoes',
-          'for bed + seasoning Salt',
-          '1 Egg yolk',
-          '⅓ cup + more if needed All-purpose flour'
+          'Yukon Gold potatoes — 4 large',
+          'Salt — for bed + seasoning',
+          'Egg yolk — 1',
+          'All-purpose flour — ⅓ cup + more if needed'
         ],
       },
       {
         name: 'To Crisp',
         items: [
-          'plenty Butter',
-          'optional, to taste Fresh sage'
+          'Butter — plenty',
+          'Fresh sage — optional, to taste'
         ],
       },
       {
         name: 'To Finish',
         items: [
-          'generous sprinkle Parmigiano Reggiano',
-          'freshly cracked Black pepper',
-          'to drizzle Calabrian chili oil',
-          'optional, for a herby twist Pesto'
+          'Parmigiano Reggiano — generous sprinkle',
+          'Black pepper — freshly cracked',
+          'Calabrian chili oil — to drizzle',
+          'Pesto — optional, for a herby twist'
         ],
       }
     ],
@@ -760,33 +760,33 @@ export const MOCK_RECIPES = [
       {
         name: 'The Crunch',
         items: [
-          'equal parts w/ panko Pistachios',
-          'equal parts w/ pistachios Panko breadcrumbs',
-          'to coat Olive oil',
-          '2 cloves, smashed Garlic',
-          '1 sprig Fresh rosemary',
-          '1 sprig Fresh thyme'
+          'Pistachios — equal parts w/ panko',
+          'Panko breadcrumbs — equal parts w/ pistachios',
+          'Olive oil — to coat',
+          'Garlic — 2 cloves, smashed',
+          'Fresh rosemary — 1 sprig',
+          'Fresh thyme — 1 sprig'
         ],
       },
       {
         name: 'The Caesar Dressing',
         items: [
-          '2–3, minced to a paste Anchovies',
-          '1 cup Mayonnaise',
-          '⅓ cup Dijon mustard',
-          '2 tbsp + more to dress Champagne citrus vinegar',
-          'zested + juice of 2 wedges Lemon',
-          '2 cloves, minced Garlic',
-          '½ cup, grated Parmigiano Reggiano',
-          'to loosen Olive oil',
-          'to taste Salt & black pepper'
+          'Anchovies — 2–3, minced to a paste',
+          'Mayonnaise — 1 cup',
+          'Dijon mustard — ⅓ cup',
+          'Champagne citrus vinegar — 2 tbsp + more to dress',
+          'Lemon — zested + juice of 2 wedges',
+          'Garlic — 2 cloves, minced',
+          'Parmigiano Reggiano — ½ cup, grated',
+          'Olive oil — to loosen',
+          'Salt & black pepper — to taste'
         ],
       },
       {
         name: 'The Salad',
         items: [
-          '1 large bunch, rinsed Arugula',
-          'generous pile, to top Parmigiano Reggiano'
+          'Arugula — 1 large bunch, rinsed',
+          'Parmigiano Reggiano — generous pile, to top'
         ],
       }
     ],
@@ -821,11 +821,15 @@ export const MOCK_RECIPES = [
     id: '26',
     slug: 'tomato-tart',
     title: 'Tomato Tart',
-    description: 'Tomato Tart.',
+    description: 'Heirloom tomatoes and razor-thin garlic on puff pastry, finished with Parmigiano, fig balsamic and basil.',
+    intro: [
+      'This dish is so good... Like who knew tomatoes can be this good! I used to hate tomatoes, and this dish is one of the dishes that changed my perspective on tomatoes forever.',
+      "I got the inspiration to make this dish from Thomas Straker, one of my favorite chefs. I also made this dish for my most recent private dinner and everyone loved it. I thought it'd be a great idea to share it with you. So here we are now...",
+    ],
     heroImage: '/images/recipe-tomato-tart.jpg',
     prepTime: null,
-    cookTime: null,
-    servings: 2,
+    cookTime: 30,
+    servings: 6,
     difficulty: 'EASY',
     cuisine: 'French-inspired',
     category: 'Starters',
@@ -839,20 +843,20 @@ export const MOCK_RECIPES = [
       {
         name: 'The Tart',
         items: [
-          '1 sheet, room temp Puff pastry',
-          'thinly sliced Heirloom tomatoes',
-          '2–3 cloves, razor-thin Garlic',
-          'to season Salt'
+          'Puff pastry — 1 sheet, room temp',
+          'Heirloom tomatoes — thinly sliced',
+          'Garlic — 2–3 cloves, razor-thin',
+          'Salt — to season'
         ],
       },
       {
         name: 'To Finish',
         items: [
-          'to drizzle Finishing olive oil',
-          'freshly grated Parmigiano Reggiano',
-          'to drizzle Fig balsamic glaze',
-          '1 bunch, thinly sliced Chives',
-          'torn, to finish Fresh basil'
+          'Finishing olive oil — to drizzle',
+          'Parmigiano Reggiano — freshly grated',
+          'Fig balsamic glaze — to drizzle',
+          'Chives — 1 bunch, thinly sliced',
+          'Fresh basil — torn, to finish'
         ],
       }
     ],
@@ -869,7 +873,8 @@ export const MOCK_RECIPES = [
       {
         name: 'To Finish',
         items: [
-          'Once out of the oven, drizzle with a good finishing olive oil. Grate Parmigiano Reggiano around the edges, drizzle fig balsamic glaze over the top, and finish with a scattering of sliced chives and freshly torn basil leaves.'
+          'Once out of the oven, drizzle with a good finishing olive oil. Grate Parmigiano Reggiano around the edges, drizzle fig balsamic glaze over the top, and finish with a scattering of sliced chives and freshly torn basil leaves.',
+          "Enjoy that shit, because it's good as fuck."
         ],
       }
     ],
@@ -896,31 +901,31 @@ export const MOCK_RECIPES = [
       {
         name: 'The Marinade',
         items: [
-          '4–6 pieces (or any cut) Chicken thighs',
-          'enough to fully cover Buttermilk',
-          '3 tbsp Pickle juice',
-          'to season Kosher salt',
-          'to season Black pepper',
-          'to season Garlic powder',
-          'to season Onion powder',
-          'to season Smoked paprika'
+          'Chicken thighs — 4–6 pieces (or any cut)',
+          'Buttermilk — enough to fully cover',
+          'Pickle juice — 3 tbsp',
+          'Kosher salt — to season',
+          'Black pepper — to season',
+          'Garlic powder — to season',
+          'Onion powder — to season',
+          'Smoked paprika — to season'
         ],
       },
       {
         name: 'The Dredge',
         items: [
-          'a generous amount All-purpose flour',
-          'to season the flour Kosher salt',
-          'to season the flour Black pepper',
-          'to season the flour Onion powder',
-          'to season the flour Garlic powder',
-          'to season the flour Smoked paprika'
+          'All-purpose flour — a generous amount',
+          'Kosher salt — to season the flour',
+          'Black pepper — to season the flour',
+          'Onion powder — to season the flour',
+          'Garlic powder — to season the flour',
+          'Smoked paprika — to season the flour'
         ],
       },
       {
         name: 'To Fry',
         items: [
-          'enough to fill pot halfway Duck fat'
+          'Duck fat — enough to fill pot halfway'
         ],
       }
     ],
@@ -979,35 +984,35 @@ export const MOCK_RECIPES = [
       {
         name: 'Bacon Jam',
         items: [
-          '6 strips, cut into lardons Bacon',
-          '1 medium, thinly sliced Sweet onion',
-          '2 tbsp Brown sugar',
-          '1 tbsp Champagne vinegar',
-          '1 tbsp Balsamic glaze',
-          '1 tsp (optional) Maple syrup'
+          'Bacon — 6 strips, cut into lardons',
+          'Sweet onion — 1 medium, thinly sliced',
+          'Brown sugar — 2 tbsp',
+          'Champagne vinegar — 1 tbsp',
+          'Balsamic glaze — 1 tbsp',
+          'Maple syrup — 1 tsp (optional)'
         ],
       },
       {
         name: 'Special Burger Sauce',
         items: [
-          '1 small, minced Shallot',
-          '3 tbsp Mayonnaise',
-          '1 tbsp Ketchup',
-          '1 tsp Dijon mustard',
-          '½ tsp Champagne vinegar',
-          'to taste Salt & black pepper'
+          'Shallot — 1 small, minced',
+          'Mayonnaise — 3 tbsp',
+          'Ketchup — 1 tbsp',
+          'Dijon mustard — 1 tsp',
+          'Champagne vinegar — ½ tsp',
+          'Salt & black pepper — to taste'
         ],
       },
       {
         name: 'The Burger',
         items: [
-          '½ lb per patty Ground beef (80/20)',
-          '2 slices per patty Gouda cheese',
-          '1 thick slice, whole ring Sweet onion',
-          '1 tbsp Unsalted butter',
-          '1 per burger Eggs',
-          '1 per burger, toasted Brioche bun',
-          'to season Salt & black pepper'
+          'Ground beef (80/20) — ½ lb per patty',
+          'Gouda cheese — 2 slices per patty',
+          'Sweet onion — 1 thick slice, whole ring',
+          'Unsalted butter — 1 tbsp',
+          'Eggs — 1 per burger',
+          'Brioche bun — 1 per burger, toasted',
+          'Salt & black pepper — to season'
         ],
       }
     ],

@@ -1824,3 +1824,14 @@ svg#filters {
   color: var(--muted);
 }
 .admin-card.is-ok .admin-thumb { outline: 2px solid var(--rule); outline-offset: -2px; }
+
+/* Headnote above a recipe's method. */
+.recipe-intro {
+  max-width: 660px;
+  font-family: var(--serif);
+  font-size: clamp(17px, 1.5vw, 19px);
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+.recipe-intro p { margin: 0 0 16px; }
+.recipe-intro p:last-child { margin-bottom: 0; }
