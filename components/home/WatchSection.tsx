@@ -43,29 +43,25 @@ export function WatchSection() {
 
   React.useEffect(() => {
     let cancelled = false
-    const rss = `https://www.youtube.com/feeds/videos.xml?channel_id=${CLINT_CHANNEL_ID}`
-    const url = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rss)}`
-    fetch(url)
-      .then((r) => r.ok ? r.json() : Promise.reject(r.status))
+    // Served by our own /api/youtube, which reads the channel's RSS feed
+    // server-side and caches it. The previous third-party proxy started
+    // returning 403, which left this section showing empty placeholders.
+    fetch('/api/youtube?limit=4')
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((data) => {
         if (cancelled) return
-        if (!data || !data.items || !data.items.length) { setStatus("fallback"); return }
-        const items = data.items.slice(0, 4).map((it: any, i: number) => {
-          const m = (it.link || "").match(/[?&]v=([\w-]{11})/)
-          const vid = m ? m[1] : null
-          return {
-            id: vid || ("rss" + i),
-            title: it.title || "Untitled",
-            date: fmtDate(it.pubDate),
-            videoId: vid,
-            thumb: vid ? `https://i.ytimg.com/vi/${vid}/hqdefault.jpg` : (it.thumbnail || null),
-            link: it.link || null,
-          }
-        })
-        setVideos(items)
-        setStatus("live")
+        if (!data?.videos?.length) { setStatus('fallback'); return }
+        setVideos(data.videos.map((v: { id: string; title: string; published: string; thumb: string; link: string }) => ({
+          id: v.id,
+          title: v.title,
+          date: fmtDate(v.published),
+          videoId: v.id,
+          thumb: v.thumb,
+          link: v.link,
+        })))
+        setStatus('live')
       })
-      .catch(() => { if (!cancelled) setStatus("fallback") })
+      .catch(() => { if (!cancelled) setStatus('fallback') })
     return () => { cancelled = true }
   }, [])
 

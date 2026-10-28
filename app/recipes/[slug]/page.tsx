@@ -8,6 +8,7 @@ import { formatTime, formatDate } from '@/lib/utils'
 import { CommentsSection } from '@/components/recipes/CommentsSection'
 import { LikeButton } from '@/components/recipes/LikeButton'
 import { RecipeSchema } from '@/components/recipes/RecipeSchema'
+import { PhotoLightbox } from '@/components/recipes/PhotoLightbox'
 
 interface PageProps { params: Promise<{ slug: string }> }
 
@@ -87,6 +88,10 @@ export default async function RecipeDetailPage({ params }: PageProps) {
               rgba(0, 0, 0, 0.74) 82%,
               rgba(0, 0, 0, 0.86) 100%)`
           }} />
+
+          {recipe.heroImage && (
+            <PhotoLightbox src={recipe.heroImage} alt={recipe.title} />
+          )}
 
           {/* Hero meta */}
           <div className="absolute bottom-0 inset-x-0 container pb-8">
