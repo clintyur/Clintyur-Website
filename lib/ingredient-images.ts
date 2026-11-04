@@ -50,7 +50,6 @@ const IMAGES: Record<string, string> = {
   garlic: 'garlic',
   ginger: 'ginger',
   habanero: 'habanero',
-  'scotch bonnet': 'habanero',
 
   // herbs
   chives: 'chives',
@@ -115,7 +114,43 @@ const IMAGES: Record<string, string> = {
   nutmeg: 'nutmeg',
   allspice: 'allspice',
   'black pepper': 'black-pepper',
+  peppercorns: 'black-pepper',
   salt: 'salt',
+
+  // sourced to fill gaps the original set did not cover
+  'beef tenderloin': 'beef-tenderloin',
+  tenderloin: 'beef-tenderloin',
+  anchovies: 'anchovies',
+  anchovy: 'anchovies',
+  capers: 'capers',
+  'dijon mustard': 'dijon-mustard',
+  dijon: 'dijon-mustard',
+  mayonnaise: 'mayonnaise',
+  'fish sauce': 'fish-sauce',
+  'maple syrup': 'maple-syrup',
+  carrots: 'carrots',
+  carrot: 'carrots',
+  cilantro: 'cilantro',
+  focaccia: 'focaccia',
+  'gherkin pickles': 'gherkin-pickles',
+  gherkin: 'gherkin-pickles',
+  'brioche bun': 'brioche',
+  brioche: 'brioche',
+  'avocado oil': 'avocado-oil',
+  'balsamic glaze': 'balsamic-glaze',
+  'ground coriander': 'ground-coriander',
+  'green thai chiles': 'green-chile',
+  'thai chiles': 'green-chile',
+  'scotch bonnet': 'green-chile',
+  serranos: 'green-chile',
+  serrano: 'green-chile',
+  'red chile': 'red-chile',
+  'garlic powder': 'garlic-powder',
+  'onion powder': 'onion-powder',
+  'smoked paprika': 'smoked-paprika',
+  paprika: 'smoked-paprika',
+  'rice vinegar': 'rice-vinegar',
+  'neutral oil': 'neutral-oil',
 }
 
 // Longest first so specific names win over the generic ones they contain.
@@ -123,8 +158,8 @@ const KEYS = Object.keys(IMAGES).sort((a, b) => b.length - a.length)
 
 export function ingredientImage(text: string): string | null {
   const t = text.toLowerCase()
-  // "Garlic powder" is a spice, not a bulb — never borrow the fresh photo.
-  if (t.includes('powder') && !t.includes('baking') && !t.includes('powdered sugar')) return null
+  // Powders only match a genuine powder photo — never the fresh bulb.
+  if (t.includes('powder') && !/garlic powder|onion powder|baking|powdered sugar/.test(t)) return null
   for (const k of KEYS) {
     if (t.includes(k)) return `/images/ingredients/${IMAGES[k]}.png`
   }
