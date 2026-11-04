@@ -13,7 +13,7 @@ const IMAGES: Record<string, string> = {
   'american cheese': 'american-cheese',
   'sharp white cheddar': 'cheddar',
   'white cheddar': 'cheddar',
-  'gouda': 'cheddar',
+  gouda: 'gouda',
   cheddar: 'cheddar',
   taleggio: 'taleggio',
   parmigiano: 'parmesan',
@@ -40,7 +40,6 @@ const IMAGES: Record<string, string> = {
   leeks: 'leek',
   leek: 'leek',
   spinach: 'spinach',
-  arugula: 'kale',
   kale: 'kale',
   watermelon: 'watermelon',
   cucumbers: 'cucumber',
@@ -62,6 +61,7 @@ const IMAGES: Record<string, string> = {
   'bay leaf': 'bay-leaf',
 
   // citrus
+  lemongrass: 'lemongrass',
   lemon: 'lemon',
   limes: 'lime',
   lime: 'lime',
@@ -155,7 +155,10 @@ const IMAGES: Record<string, string> = {
 const KEYS = Object.keys(IMAGES).sort((a, b) => b.length - a.length)
 
 export function ingredientImage(text: string): string | null {
-  const t = text.toLowerCase()
+  // Only the part before the em dash names the ingredient; everything after
+  // it is preparation notes that can mention other ingredients entirely.
+  const name = text.split('—')[0]
+  const t = (name || text).toLowerCase()
   // Powders only match a genuine powder photo — never the fresh bulb.
   if (t.includes('powder') && !/garlic powder|onion powder|baking|powdered sugar/.test(t)) return null
   for (const k of KEYS) {
