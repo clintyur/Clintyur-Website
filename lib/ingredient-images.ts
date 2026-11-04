@@ -95,7 +95,6 @@ const IMAGES: Record<string, string> = {
   'soy sauce': 'soy-sauce',
   'fig balsamic': 'fig-balsamic',
   'apple cider vinegar': 'apple-cider-vinegar',
-  'champagne vinegar': 'champagne-vinegar',
   'calabrian chili oil': 'calabrian-chili-oil',
   'olive oil': 'olive-oil',
   'beef tallow': 'beef-tallow',
