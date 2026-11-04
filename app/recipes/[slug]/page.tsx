@@ -124,7 +124,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
               {/* Times and yield are omitted until the recipe is written up,
                   rather than displaying an invented 0m. */}
               {recipe.prepTime == null && recipe.cookTime == null && 'totalTime' in recipe && recipe.totalTime != null && (
-                <MetaStat icon={<Clock size={16} />} label="Total" value={formatTime(recipe.totalTime)} />
+                <MetaStat icon={<Clock size={16} />} label="Total" value={typeof recipe.totalTime === 'string' ? `${recipe.totalTime}m` : formatTime(recipe.totalTime)} />
               )}
               {recipe.prepTime != null && (
                 <MetaStat icon={<Clock size={16} />} label="Prep" value={formatTime(recipe.prepTime)} />

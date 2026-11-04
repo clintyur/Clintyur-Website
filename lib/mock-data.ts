@@ -499,7 +499,8 @@ export const MOCK_RECIPES = [
     heroImage: '/images/recipe-beef-tartare-focaccia.jpg',
     prepTime: null,
     cookTime: null,
-    servings: null,
+    totalTime: '20–30',
+    servings: '4–6',
     difficulty: 'MEDIUM',
     cuisine: 'French-inspired',
     category: 'Starters',
@@ -526,7 +527,7 @@ export const MOCK_RECIPES = [
       {
         name: 'To Serve',
         items: [
-          'Focaccia — cut into pieces',
+          'Focaccia — however much you need, depending on the size of the loaf',
           'Chives — finely sliced',
           'Egg yolk — to drizzle, optional',
         ],
@@ -555,7 +556,7 @@ export const MOCK_RECIPES = [
         items: [
           'Now the beef. Pull it out of the freezer, cut it into thin slices, then cube it.',
           'Pull the bowl back out, add the beef, and mix it all together. Salt and pepper to taste.',
-          'Cut up some focaccia, pile the tartare on top, and finish with chives and a drizzle of egg yolk if you want it.',
+          'Cut up some focaccia — and make sure to get a good fucking focaccia, it carries the whole thing. Pile the tartare on top, then add chives to each one and a drizzle of egg yolk if you want it.',
           'Enjoy that shit.',
         ],
       },
