@@ -9,6 +9,7 @@ import { CommentsSection } from '@/components/recipes/CommentsSection'
 import { LikeButton } from '@/components/recipes/LikeButton'
 import { RecipeSchema } from '@/components/recipes/RecipeSchema'
 import { PhotoLightbox } from '@/components/recipes/PhotoLightbox'
+import { IngredientItem } from '@/components/recipes/IngredientItem'
 
 interface PageProps { params: Promise<{ slug: string }> }
 
@@ -175,7 +176,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
                           <h5 className="recipe-group-name">{g.name}</h5>
                           <ul className="space-y-2">
                             {g.items.map((it, i) => (
-                              <li key={i} className="recipe-ingredient-list text-sm leading-relaxed">{it}</li>
+                              <IngredientItem key={i} text={it} />
                             ))}
                           </ul>
                         </div>
@@ -231,9 +232,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
                         <h4 className="eyebrow mb-4" style={{ marginBottom: '12px' }}>Ingredients</h4>
                         <ul className="space-y-2">
                           {section.ingredients.map((ing: string, i: number) => (
-                            <li key={i} className="recipe-ingredient-list text-sm leading-relaxed">
-                              {ing}
-                            </li>
+                            <IngredientItem key={i} text={ing} />
                           ))}
                         </ul>
                       </div>
