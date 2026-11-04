@@ -514,7 +514,7 @@ export const MOCK_RECIPES = [
       {
         name: 'The Tartare',
         items: [
-          'Beef tenderloin — 1 lb',
+          'Beef tenderloin — 1 lb, the freshest, highest quality you can get',
           'Shallot — 1 small',
           'Capers — 12–15',
           'Gherkin pickles — 3–5',
@@ -527,7 +527,7 @@ export const MOCK_RECIPES = [
       {
         name: 'To Serve',
         items: [
-          'Focaccia — however much you need, depending on the size of the loaf',
+          'Focaccia — a good one, cut into small squares; how much depends on the loaf',
           'Chives — finely sliced',
           'Egg yolk — to drizzle, optional',
         ],
@@ -537,7 +537,8 @@ export const MOCK_RECIPES = [
       {
         name: 'Firm the beef',
         items: [
-          'Get 1 lb of beef tenderloin on a cutting board and cut it into 4–5 pieces. Lay them on a wire rack and put that in the freezer for 10–20 minutes — you want the beef firm, not frozen. That is what lets you cut it cleanly.',
+          'Start with good beef. Ask your butcher for the freshest cut of tenderloin they have — you are eating this raw, so this is the one place not to cut corners.',
+          'Get 1 lb of beef tenderloin on a cutting board and cut it into 4–5 pieces. Lay them on a wire rack and put that in the freezer for 10–20 minutes — you want the beef firm, not frozen. That is what lets you cut it cleanly. The beef is the only thing going in the freezer.',
         ],
       },
       {
@@ -548,18 +549,23 @@ export const MOCK_RECIPES = [
           'Take out 3–5 gherkin pickles and brunoise those too. That goes in the bowl as well.',
           'Squeeze 2 tablespoons of good dijon mustard into the bowl.',
           'Add 1–2 egg yolks.',
-          'Add 3–4 tablespoons of olive oil, mix everything together, and put the bowl in the fridge.',
+          'Add 3–4 tablespoons of olive oil, mix everything together, and put the bowl in the fridge — fridge, not freezer.',
         ],
       },
       {
         name: 'Cut and finish',
         items: [
           'Now the beef. Pull it out of the freezer, cut it into thin slices, then cube it.',
-          'Pull the bowl back out, add the beef, and mix it all together. Salt and pepper to taste.',
-          'Cut up some focaccia — and make sure to get a good fucking focaccia, it carries the whole thing. Pile the tartare on top, then add chives to each one and a drizzle of egg yolk if you want it.',
+          'Pull the bowl back out of the fridge, add the beef, and mix it all together. Salt and pepper to taste — season at the end, not before.',
+          'Cut the focaccia into small squares — and make sure to get a good fucking focaccia, it carries the whole thing. How much you need depends on the size of the loaf. Do not toast it, you do not want it warm.',
+          'Spoon the tartare on top of each square, then add chives to each one and a drizzle of egg yolk if you want it.',
           'Enjoy that shit.',
         ],
       },
+    ],
+    notes: [
+      'You are eating this raw, so the beef matters more than anything else here. Ask your butcher for the freshest tenderloin they have and use it the same day.',
+      'Do not toast the focaccia. Warm bread under cold tartare ruins it.',
     ],
   },
   {
