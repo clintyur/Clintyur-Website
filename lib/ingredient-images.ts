@@ -98,7 +98,6 @@ const IMAGES: Record<string, string> = {
   'champagne vinegar': 'champagne-vinegar',
   'calabrian chili oil': 'calabrian-chili-oil',
   'olive oil': 'olive-oil',
-  'duck fat': 'duck-fat',
   'beef tallow': 'beef-tallow',
   'white wine': 'white-wine',
 
