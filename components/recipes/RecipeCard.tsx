@@ -12,7 +12,7 @@ interface RecipeCardProps {
     heroImage: string | null
     prepTime: number | null
     cookTime: number | null
-    servings: number | null
+    servings: number | string | null
     difficulty: string
     category: string
     tags: string[]

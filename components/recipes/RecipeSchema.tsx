@@ -6,7 +6,7 @@ interface Recipe {
   heroImage: string | null
   prepTime: number | null
   cookTime: number | null
-  servings: number | null
+  servings: number | string | null
   difficulty: string
   cuisine?: string
   tags: string[]

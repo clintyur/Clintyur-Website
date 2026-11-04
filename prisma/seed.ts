@@ -19,7 +19,9 @@ async function main() {
         images: r.heroImage ? [r.heroImage] : [],
         prepTime: r.prepTime ?? 0,
         cookTime: r.cookTime ?? 0,
-        servings: r.servings ?? 0,
+        servings: typeof r.servings === 'string'
+          ? parseInt(r.servings, 10) || 0
+          : r.servings ?? 0,
         difficulty: r.difficulty as 'EASY' | 'MEDIUM' | 'HARD',
         cuisine: r.cuisine,
         category: r.category,
