@@ -492,20 +492,74 @@ export const MOCK_RECIPES = [
     id: '13',
     slug: 'beef-tartare-on-focaccia',
     title: 'Beef Tartare on Focaccia',
-    description: 'Hand-cut beef tartare piled onto focaccia, finished with egg yolk and chives.',
+    description: 'Hand-cut tenderloin with shallot, caper and gherkin brunoise, bound with dijon and yolk, piled onto focaccia and finished with chives.',
+    intro: [
+      "Now this is something you should have in your bag when it comes to cooking for groups of people. You don't need a stove either. This is something that everyone will be impressed by, so lock the fuck in and pay attention.",
+    ],
     heroImage: '/images/recipe-beef-tartare-focaccia.jpg',
     prepTime: null,
     cookTime: null,
     servings: null,
     difficulty: 'MEDIUM',
-    cuisine: 'Italian-inspired',
+    cuisine: 'French-inspired',
     category: 'Starters',
-    tags: ['beef', 'tartare', 'focaccia', 'raw'],
+    tags: ['beef', 'tartare', 'focaccia', 'no-cook'],
     isSubscriber: false,
     isFeatured: false,
     rating: 0,
     commentCount: 0,
     likeCount: 0,
+    ingredientGroups: [
+      {
+        name: 'The Tartare',
+        items: [
+          'Beef tenderloin — 1 lb',
+          'Shallot — 1 small',
+          'Capers — 12–15',
+          'Gherkin pickles — 3–5',
+          'Dijon mustard — 2 tbsp',
+          'Egg yolks — 1–2',
+          'Olive oil — 3–4 tbsp',
+          'Kosher salt and black pepper — to taste',
+        ],
+      },
+      {
+        name: 'To Serve',
+        items: [
+          'Focaccia — cut into pieces',
+          'Chives — finely sliced',
+          'Egg yolk — to drizzle, optional',
+        ],
+      },
+    ],
+    stepGroups: [
+      {
+        name: 'Firm the beef',
+        items: [
+          'Get 1 lb of beef tenderloin on a cutting board and cut it into 4–5 pieces. Lay them on a wire rack and put that in the freezer for 10–20 minutes — you want the beef firm, not frozen. That is what lets you cut it cleanly.',
+        ],
+      },
+      {
+        name: 'Build the base',
+        items: [
+          'While the beef firms up, take one small shallot, cut it in half, cut both ends off, and peel each layer apart. Take 2–3 layers, cut them into thin strips, then make the smallest brunoise you have ever done. Lock in. Put it in a bowl.',
+          'Take 12–15 capers out of the jar, finely dice them, and add them to the bowl.',
+          'Take out 3–5 gherkin pickles and brunoise those too. That goes in the bowl as well.',
+          'Squeeze 2 tablespoons of good dijon mustard into the bowl.',
+          'Add 1–2 egg yolks.',
+          'Add 3–4 tablespoons of olive oil, mix everything together, and put the bowl in the fridge.',
+        ],
+      },
+      {
+        name: 'Cut and finish',
+        items: [
+          'Now the beef. Pull it out of the freezer, cut it into thin slices, then cube it.',
+          'Pull the bowl back out, add the beef, and mix it all together. Salt and pepper to taste.',
+          'Cut up some focaccia, pile the tartare on top, and finish with chives and a drizzle of egg yolk if you want it.',
+          'Enjoy that shit.',
+        ],
+      },
+    ],
   },
   {
     id: '20',
