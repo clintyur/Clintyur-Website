@@ -47,7 +47,8 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {/* Category filter */}
+      {/* Category filter — pointless with nothing to filter */}
+      {MOCK_PRODUCTS.length > 0 && (
       <section className="container" style={{ padding: 'clamp(40px, 6vw, 72px) 0' }}>
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           {CATEGORIES.map((cat) => (
@@ -62,9 +63,21 @@ export default function ShopPage() {
           ))}
         </div>
       </section>
+      )}
 
       {/* Shop grid */}
-      <section className="container" style={{ padding: '0 0 clamp(72px, 10vw, 140px)' }}>
+      <section className="container" style={{ padding: 'clamp(40px, 6vw, 72px) 0 clamp(72px, 10vw, 140px)' }}>
+        {filtered.length === 0 ? (
+          <div className="shop-empty">
+            <h2 className="section-title" style={{ fontSize: 'clamp(26px,3.5vw,40px)' }}>
+              Nothing in the shop <span className="it">yet</span>
+            </h2>
+            <p className="book-desc" style={{ maxWidth: '520px', marginTop: '16px' }}>
+              New goods are on the way. In the meantime there are{' '}
+              <Link href="/recipes" style={{ color: 'var(--accent)' }}>recipes to cook</Link>.
+            </p>
+          </div>
+        ) : (
         <div className="shop-grid">
           {filtered.map((product) => {
             const price = Math.min(...product.variants.map((v) => v.price))
@@ -95,6 +108,7 @@ export default function ShopPage() {
             )
           })}
         </div>
+        )}
       </section>
     </div>
   )

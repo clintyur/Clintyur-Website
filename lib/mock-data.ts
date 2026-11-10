@@ -1278,78 +1278,10 @@ export interface Product {
   variants: ProductVariant[]
 }
 
-export const MOCK_PRODUCTS: Product[] = [
-  {
-    id: '1',
-    slug: 'yurcooked-canvas-apron',
-    name: 'yurr cooked Canvas Apron',
-    description: 'Heavy-duty waxed canvas apron with genuine leather straps, a front pocket, and a bottle opener loop. Built to outlast your cooking obsession.',
-    heroImage: 'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=800&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=800&q=80',
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
-    ],
-    category: 'APPAREL',
-    isFeatured: true,
-    variants: [
-      { id: '1a', name: 'Natural / One Size', sku: 'APR-NAT-OS', price: 8900, stock: 24, color: 'Natural' },
-      { id: '1b', name: 'Black / One Size',   sku: 'APR-BLK-OS', price: 8900, stock: 12, color: 'Black' },
-    ],
-  },
-  {
-    id: '2',
-    slug: 'yurcooked-chef-tee',
-    name: 'Chef Tee — Heavy Cotton',
-    description: '7 oz ring-spun cotton, relaxed fit. "yurr cooked" embroidered chest logo. Washes beautifully, keeps its shape.',
-    heroImage: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
-    ],
-    category: 'APPAREL',
-    isFeatured: true,
-    variants: [
-      { id: '2a', name: 'White / S',  sku: 'TEE-WHT-S',  price: 4200, stock: 30, size: 'S',  color: 'White' },
-      { id: '2b', name: 'White / M',  sku: 'TEE-WHT-M',  price: 4200, stock: 45, size: 'M',  color: 'White' },
-      { id: '2c', name: 'White / L',  sku: 'TEE-WHT-L',  price: 4200, stock: 38, size: 'L',  color: 'White' },
-      { id: '2d', name: 'White / XL', sku: 'TEE-WHT-XL', price: 4200, stock: 20, size: 'XL', color: 'White' },
-      { id: '2e', name: 'Black / S',  sku: 'TEE-BLK-S',  price: 4200, stock: 18, size: 'S',  color: 'Black' },
-      { id: '2f', name: 'Black / M',  sku: 'TEE-BLK-M',  price: 4200, stock: 22, size: 'M',  color: 'Black' },
-      { id: '2g', name: 'Black / L',  sku: 'TEE-BLK-L',  price: 4200, stock: 15, size: 'L',  color: 'Black' },
-      { id: '2h', name: 'Black / XL', sku: 'TEE-BLK-XL', price: 4200, stock: 9,  size: 'XL', color: 'Black' },
-    ],
-  },
-  {
-    id: '3',
-    slug: 'carbon-steel-skillet-10in',
-    name: 'Carbon Steel Skillet 10"',
-    description: 'Pre-seasoned carbon steel skillet that bridges cast iron and stainless. Screaming-hot sears, oven-safe to 700°F, and feather-light compared to cast iron.',
-    heroImage: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=800&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=800&q=80',
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
-    ],
-    category: 'COOKWARE',
-    isFeatured: true,
-    variants: [
-      { id: '3a', name: '10" / Black', sku: 'PAN-CS-10', price: 13500, stock: 16, color: 'Black' },
-    ],
-  },
-  {
-    id: '4',
-    slug: 'spice-collection',
-    name: 'yurr cooked Spice Collection',
-    description: 'Our 6-jar curated spice set — the exact blends we use on the channel. Custom-ground weekly, shipped fresh.',
-    heroImage: 'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=800&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=800&q=80',
-    ],
-    category: 'ACCESSORIES',
-    isFeatured: false,
-    variants: [
-      { id: '4a', name: 'Set of 6', sku: 'SPICE-6SET', price: 5400, stock: 40 },
-    ],
-  },
-]
+// Cleared out — the four entries here were scaffold placeholders on stock
+// photography for products that do not exist. Add real products here and the
+// shop, sitemap and PayPal checkout all pick them up automatically.
+export const MOCK_PRODUCTS: Product[] = []
 
 export const MOCK_SOCIAL_POSTS = [
   {
