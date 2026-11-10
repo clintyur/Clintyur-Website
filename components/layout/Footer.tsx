@@ -16,12 +16,6 @@ const icons = {
       <path d="M10 9.5v5l4.5-2.5L10 9.5z" fill="currentColor"/>
     </svg>
   ),
-  tt: () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-      <path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
-      <path d="M14 4c.5 2.5 2.5 4.5 5 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
-    </svg>
-  ),
 }
 
 export function Footer() {
@@ -66,13 +60,6 @@ export function Footer() {
                 <a href="https://youtube.com/@ClintYur" target="_blank" rel="noreferrer">
                   <span style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
                     <icons.yt /> YouTube
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="https://tiktok.com/@clintyurr" target="_blank" rel="noreferrer">
-                  <span style={{ display: 'inline-flex', gap: '8px', alignItems: 'center' }}>
-                    <icons.tt /> TikTok
                   </span>
                 </a>
               </li>

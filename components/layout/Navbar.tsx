@@ -73,7 +73,6 @@ export function Navbar({ cartCount = 0, user }: NavbarProps) {
         <div className="mobile-menu-foot">
           <a href="https://instagram.com/clintyurr" target="_blank" rel="noreferrer">Instagram</a>
           <a href="https://youtube.com/@ClintYur" target="_blank" rel="noreferrer">YouTube</a>
-          <a href="https://tiktok.com/@clintyurr" target="_blank" rel="noreferrer">TikTok</a>
         </div>
       </div>
     </>

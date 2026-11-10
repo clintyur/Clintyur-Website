@@ -9,8 +9,8 @@ export function PreviewGrid() {
       name: 'Recipe Stash',
       num: '01',
       desc: 'Explore curated recipes tested in my kitchen',
-      image: '/images/recipe-short-ribs.jpg',
-      alt: 'Braised short ribs plated with sauce',
+      image: '/images/recipe-stash-cover.jpg',
+      alt: 'Beef tartare on focaccia squares, finished with chives',
     },
     {
       id: 'shop',

@@ -63,7 +63,7 @@ export default function ContactPage() {
           <div className="contact-modes">
             <div className="mode">
               <span className="mode-name">For private <span className="it">dinners</span></span>
-              <span className="mode-meta">NYC & Austin</span>
+              <span className="mode-meta">Anywhere you need me</span>
             </div>
             <div className="mode">
               <span className="mode-name">Brand <span className="it">collaborations</span></span>

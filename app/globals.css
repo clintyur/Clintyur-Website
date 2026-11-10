@@ -1989,3 +1989,35 @@ svg#filters {
   text-transform: uppercase;
   color: var(--accent);
 }
+
+/* ---------- social cards on the about page ---------- */
+.social-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.social-card .preview-img { position: relative; }
+/* Darken the photo so the platform mark reads on any frame. */
+.social-card .preview-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(26,24,20,0.42) 0%, rgba(26,24,20,0.66) 100%);
+  transition: background .35s ease;
+}
+.social-card:hover .preview-img::before {
+  background: linear-gradient(180deg, rgba(184,68,42,0.42) 0%, rgba(26,24,20,0.62) 100%);
+}
+.social-glyph {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  color: var(--cream);
+  pointer-events: none;
+}
+.social-glyph svg {
+  width: clamp(44px, 18%, 76px);
+  height: auto;
+  filter: drop-shadow(0 2px 14px rgba(0,0,0,0.7));
+  transition: transform .35s ease;
+}
+.social-card:hover .social-glyph svg { transform: scale(1.08); }

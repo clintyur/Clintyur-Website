@@ -46,12 +46,8 @@ export default function AboutPage() {
           <p className="lbl">Recipes Tested</p>
         </div>
         <div className="cell">
-          <p className="num">NYC<span className="it">/</span>ATX</p>
+          <p className="num">NYC</p>
           <p className="lbl">Based In</p>
-        </div>
-        <div className="cell">
-          <p className="num">Every<span className="it">day</span></p>
-          <p className="lbl">Cooking Since</p>
         </div>
       </div>
 
@@ -80,39 +76,46 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="preview-grid">
-          <a href="https://instagram.com/clintyurr" target="_blank" rel="noreferrer" className="preview">
-            <div className="preview-img" style={{ background: 'var(--accent)' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'var(--cream)' }}>
-                <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.6"/>
-                <circle cx="12" cy="12" r="3.6" stroke="currentColor" strokeWidth="1.6"/>
-                <circle cx="17.2" cy="6.8" r="1" fill="currentColor"/>
-              </svg>
+        <div className="preview-grid social-grid">
+          <a href="https://instagram.com/clintyurr" target="_blank" rel="noreferrer" className="preview social-card">
+            <div className="preview-img">
+              <Image
+                src="/images/private-dinner-plating.jpg"
+                alt=""
+                width={1200}
+                height={1600}
+                sizes="(max-width: 880px) 100vw, 50vw"
+              />
+              <span className="social-glyph" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" width="100%" height="100%">
+                  <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.5"/>
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.5"/>
+                  <circle cx="17.4" cy="6.6" r="1.2" fill="currentColor"/>
+                </svg>
+              </span>
             </div>
             <h3 className="preview-name">Instagram</h3>
             <p className="preview-desc">@clintyurr</p>
           </a>
 
-          <a href="https://youtube.com/@ClintYur" target="_blank" rel="noreferrer" className="preview">
-            <div className="preview-img" style={{ background: 'var(--accent)' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'var(--cream)' }}>
-                <rect x="2" y="5" width="20" height="14" rx="3" stroke="currentColor" strokeWidth="1.6"/>
-                <path d="M10 9.5v5l4.5-2.5L10 9.5z" fill="currentColor"/>
-              </svg>
+          <a href="https://youtube.com/@ClintYur" target="_blank" rel="noreferrer" className="preview social-card">
+            <div className="preview-img">
+              <Image
+                src="/images/hero-clint-wagyu.jpg"
+                alt=""
+                width={1200}
+                height={1600}
+                sizes="(max-width: 880px) 100vw, 50vw"
+              />
+              <span className="social-glyph" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" width="100%" height="100%">
+                  <rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" strokeWidth="1.5"/>
+                  <path d="M10.2 9.2v5.6l4.8-2.8-4.8-2.8z" fill="currentColor"/>
+                </svg>
+              </span>
             </div>
             <h3 className="preview-name">YouTube</h3>
             <p className="preview-desc">@ClintYur</p>
-          </a>
-
-          <a href="https://tiktok.com/@clintyurr" target="_blank" rel="noreferrer" className="preview">
-            <div className="preview-img" style={{ background: 'var(--accent)' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'var(--cream)' }}>
-                <path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
-                <path d="M14 4c.5 2.5 2.5 4.5 5 4.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
-              </svg>
-            </div>
-            <h3 className="preview-name">TikTok</h3>
-            <p className="preview-desc">@clintyurr</p>
           </a>
         </div>
       </section>
