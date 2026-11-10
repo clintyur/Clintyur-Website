@@ -6,10 +6,10 @@ export function Hero() {
       {/* Background image */}
       <div className="hero-img">
         <Image
-          src="/images/hero-clint-wagyu.jpg"
-          alt="Clint searing A5 wagyu over open flame"
-          width={1200}
-          height={1600}
+          src="/images/hero-private-dinner.jpg"
+          alt="A private dinner laid out — whole roasted chicken, shrimp, rice and greens on a set table"
+          width={2000}
+          height={1333}
           priority
           sizes="100vw"
         />
