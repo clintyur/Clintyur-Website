@@ -1,4 +1,10 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
+
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'The story behind yurr cooked — years of cooking professionally and for people worth feeding, from a kitchen in New York.',
+}
 
 export default function AboutPage() {
   return (
