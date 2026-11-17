@@ -80,6 +80,10 @@ export function Footer() {
         {/* Footer bottom */}
         <div className="footer-bot">
           <span>© {new Date().getFullYear()} yurr cooked. All rights reserved.</span>
+          <nav className="footer-legal" aria-label="Legal">
+            <Link href="/terms">Terms</Link>
+            <Link href="/privacy">Privacy</Link>
+          </nav>
           <span>New York, NY</span>
         </div>
       </div>

@@ -11,6 +11,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/shop`,    lastModified: new Date(), changeFrequency: 'weekly',  priority: 0.8 },
     { url: `${BASE}/blog`,    lastModified: new Date(), changeFrequency: 'weekly',  priority: 0.7 },
     { url: `${BASE}/subscribe`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/about`,   lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE}/terms`,   lastModified: new Date(), changeFrequency: 'yearly',  priority: 0.3 },
+    { url: `${BASE}/privacy`, lastModified: new Date(), changeFrequency: 'yearly',  priority: 0.3 },
   ]
 
   const recipePages: MetadataRoute.Sitemap = MOCK_RECIPES.map((r) => ({
