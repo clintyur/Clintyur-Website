@@ -1,4 +1,4 @@
-import { formatPrice, formatTime, slugify, isSubscriber, truncate } from '@/lib/utils'
+import { formatPrice, formatTime, formatDuration, durationMaxMinutes, slugify, isSubscriber, truncate } from '@/lib/utils'
 
 describe('formatPrice', () => {
   it('formats cents as USD currency string', () => {
@@ -50,5 +50,47 @@ describe('truncate', () => {
     const result = truncate('The quick brown fox', 15)
     expect(result.endsWith('…')).toBe(true)
     expect(result.length).toBeLessThanOrEqual(16)
+  })
+})
+
+describe('formatDuration', () => {
+  it('formats plain minutes', () => {
+    expect(formatDuration(30)).toBe('30m')
+    expect(formatDuration(90)).toBe('1h 30m')
+    expect(formatDuration(510)).toBe('8h 30m')
+  })
+
+  it('keeps sub-hour ranges in minutes', () => {
+    expect(formatDuration('20–30')).toBe('20–30m')
+    expect(formatDuration('30–45')).toBe('30–45m')
+    expect(formatDuration('45–60')).toBe('45–60m')
+  })
+
+  it('collapses clean half-hour ranges to shared hours', () => {
+    expect(formatDuration('90–120')).toBe('1.5–2h')
+    expect(formatDuration('60–120')).toBe('1–2h')
+  })
+
+  it('falls back to full formatting for ragged ranges', () => {
+    expect(formatDuration('45–80')).toBe('45m–1h 20m')
+  })
+
+  it('passes through anything it cannot parse', () => {
+    expect(formatDuration('overnight')).toBe('overnight')
+  })
+})
+
+describe('durationMaxMinutes', () => {
+  it('returns the upper bound of a range', () => {
+    expect(durationMaxMinutes('90–120')).toBe(120)
+    expect(durationMaxMinutes('30–45')).toBe(45)
+  })
+
+  it('returns plain numbers unchanged', () => {
+    expect(durationMaxMinutes(510)).toBe(510)
+  })
+
+  it('returns null for unparseable input', () => {
+    expect(durationMaxMinutes('overnight')).toBeNull()
   })
 })

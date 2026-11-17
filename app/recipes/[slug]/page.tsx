@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { Clock, Users, ChefHat, Heart, Printer, Share2, Lock } from 'lucide-react'
 import { MOCK_RECIPES } from '@/lib/mock-data'
-import { formatTime, formatDate } from '@/lib/utils'
+import { formatTime, formatDuration, formatDate } from '@/lib/utils'
 import { CommentsSection } from '@/components/recipes/CommentsSection'
 import { LikeButton } from '@/components/recipes/LikeButton'
 import { RecipeSchema } from '@/components/recipes/RecipeSchema'
@@ -125,7 +125,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
               {/* Times and yield are omitted until the recipe is written up,
                   rather than displaying an invented 0m. */}
               {recipe.prepTime == null && recipe.cookTime == null && 'totalTime' in recipe && recipe.totalTime != null && (
-                <MetaStat icon={<Clock size={16} />} label="Total" value={typeof recipe.totalTime === 'string' ? `${recipe.totalTime}m` : formatTime(recipe.totalTime)} />
+                <MetaStat icon={<Clock size={16} />} label="Total" value={formatDuration(recipe.totalTime)} />
               )}
               {recipe.prepTime != null && (
                 <MetaStat icon={<Clock size={16} />} label="Prep" value={formatTime(recipe.prepTime)} />
