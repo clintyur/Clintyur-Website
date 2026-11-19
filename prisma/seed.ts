@@ -7,6 +7,7 @@
  *
  *   npm run db:seed
  */
+import '../scripts/load-env'
 import { PrismaClient, GroupKind, Difficulty } from '@prisma/client'
 import { MOCK_RECIPES, MOCK_PRODUCTS } from '../lib/mock-data'
 

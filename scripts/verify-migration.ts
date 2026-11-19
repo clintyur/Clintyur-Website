@@ -6,6 +6,7 @@
  *
  *   DATABASE_URL=... npx tsx scripts/verify-migration.ts
  */
+import './load-env'
 import { PrismaClient } from '@prisma/client'
 import { MOCK_RECIPES } from '../lib/mock-data'
 
