@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { Clock, Users, ChefHat, Heart, Printer, Share2, Lock } from 'lucide-react'
-import { MOCK_RECIPES } from '@/lib/mock-data'
+import { getRecipe, getRecipes } from '@/lib/content'
 import { formatTime, formatDuration, formatDate } from '@/lib/utils'
 import { CommentsSection } from '@/components/recipes/CommentsSection'
 import { LikeButton } from '@/components/recipes/LikeButton'
@@ -15,7 +15,7 @@ interface PageProps { params: Promise<{ slug: string }> }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
-  const recipe = MOCK_RECIPES.find((r) => r.slug === slug)
+  const recipe = await getRecipe(slug)
   if (!recipe) return {}
   return {
     title: recipe.title,
@@ -25,34 +25,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export async function generateStaticParams() {
-  return MOCK_RECIPES.map((r) => ({ slug: r.slug }))
+  return (await getRecipes()).map((r) => ({ slug: r.slug }))
 }
-
-// Mock full recipe data — in production, fetch from DB
-const MOCK_FULL_RECIPE: Record<string, {
-  ingredients: { amount: string; unit: string; name: string; note?: string }[]
-  steps: { stepNumber: number; instruction: string }[]
-  nutrition?: { calories: number; protein: number; fat: number; carbs: number }
-}> = {}
 
 const DIFF_LABEL: Record<string, string> = { EASY: 'Easy', MEDIUM: 'Intermediate', HARD: 'Advanced' }
 
 export default async function RecipeDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const recipe = MOCK_RECIPES.find((r) => r.slug === slug)
+  const recipe = await getRecipe(slug)
   if (!recipe) notFound()
 
-  const full = MOCK_FULL_RECIPE[slug as keyof typeof MOCK_FULL_RECIPE]
   const isGated = recipe.isSubscriber // In production: check session subscription status
-  const hasMultipleSections = 'sections' in recipe && recipe.sections && recipe.sections.length > 0
-  // Recipes imported from the previous site group ingredients and steps
-  // independently — the two groupings rarely line up one-to-one.
-  const ingredientGroups = 'ingredientGroups' in recipe ? recipe.ingredientGroups : undefined
-  const stepGroups = 'stepGroups' in recipe ? recipe.stepGroups : undefined
+  // Ingredients and steps are grouped independently — the two groupings rarely
+  // line up one-to-one, so they are never paired by index.
+  const { ingredientGroups, stepGroups, intro, notes } = recipe
   const hasGroups = Boolean(ingredientGroups?.length && stepGroups?.length)
-  // Optional headnote in Clint's own voice, shown above the method.
-  const intro = 'intro' in recipe ? recipe.intro : undefined
-  const notes = 'notes' in recipe ? recipe.notes : undefined
 
   return (
     <>
@@ -201,10 +188,9 @@ export default async function RecipeDetailPage({ params }: PageProps) {
                   </div>
                 </div>
               </div>
-            ) : !hasMultipleSections && !full ? (
-              // No ingredients or steps written yet. Render one honest notice
-              // rather than an empty two-column scaffold saying "coming soon"
-              // twice, which just reads as broken.
+            ) : (
+              // Nothing written up yet. One honest notice, rather than an empty
+              // two-column scaffold saying "coming soon" twice, which reads as broken.
               <div className="container py-12">
                 <div className="recipe-sidebar" style={{ maxWidth: '640px' }}>
                   <h2 className="font-serif text-xl font-bold mb-2">
@@ -217,107 +203,6 @@ export default async function RecipeDetailPage({ params }: PageProps) {
                       browse the recipes that are ready
                     </Link>.
                   </p>
-                </div>
-              </div>
-            ) : hasMultipleSections ? (
-              // Multi-section recipe layout
-              <div className="container py-12 space-y-16">
-                {recipe.sections?.map((section: any, sectionIdx: number) => (
-                  <div key={sectionIdx} className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                    {/* Section ingredients (sidebar) */}
-                    <aside className="lg:col-span-1">
-                      <div className="recipe-sidebar">
-                        <h3 className="font-serif text-lg font-bold mb-1">{section.name}</h3>
-                        <div className="h-1 w-12 bg-accent mb-6" style={{ background: 'var(--accent)' }}></div>
-                        <h4 className="eyebrow mb-4" style={{ marginBottom: '12px' }}>Ingredients</h4>
-                        <ul className="space-y-2">
-                          {section.ingredients.map((ing: string, i: number) => (
-                            <IngredientItem key={i} text={ing} />
-                          ))}
-                        </ul>
-                      </div>
-                    </aside>
-
-                    {/* Section instructions */}
-                    <div className="lg:col-span-2">
-                      <h4 className="eyebrow mb-6">Instructions</h4>
-                      <ol className="space-y-8">
-                        {section.instructions.map((instruction: string, i: number) => (
-                          <li key={i} className="flex gap-5">
-                            <div className="recipe-step-number">
-                              {i + 1}
-                            </div>
-                            <p className="recipe-ingredient-list leading-relaxed flex-1">{instruction}</p>
-                          </li>
-                        ))}
-                      </ol>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              // Single section recipe layout
-              <div className="container py-12">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-                  {/* Ingredients (sidebar) */}
-                  <aside className="lg:col-span-1">
-                    <div className="recipe-sidebar sticky top-32">
-                      <h2 className="section-title mb-3">Ingredients</h2>
-                      {full ? (
-                        <ul className="space-y-3">
-                          {full.ingredients.map((ing, i) => (
-                            <li key={i} className="flex gap-2 text-sm recipe-ingredient-list">
-                              <span className="font-semibold min-w-[3rem]">
-                                {ing.amount}{ing.unit && ` ${ing.unit}`}
-                              </span>
-                              <span>
-                                {ing.name}
-                                {ing.note && <span className="text-muted">, {ing.note}</span>}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p className="text-muted text-sm italic">Ingredients coming soon.</p>
-                      )}
-
-                      {/* Nutrition */}
-                      {full?.nutrition && (
-                        <div className="mt-6 pt-6" style={{ borderTopColor: 'var(--rule)', borderTopWidth: '1px' }}>
-                          <p className="eyebrow mb-3">Per serving</p>
-                          <div className="grid grid-cols-2 gap-3">
-                            {Object.entries(full.nutrition).map(([k, v]) => (
-                              <div key={k} className="text-center rounded p-3" style={{ background: 'var(--cream)' }}>
-                                <p className="text-lg font-bold" style={{ color: 'var(--accent)' }}>{v}</p>
-                                <p className="eyebrow mt-1">
-                                  {k === 'calories' ? 'kcal' : `${k}g`}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </aside>
-
-                  {/* Method */}
-                  <div className="lg:col-span-2">
-                    <h2 className="section-title">Method</h2>
-                    {full ? (
-                      <ol className="space-y-8">
-                        {full.steps.map((step) => (
-                          <li key={step.stepNumber} className="flex gap-5">
-                            <div className="recipe-step-number">
-                              {step.stepNumber}
-                            </div>
-                            <p className="recipe-ingredient-list leading-relaxed flex-1">{step.instruction}</p>
-                          </li>
-                        ))}
-                      </ol>
-                    ) : (
-                      <p className="text-muted italic">Steps coming soon.</p>
-                    )}
-                  </div>
                 </div>
               </div>
             )}

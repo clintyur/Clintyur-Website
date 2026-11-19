@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
-import { MOCK_PRODUCTS } from '@/lib/mock-data'
+import { getProducts } from '@/lib/content'
 import { paypalConfigured, paypalFetch, approvalLink, centsToAmount, type PayPalLink } from '@/lib/paypal'
 
 const schema = z.object({
@@ -14,8 +14,10 @@ const schema = z.object({
 const FREE_SHIPPING_THRESHOLD = 7500
 const FLAT_SHIPPING = 695
 
-function findVariant(variantId: string) {
-  for (const product of MOCK_PRODUCTS) {
+async function findVariant(variantId: string) {
+  // Prices are always read from the server's own catalogue, never from the
+  // request body — the client is only trusted to say which variant and how many.
+  for (const product of await getProducts()) {
     const variant = product.variants.find((v) => v.id === variantId)
     if (variant) return { product, variant }
   }
@@ -48,7 +50,7 @@ export async function POST(req: Request) {
   let subtotal = 0
 
   for (const { variantId, quantity } of parsed.data.items) {
-    const found = findVariant(variantId)
+    const found = await findVariant(variantId)
     if (!found) {
       return NextResponse.json({ error: `Unknown item in cart` }, { status: 422 })
     }

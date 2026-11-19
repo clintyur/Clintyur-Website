@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { RecipeCard } from '@/components/recipes/RecipeCard'
-import { MOCK_RECIPES } from '@/lib/mock-data'
+import { getRecipes } from '@/lib/content'
 
-export function FeaturedRecipes() {
-  const featured = MOCK_RECIPES.filter((r) => r.isFeatured).slice(0, 3)
+export async function FeaturedRecipes() {
+  const featured = (await getRecipes()).filter((r) => r.isFeatured).slice(0, 3)
 
   return (
     <section className="section-pad bg-stone-50">

@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { MOCK_RECIPES } from '@/lib/mock-data'
+import { getRecipes } from '@/lib/content'
 
 export const metadata: Metadata = {
   title: 'Recipes',
   description: 'Recipes tested at home and in professional kitchens — written out clearly so you can follow along and get it right.',
 }
 
-export default function RecipesPage() {
-  const recipes = MOCK_RECIPES.map((recipe, index) => ({
+export default async function RecipesPage() {
+  const recipes = (await getRecipes()).map((recipe, index) => ({
     id: recipe.id,
     slug: recipe.slug,
     num: String(index + 1).padStart(2, '0'),

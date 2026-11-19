@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { ProductCard } from '@/components/shop/ProductCard'
-import { MOCK_PRODUCTS } from '@/lib/mock-data'
+import { getProducts } from '@/lib/content'
 
-export function ShopPreview() {
-  const featured = MOCK_PRODUCTS.filter((p) => p.isFeatured).slice(0, 3)
+export async function ShopPreview() {
+  const featured = (await getProducts()).filter((p) => p.isFeatured).slice(0, 3)
 
   return (
     <section className="section-pad">
