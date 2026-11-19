@@ -32,10 +32,10 @@ model User {
   subscriptionEndsAt   DateTime?
 
   // Content
-  comments     Comment[]
-  likes        Like[]
-  orders       Order[]
-  profile      UserProfile?
+  comments Comment[]
+  likes    Like[]
+  orders   Order[]
+  profile  UserProfile?
 
   @@map("users")
 }
@@ -93,69 +93,97 @@ model VerificationToken {
 // ─── Recipes ──────────────────────────────────────────────────────────────────
 
 model Recipe {
-  id           String       @id @default(cuid())
-  slug         String       @unique
-  title        String
-  description  String       @db.Text
-  heroImage    String
-  images       String[]
-  prepTime     Int          // minutes
-  cookTime     Int          // minutes
-  servings     Int
-  difficulty   Difficulty   @default(MEDIUM)
+  id          String @id @default(cuid())
+  slug        String @unique
+  title       String
+  description String @db.Text
+
+  // Nullable: a recipe can be photographed and published before the write-up
+  // is finished, and the page has an honest empty state for that.
+  heroImage String?
+  images    String[]
+
+  // Free-standing paragraphs shown above the method and below it. Plain text,
+  // one entry per paragraph.
+  intro String[]
+  notes String[]
+
+  // All times in minutes. Most recipes carry prep + cook; the rest carry only a
+  // total, which may be a RANGE (90–120 = "1.5–2h"). A single total sets min and
+  // max to the same value. Kept numeric so "under 30 minutes" stays queryable.
+  prepTime     Int?
+  cookTime     Int?
+  totalTimeMin Int?
+  totalTimeMax Int?
+
+  // Free text, because real answers are "2–4", "10", "4–6 as a starter".
+  servings String?
+
+  difficulty   Difficulty @default(MEDIUM)
   cuisine      String?
   category     String
   tags         String[]
-  isSubscriber Boolean      @default(false)
-  isFeatured   Boolean      @default(false)
+  isSubscriber Boolean    @default(false)
+  isFeatured   Boolean    @default(false)
   publishedAt  DateTime?
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 
-  ingredients  Ingredient[]
-  steps        RecipeStep[]
-  comments     Comment[]
-  likes        Like[]
-  nutrition    Nutrition?
+  groups    RecipeGroup[]
+  comments  Comment[]
+  likes     Like[]
+  nutrition Nutrition?
 
+  @@index([publishedAt])
+  @@index([category])
   @@map("recipes")
 }
 
-model Ingredient {
-  id       String  @id @default(cuid())
+/// A named block of either ingredients or steps — "The Marinade", "The Dredge".
+/// Ingredient groups and step groups are deliberately INDEPENDENT of each other:
+/// the fried chicken has 3 ingredient groups and 4 step groups, so any model that
+/// pairs them up would corrupt real recipes. A recipe with no headings is stored
+/// as a single group with a null name.
+model RecipeGroup {
+  id       String    @id @default(cuid())
   recipeId String
-  amount   String
-  unit     String?
-  name     String
-  note     String?
-  order    Int     @default(0)
-  recipe   Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  kind     GroupKind
+  name     String?
+  order    Int       @default(0)
 
-  @@map("ingredients")
+  recipe Recipe            @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  items  RecipeGroupItem[]
+
+  @@index([recipeId, kind, order])
+  @@map("recipe_groups")
 }
 
-model RecipeStep {
-  id          String  @id @default(cuid())
-  recipeId    String
-  stepNumber  Int
-  instruction String  @db.Text
-  image       String?
-  tip         String?
-  recipe      Recipe  @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+/// One ingredient line or one step, stored as the whole line exactly as written
+/// ("Chicken thighs — 4–6 pieces (or any cut)"). Deliberately NOT split into
+/// amount/unit/name: the em dash separates the ingredient from its prep note,
+/// the thumbnail lookup depends on that, and splitting it would flatten the voice.
+model RecipeGroupItem {
+  id      String @id @default(cuid())
+  groupId String
+  text    String @db.Text
+  order   Int    @default(0)
 
-  @@map("recipe_steps")
+  group RecipeGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
+
+  @@index([groupId, order])
+  @@map("recipe_group_items")
 }
 
 model Nutrition {
   id       String @id @default(cuid())
   recipeId String @unique
   calories Int?
-  protein  Int?   // grams
-  fat      Int?   // grams
-  carbs    Int?   // grams
-  fiber    Int?   // grams
-  sugar    Int?   // grams
-  sodium   Int?   // mg
+  protein  Int? // grams
+  fat      Int? // grams
+  carbs    Int? // grams
+  fiber    Int? // grams
+  sugar    Int? // grams
+  sodium   Int? // mg
   recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
 
   @@map("nutrition")
@@ -164,19 +192,19 @@ model Nutrition {
 // ─── Comments & Likes ─────────────────────────────────────────────────────────
 
 model Comment {
-  id        String    @id @default(cuid())
-  body      String    @db.Text
-  rating    Int?      // 1-5 stars
+  id        String   @id @default(cuid())
+  body      String   @db.Text
+  rating    Int? // 1-5 stars
   userId    String
   recipeId  String
   parentId  String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  recipe   Recipe    @relation(fields: [recipeId], references: [id], onDelete: Cascade)
-  parent   Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
-  replies  Comment[] @relation("CommentReplies")
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipe  Recipe    @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  parent  Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  replies Comment[] @relation("CommentReplies")
 
   @@map("comments")
 }
@@ -197,35 +225,35 @@ model Like {
 // ─── Shop ─────────────────────────────────────────────────────────────────────
 
 model Product {
-  id          String        @id @default(cuid())
-  slug        String        @unique
+  id          String     @id @default(cuid())
+  slug        String     @unique
   name        String
-  description String        @db.Text
+  description String     @db.Text
   heroImage   String
   images      String[]
   category    ProductCat
-  isFeatured  Boolean       @default(false)
-  isActive    Boolean       @default(true)
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  isFeatured  Boolean    @default(false)
+  isActive    Boolean    @default(true)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 
-  variants    ProductVariant[]
-  orderItems  OrderItem[]
+  variants   ProductVariant[]
+  orderItems OrderItem[]
 
   @@map("products")
 }
 
 model ProductVariant {
-  id         String  @id @default(cuid())
-  productId  String
-  name       String  // e.g. "Black / S", "Copper / One Size"
-  sku        String  @unique
-  price      Int     // cents
-  compareAt  Int?    // cents – for "was $X" display
-  stock      Int     @default(0)
-  size       String?
-  color      String?
-  weight     Float?  // oz, for shipping
+  id        String  @id @default(cuid())
+  productId String
+  name      String // e.g. "Black / S", "Copper / One Size"
+  sku       String  @unique
+  price     Int // cents
+  compareAt Int? // cents – for "was $X" display
+  stock     Int     @default(0)
+  size      String?
+  color     String?
+  weight    Float? // oz, for shipping
 
   product    Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
   orderItems OrderItem[]
@@ -237,10 +265,14 @@ model ProductVariant {
 
 model Order {
   id              String      @id @default(cuid())
-  userId          String
+  // Nullable: checkout does not require an account, so a guest order has an
+  // email and no user.
+  userId          String?
+  email           String
   status          OrderStatus @default(PENDING)
+  paypalOrderId   String?     @unique
   stripePaymentId String?     @unique
-  subtotal        Int         // cents
+  subtotal        Int // cents
   shipping        Int         @default(0)
   tax             Int         @default(0)
   total           Int
@@ -249,7 +281,7 @@ model Order {
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
 
-  user  User        @relation(fields: [userId], references: [id])
+  user  User?       @relation(fields: [userId], references: [id])
   items OrderItem[]
 
   @@map("orders")
@@ -261,7 +293,7 @@ model OrderItem {
   variantId String
   productId String
   quantity  Int
-  unitPrice Int    // cents at time of purchase
+  unitPrice Int // cents at time of purchase
 
   order   Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
   variant ProductVariant @relation(fields: [variantId], references: [id])
@@ -291,6 +323,11 @@ enum Difficulty {
   EASY
   MEDIUM
   HARD
+}
+
+enum GroupKind {
+  INGREDIENT
+  STEP
 }
 
 enum ProductCat {

@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Navbar } from '@/components/layout/Navbar'
-import { Footer } from '@/components/layout/Footer'
-import { FryingPanCursor } from '@/components/cursor/FryingPanCursor'
+import { SiteChrome } from '@/components/layout/SiteChrome'
 import { CartProvider } from '@/components/shop/CartProvider'
 import './globals.css'
 
@@ -64,10 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </defs>
         </svg>
         <CartProvider>
-          <FryingPanCursor />
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <SiteChrome>{children}</SiteChrome>
         </CartProvider>
       </body>
     </html>

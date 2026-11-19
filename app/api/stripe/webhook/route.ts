@@ -108,6 +108,9 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     const order = await db.order.create({
       data: {
         userId,
+        // An order now records the buyer's email directly, so a guest checkout
+        // can be fulfilled without an account.
+        email: session.customer_details?.email ?? '',
         status: 'PAID',
         stripePaymentId: session.payment_intent as string,
         subtotal: total,
