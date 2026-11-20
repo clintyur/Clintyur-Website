@@ -2424,12 +2424,24 @@ svg#filters {
 .admin-saved { font-size: 14px; margin: 14px 0 0; color: var(--muted); }
 
 /* Login */
-.admin-login { padding: clamp(80px, 12vw, 160px) 0; }
+.admin-login {
+  /* The sign-in page is the whole window — no site nav, no admin bar — so the
+     card sits in the middle of it rather than up in the corner.
+     padding-block only: the shorthand would zero .container's side gutter and
+     push the card flat against the edge of the screen. */
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
 .admin-login-card {
-  max-width: 400px;
+  width: 100%;
+  max-width: 420px;
   border: 1px solid var(--rule);
   background: var(--cream-2);
-  padding: 32px;
+  padding: clamp(24px, 5vw, 36px);
 }
 .admin-login-title { font-size: clamp(34px, 5vw, 48px); margin: 12px 0 0; }
 .admin-login-form { margin-top: 24px; }
