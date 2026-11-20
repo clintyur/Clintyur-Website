@@ -314,7 +314,12 @@ button { font-family: inherit; cursor: pointer; }
 .hero-wordmark {
   font-family: "Caveat", cursive;
   font-weight: 700;
-  font-size: clamp(96px, 18vw, 260px);
+  /* The floor used to be 96px. With white-space: nowrap that makes "yurr
+     cooked" 414px wide, so on any phone narrower than ~450px the end of the
+     word and the accent dot were cut off by .hero's overflow: hidden.
+     Lowering the floor only affects screens under ~535px; at every width
+     where 18vw already won, the size is unchanged. */
+  font-size: clamp(52px, 18vw, 260px);
   line-height: 0.9;
   letter-spacing: -0.01em;
   text-transform: none;
@@ -2460,4 +2465,96 @@ svg#filters {
   .admin-row { grid-template-columns: 56px 1fr; }
   .admin-row-actions { grid-column: 1 / -1; }
   .admin-section { padding: 18px 16px; }
+}
+
+/* ── Admin on a phone ─────────────────────────────────────────────────────────
+   The editor has to be usable one-handed in a kitchen, so this is about thumbs,
+   not just about fitting. Anything you tap gets at least ~44px of height, and
+   the sticky bar collapses to a single row instead of wrapping to three and
+   eating a third of the screen. */
+@media (max-width: 640px) {
+  .admin-bar-inner {
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  /* The page heading already says where you are; the wordmark is what pushes
+     this bar onto a third row. */
+  .admin-bar-brand { display: none; }
+
+  .admin-bar-nav {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 2px;
+    margin-right: 0;
+    /* The base rule wraps; inside a narrow scroll container that stacked the
+       four links into three rows and made the sticky bar 105px tall. */
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .admin-bar-nav::-webkit-scrollbar { display: none; }
+  .admin-bar-nav a {
+    padding: 15px 10px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .admin-signout {
+    flex-shrink: 0;
+    padding: 0 14px;
+    height: 44px;
+  }
+
+  /* Three levels of nested padding — gutter, section, group — were costing
+     ~50px either side of a textarea meant for typing recipe steps into. */
+  .admin-section { padding: 16px 12px; }
+  .admin-group { padding: 12px; }
+
+  .admin-page { padding-top: 24px; }
+
+  /* Back links were 14px of tappable height. */
+  .admin-hint a {
+    display: inline-block;
+    padding: 10px 2px;
+  }
+
+  .admin-btn-ghost,
+  .admin-btn-danger,
+  .admin-btn-danger-ghost,
+  .admin-signout,
+  .btn-primary {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Save and Cancel go full width and sit above Delete, so the destructive
+     button is never the one your thumb lands on by accident. */
+  .admin-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .admin-actions > * { width: 100%; }
+  .admin-actions .admin-btn-danger {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  /* List rows: give the row's own actions room rather than squeezing them
+     beside a thumbnail. */
+  .admin-row { gap: 12px; }
+  .admin-row-actions { gap: 10px; }
+  .admin-row-actions a { flex: 1; text-align: center; }
+
+  .admin-imagepicker-controls > * { min-height: 44px; }
+  .admin-file { width: 100%; }
+
+  /* The whole label toggles the box, so give the label the tap height and the
+     box enough size to aim at. */
+  .admin-check { min-height: 44px; }
+  .admin-check input { width: 20px; height: 20px; }
 }
