@@ -4,7 +4,12 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // Neon hands out two connection strings. Queries go through the pooler, which
+  // is what a serverless function needs; schema changes cannot, because a
+  // transaction pooler will not carry the session state a migration depends on.
+  // directUrl is used only by `prisma db push` / `migrate`.
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
